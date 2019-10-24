@@ -1,4 +1,7 @@
 from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
+
 from ortools.sat.python import cp_model
 
 model = cp_model.CpModel()
@@ -37,27 +40,22 @@ model.AddAllDifferent(firstColumn)
 model.AddAllDifferent(secondColumn)
 model.AddAllDifferent(thirdColumn)
 
-model.AddLinearConstraint(x1 + x2 + x3, 19, 20)
-model.AddLinearConstraint(y1 + y2 + y3, 18, 19)
-model.AddLinearConstraint(z1 + z2 + z3, 7, 8)
-model.AddLinearConstraint(x1 + y1 + x1, 21, 22)
-model.AddLinearConstraint(x2 + y2 + z2, 17, 18)
-model.AddLinearConstraint(x3 + y3 + z3, 6, 7)
+model.Add(x1 + x2 + x3 == 20)
+model.Add(y1 + y2 + y3 == 19)
+model.Add(z1 + z2 + z3 == 8)
+model.Add(x1 + y1 + z1 == 22)
+model.Add(x2 + y2 + z2 == 18)
+model.Add(x3 + y3 + z3 == 7)
 
-print(solver.Solve(model))
+status = solver.Solve(model)
 
-print(x1.Index())
-print(x2.Index())
-print(x3.Index())
-print(y1.Index())
-print(y2.Index())
-print(y3.Index())
-print(z1.Index())
-print(z2.Index())
-print(z3.Index())
-
-
-
-
-
-
+if status == cp_model.FEASIBLE:
+    print('x1 = %i' % solver.Value(x1))
+    print('x2 = %i' % solver.Value(x2))
+    print('x3 = %i' % solver.Value(x3))
+    print('y1 = %i' % solver.Value(y1))
+    print('y2 = %i' % solver.Value(y2))
+    print('y3 = %i' % solver.Value(y3))
+    print('z1 = %i' % solver.Value(z1))
+    print('z2 = %i' % solver.Value(z2))
+    print('z3 = %i' % solver.Value(z3))
