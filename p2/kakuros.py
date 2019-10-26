@@ -2,6 +2,7 @@ from ortools.sat.python import cp_model
 
 model = cp_model.CpModel()
 solver = cp_model.CpSolver()
+
 def Kakuro(borders, outputFile):
     #x row values
     x1 = model.NewIntVar(0, 9, "x1")
@@ -58,9 +59,11 @@ lineInt = []
 
 outputFile = open("kakuro_output.txt", "w")
 outputFile.writelines("x, " + line)
+
 while line:
     line = line.strip().split(",")
     for i in line:
         lineInt.append(int(i))
     line = file.readline()
+
 Kakuro(lineInt, outputFile)
