@@ -117,11 +117,28 @@ while n < len(parent1):
     n += 1
 print("parent1: ", parent1)
 print("parent2: ", parent2)
+print("mutation: ", random.random())
+#Mutation
+if random.random() <= n:
+    flip = random.randrange(0, 14, 1)
+    print("flip", flip)
+    if random.random() < 0.5:
+        if parent1[flip] == 0:
+            parent1.pop(flip)
+            parent1.insert(flip, 1)
+        else:
+            parent1.pop(flip)
+            parent1.insert(flip, 0)
+    else:
+        if parent2[flip] == 0:
+            parent2.pop(flip)
+            parent2.insert(flip, 1)
+        else:
+            parent2.pop(flip)
+            parent2.insert(flip, 0)
 
-
-
-
-
+print("parent1: ", parent1)
+print("parent2: ", parent2)
 
 fout.write('chromosome: 101010111000011\n')
 fout.write('weight: 749\n')
