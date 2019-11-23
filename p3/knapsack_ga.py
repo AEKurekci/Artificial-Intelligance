@@ -107,8 +107,16 @@ for i in list(weightDict.keys()):
         parent2 = selectedParentDict[i]
 print("parent1: ", parent1)
 print("parent2: ", parent2)
-
-
+virtualList = []
+index = 0
+while n < len(parent1):
+    virtualList.append(parent1.pop(n))
+    parent1.insert(n, parent2.pop(n))
+    parent2.insert(n, virtualList[index])
+    index += 1
+    n += 1
+print("parent1: ", parent1)
+print("parent2: ", parent2)
 
 
 
