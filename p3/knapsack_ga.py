@@ -66,8 +66,8 @@ for i, chrom in enumerate(population):
         weightDict[i] = wt
         denominator += wt
     print(i + 1, chrom, ft, wt)
-
-
+print(selectedParentDict)
+print("denominator: ", denominator)
 #selection parent
 if parentSelection == 1:
     weightOfParent2 = 0
@@ -75,7 +75,12 @@ if parentSelection == 1:
     while weightOfParent2 == 0:
         selection = random.randint(0, denominator)
         parentCandidates = list(weightDict.values())
+
+        #removing selected parent from candidates list
+        if weightOfParent1 != 0:
+            parentCandidates.remove(weightOfParent1)
         print("selection ", selection)
+        #low limit
         low = 0
         for values in parentCandidates:
             if selection >= low and selection < (low + values):
