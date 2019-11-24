@@ -1,5 +1,6 @@
 # starter code for solving knapsack problem using genetic algorithm
 import random
+import copy
 
 fc = open('./c.txt', 'r')
 fw = open('./w.txt', 'r')
@@ -38,7 +39,7 @@ print('\nSurvival Selection\n---------------------------')
 print('(1) Age-based Selection')
 print('(2) Fitness-based Selection')
 survivalSelection = int(input('Which one? '))
-elitism = bool(input('Elitism? (Y or N) ' ))
+elitism = bool(input('Elitism? (Y or N) '))
 
 
 print('\n----------------------------------------------------------')
@@ -50,35 +51,48 @@ for i in range(popSize):
         temp.append(random.randint(0, 1))
     population.append(temp)
 
-
+ageBased = {}
+age = 1
 print('evaluating fitnesses')
 weightDict = {}
+allWeightDict = {}
 selectedParentDict = {}
 denominator = 0
+unfittest = 0
 for i, chrom in enumerate(population):
     ft = 0
     wt = 0
+    ageBased[i] = random.randrange(0, 10, 1)
     for j, gene in enumerate(chrom):
         ft += gene * v[j]
         wt += gene * w[j]
-    if wt < c:
-        selectedParentDict[i] = chrom
+    allWeightDict[i] = wt
+    if wt <= c:
+        selectedParentDict[i] = copy.deepcopy(chrom)
         weightDict[i] = wt
         denominator += wt
+    else:
+        if allWeightDict[unfittest] <= allWeightDict[i]:
+            unfittest2 = unfittest
+            unfittest = i
+        elif allWeightDict[unfittest2] <= allWeightDict[i]:
+            unfittest2 = i
     print(i + 1, chrom, ft, wt)
-print(selectedParentDict)
-print("denominator: ", denominator)
+print("selected Parents: ", selectedParentDict)
+print("ageBased: ", ageBased)
+
 #selection parent
 if parentSelection == 1:
     weightOfParent2 = 0
     weightOfParent1 = 0
     while weightOfParent2 == 0:
-        selection = random.randint(0, denominator)
-        parentCandidates = list(weightDict.values())
-
-        #removing selected parent from candidates list
         if weightOfParent1 != 0:
             parentCandidates.remove(weightOfParent1)
+            denominator -= weightOfParent1
+        selection = random.randint(0, denominator)
+        parentCandidates = list(weightDict.values())
+        indexOfCandidates = list(weightDict.keys())
+        #removing selected parent from candidates list
         print("selection ", selection)
         #low limit
         low = 0
@@ -92,12 +106,11 @@ if parentSelection == 1:
                     break
             else:
                 low += values
-            print("values ", values)
-            print("low ", low)
 elif parentSelection == 2:
     print("k-Tournament")
 else:
     print("Hatalı giriş")
+
 
 #Crossing-Over
 for i in list(weightDict.keys()):
@@ -105,8 +118,6 @@ for i in list(weightDict.keys()):
         parent1 = selectedParentDict[i]
     elif weightDict[i] == weightOfParent2:
         parent2 = selectedParentDict[i]
-print("parent1: ", parent1)
-print("parent2: ", parent2)
 virtualList = []
 index = 0
 while n < len(parent1):
@@ -115,9 +126,6 @@ while n < len(parent1):
     parent2.insert(n, virtualList[index])
     index += 1
     n += 1
-print("parent1: ", parent1)
-print("parent2: ", parent2)
-print("mutation: ", random.random())
 #Mutation
 if random.random() <= n:
     flip = random.randrange(0, 14, 1)
@@ -139,6 +147,37 @@ if random.random() <= n:
 
 print("parent1: ", parent1)
 print("parent2: ", parent2)
+print("population: ", population)
+print("selectedParentDic: ", selectedParentDict)
+
+#placed new generation
+oldest = 0
+for k in ageBased.keys():
+    if ageBased[oldest] <= ageBased[k]:
+        older = oldest
+        oldest = k
+    elif ageBased[older] <= ageBased[k]:
+        older = k
+
+if survivalSelection == 1:
+    print("--Age-Based Survival Selection--")
+    population.pop(older)
+    population.insert(older, parent1)
+    population.pop(oldest)
+    population.insert(oldest, parent2)
+elif survivalSelection == 2:
+    print("--Fitness-Based Survival Selection--")
+    population.pop(unfittest)
+    population.insert(unfittest, parent1)
+    population.pop(unfittest2)
+    population.insert(unfittest2, parent2)
+
+
+print("older: ", older)
+print("oldest: ", oldest)
+print("unfit: ", unfittest)
+print("unfit2: ", unfittest2)
+print(population)
 
 fout.write('chromosome: 101010111000011\n')
 fout.write('weight: 749\n')
