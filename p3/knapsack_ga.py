@@ -86,11 +86,11 @@ if parentSelection == 1:
     weightOfParent2 = 0
     weightOfParent1 = 0
     while weightOfParent2 == 0:
+        parentCandidates = list(weightDict.values())
         if weightOfParent1 != 0:
             parentCandidates.remove(weightOfParent1)
             denominator -= weightOfParent1
         selection = random.randint(0, denominator)
-        parentCandidates = list(weightDict.values())
         indexOfCandidates = list(weightDict.keys())
         #removing selected parent from candidates list
         print("selection ", selection)
@@ -106,18 +106,40 @@ if parentSelection == 1:
                     break
             else:
                 low += values
+    for ind in list(weightDict.keys()):
+        if weightDict[ind] == weightOfParent1:
+            parent1 = selectedParentDict[ind]
+        elif weightDict[ind] == weightOfParent2:
+            parent2 = selectedParentDict[ind]
 elif parentSelection == 2:
     print("k-Tournament")
+    kSelParents = {}
+    kSelindexesPar = []
+    while k >= 0:
+        randIndex = random.randint(0, popSize)
+        if randIndex not in kSelindexesPar:
+            kSelParents[randIndex] = copy.deepcopy(population[randIndex])
+            kSelindexesPar.append(randIndex)
+            k -= 1
+    biggestW = copy.deepcopy(allWeightDict[kSelindexesPar[0]])
+    for indexOfKTour in kSelindexesPar:
+        if allWeightDict[indexOfKTour] >= biggestW:
+            secondBiggestW = biggestW
+            biggestW = copy.deepcopy(allWeightDict[indexOfKTour])
+        elif allWeightDict[indexOfKTour] >= secondBiggestW:
+            secondBiggestW = copy.deepcopy(allWeightDict[indexOfKTour])
+    for indexW in list(allWeightDict.keys()):
+        if allWeightDict[indexW] == biggestW:
+            parent1 = kSelParents[indexW]
+        elif allWeightDict[indexW] == secondBiggestW:
+            parent2 = kSelParents[indexW]
 else:
     print("Hatalı giriş")
-
+print(kSelParents)
+print("parent1: ", parent1)
+print("parent2: ", parent2)
 
 #Crossing-Over
-for i in list(weightDict.keys()):
-    if weightDict[i] == weightOfParent1:
-        parent1 = selectedParentDict[i]
-    elif weightDict[i] == weightOfParent2:
-        parent2 = selectedParentDict[i]
 virtualList = []
 index = 0
 while n < len(parent1):
@@ -144,11 +166,6 @@ if random.random() <= n:
         else:
             parent2.pop(flip)
             parent2.insert(flip, 0)
-
-print("parent1: ", parent1)
-print("parent2: ", parent2)
-print("population: ", population)
-print("selectedParentDic: ", selectedParentDict)
 
 #placed new generation
 oldest = 0
