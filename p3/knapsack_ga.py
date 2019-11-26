@@ -39,8 +39,16 @@ print('\nSurvival Selection\n---------------------------')
 print('(1) Age-based Selection')
 print('(2) Fitness-based Selection')
 survivalSelection = int(input('Which one? '))
-elitism = bool(input('Elitism? (Y or N) '))
-
+what = True
+while what:
+    elitism = input('Elitism? (Y or N) ')
+    elitism.lower()
+    if elitism == "y":
+        elitism = True
+        what = False
+    elif elitism == "n":
+        elitism = False
+        what = False
 
 print('\n----------------------------------------------------------')
 print('initalizing population')
@@ -53,6 +61,7 @@ for i in range(popSize):
 
 ageBased = {}
 age = 1
+fittestForElitism = 0
 print('evaluating fitnesses')
 weightDict = {}#!
 allWeightDict = {}
@@ -70,6 +79,9 @@ for i, chrom in enumerate(population):
     allFitnessDict[i] = ft
     ageBased[i] = age
     if wt <= c:
+        if ft >= fittestForElitism:
+            fittestForElitism = ft
+            indexOfElitism = i
         selectedParentDict[i] = copy.deepcopy(chrom)
         weightDict[i] = wt
         denominator += ft
@@ -178,12 +190,17 @@ while sizeOfChild > 0:
 #placed new generation
 allWeightDictNew = {}
 allFitnessDictNew = {}
+fittestForElitismNew = 0
 for iNew, chromosome in enumerate(selectedChild):
     ftNew = 0
     wtNew = 0
     for jNew, gene in enumerate(chromosome):
         ftNew += gene * v[jNew]
         wtNew += gene * w[jNew]
+    if wtNew <= c:
+        if ftNew >= fittestForElitismNew:
+            fittestForElitismNew = ftNew
+            indexOfElitismNew = iNew
     allWeightDictNew[iNew] = wtNew
     allFitnessDictNew[iNew] = ftNew
     print(iNew + 1, chromosome, ftNew, wtNew)
@@ -212,6 +229,9 @@ elif survivalSelection == 2:
     kickCandidatesF = []
     kickCandidatesFNew = []
 
+    #if elitism:
+
+
     for i, item in allWeightDict.items():
         if item > c:
             kickCandidatesW.append(item)
@@ -222,9 +242,6 @@ elif survivalSelection == 2:
 
     for i, item in allFitnessDict.items():
         kickCandidatesF.append(item)
-
-    # for i, item in allFitnessDictNew.items():
-    #   kickCandidatesF.append(item)
 
     kickCandidatesF.sort()  # ascending
     kickCandidatesW.sort(reverse=True)  # descanding
