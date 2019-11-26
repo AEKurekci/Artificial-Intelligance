@@ -54,9 +54,11 @@ for i in range(popSize):
 ageBased = {}
 age = 1
 print('evaluating fitnesses')
-weightDict = {}
+weightDict = {}#!
 allWeightDict = {}
-selectedParentDict = {}
+allFitnessDict = {}
+selectedParentDict = {}#!
+fitnessValueDict = {}
 denominator = 0
 unfittest = 0
 for i, chrom in enumerate(population):
@@ -67,10 +69,12 @@ for i, chrom in enumerate(population):
         ft += gene * v[j]
         wt += gene * w[j]
     allWeightDict[i] = wt
+    allFitnessDict[i] = ft
     if wt <= c:
         selectedParentDict[i] = copy.deepcopy(chrom)
         weightDict[i] = wt
-        denominator += wt
+        denominator += ft
+        fitnessValueDict[i] = ft
     else:
         if allWeightDict[unfittest] <= allWeightDict[i]:
             unfittest2 = unfittest
@@ -78,94 +82,109 @@ for i, chrom in enumerate(population):
         elif allWeightDict[unfittest2] <= allWeightDict[i]:
             unfittest2 = i
     print(i + 1, chrom, ft, wt)
-print("selected Parents: ", selectedParentDict)
-print("ageBased: ", ageBased)
 
 #selection parent
+#--Roulette-Wheel Selection
+selectedChild = []
 if parentSelection == 1:
     weightOfParent2 = 0
     weightOfParent1 = 0
-    while weightOfParent2 == 0:
-        parentCandidates = list(weightDict.values())
-        if weightOfParent1 != 0:
-            parentCandidates.remove(weightOfParent1)
-            denominator -= weightOfParent1
+    popSizeTemp = copy.deepcopy(popSize)
+    weightOfAllParentsDict = {}
+    indexOfweightOfAllParentsDict = 0
+    indexOfChild = []
+    while popSizeTemp > 0:
+        popSizeTemp -= 1
         selection = random.randint(0, denominator)
-        indexOfCandidates = list(weightDict.keys())
-        #removing selected parent from candidates list
-        print("selection ", selection)
         #low limit
         low = 0
-        for values in parentCandidates:
+        for keys, values in fitnessValueDict.items():
             if selection >= low and selection < (low + values):
-                if weightOfParent1 == 0:
-                    weightOfParent1 = values
-                    break
-                elif weightOfParent2 == 0:
-                    weightOfParent2 = values
-                    break
+                weightOfAllParentsDict[indexOfweightOfAllParentsDict] = values
+                indexOfweightOfAllParentsDict += 1
+                indexOfChild.append(keys)
+                break
             else:
                 low += values
-    for ind in list(weightDict.keys()):
-        if weightDict[ind] == weightOfParent1:
-            parent1 = selectedParentDict[ind]
-        elif weightDict[ind] == weightOfParent2:
-            parent2 = selectedParentDict[ind]
+
+    for o in indexOfChild:
+        selectedChild.append(population[o])
+#--K-Tournament Selection
 elif parentSelection == 2:
     print("k-Tournament")
     kSelParents = {}
     kSelindexesPar = []
-    while k >= 0:
-        randIndex = random.randint(0, popSize)
-        if randIndex not in kSelindexesPar:
-            kSelParents[randIndex] = copy.deepcopy(population[randIndex])
-            kSelindexesPar.append(randIndex)
-            k -= 1
-    biggestW = copy.deepcopy(allWeightDict[kSelindexesPar[0]])
-    for indexOfKTour in kSelindexesPar:
-        if allWeightDict[indexOfKTour] >= biggestW:
-            secondBiggestW = biggestW
-            biggestW = copy.deepcopy(allWeightDict[indexOfKTour])
-        elif allWeightDict[indexOfKTour] >= secondBiggestW:
-            secondBiggestW = copy.deepcopy(allWeightDict[indexOfKTour])
-    for indexW in list(allWeightDict.keys()):
-        if allWeightDict[indexW] == biggestW:
-            parent1 = kSelParents[indexW]
-        elif allWeightDict[indexW] == secondBiggestW:
-            parent2 = kSelParents[indexW]
+    popSizeTemp = copy.deepcopy(popSize)
+    while popSizeTemp > 0:
+        popSizeTemp -= 1
+        kTemp = k
+        while kTemp > 0:
+            randIndex = random.randint(0, popSize - 1)
+            if randIndex not in kSelindexesPar:
+                kSelParents[randIndex] = copy.deepcopy(population[randIndex])
+                kSelindexesPar.append(randIndex)
+                kTemp -= 1
+        biggestW = copy.deepcopy(allWeightDict[kSelindexesPar[0]])
+        closestWeight = abs(biggestW - c)
+        for indexOfKTour in kSelindexesPar:
+            if abs(allWeightDict[indexOfKTour] - c) <= closestWeight:
+                closestWeight = abs(allWeightDict[indexOfKTour] - c)
+                indexOfClosest = indexOfKTour
+        for indexW in list(allWeightDict.keys()):
+            if indexW == indexOfClosest:
+                selectedChild.append(kSelParents[indexW])
+        kSelindexesPar.clear()
+        kSelParents.clear()
 else:
     print("Hatalı giriş")
-print(kSelParents)
-print("parent1: ", parent1)
-print("parent2: ", parent2)
+
+print(selectedChild)
 
 #Crossing-Over
-virtualList = []
-index = 0
-while n < len(parent1):
-    virtualList.append(parent1.pop(n))
-    parent1.insert(n, parent2.pop(n))
-    parent2.insert(n, virtualList[index])
-    index += 1
-    n += 1
-#Mutation
-if random.random() <= n:
-    flip = random.randrange(0, 14, 1)
-    print("flip", flip)
-    if random.random() < 0.5:
-        if parent1[flip] == 0:
-            parent1.pop(flip)
-            parent1.insert(flip, 1)
-        else:
-            parent1.pop(flip)
-            parent1.insert(flip, 0)
+sizeOfChild = len(selectedChild)
+while sizeOfChild > 0:
+    parent1 = selectedChild.pop(sizeOfChild - 1)
+    sizeOfChild -= 1
+    parent2 = selectedChild.pop(sizeOfChild - 1)
+    sizeOfChild -= 1
+    virtualList = []
+    index = 0
+    nTemp = n
+    while nTemp < len(parent1):
+        virtualList.append(parent1.pop(nTemp - 1))
+        geneOfParent2 = parent2.pop(nTemp - 1)
+        parent1.insert(nTemp - 1, geneOfParent2)
+        parent2.insert(nTemp - 1, virtualList[index])
+        index += 1
+        nTemp += 1
+    selectedChild.insert(sizeOfChild + 1, parent2)
+    if sizeOfChild == 0:
+        selectedChild.insert(sizeOfChild - 1, parent1)#tek taneli popülasyonlarda
     else:
-        if parent2[flip] == 0:
-            parent2.pop(flip)
-            parent2.insert(flip, 1)
+        selectedChild.insert(sizeOfChild + 2, parent1)#çift taneli popülasyonlarda
+
+print("After Cross-Over: ", selectedChild)
+
+#Mutation
+sizeOfChild = len(selectedChild)
+while sizeOfChild > 0:
+    if random.random() <= mutProb:
+        flip = random.randrange(0, 14, 1)
+        print("flip", flip)
+        print("sizeOfChild:", sizeOfChild)
+        theChild = selectedChild[sizeOfChild - 1]
+        print(theChild)
+        if theChild[flip] == 0:
+            theChild.pop(flip)
+            theChild.insert(flip, 1)
         else:
-            parent2.pop(flip)
-            parent2.insert(flip, 0)
+            theChild.pop(flip)
+            theChild.insert(flip, 0)
+        print(theChild)
+        selectedChild.pop(sizeOfChild - 1)
+        selectedChild.insert(sizeOfChild - 1, theChild)
+    sizeOfChild -= 1
+print("After Mutation: ", selectedChild)
 
 #placed new generation
 oldest = 0
