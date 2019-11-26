@@ -60,27 +60,20 @@ allFitnessDict = {}
 selectedParentDict = {}#!
 fitnessValueDict = {}
 denominator = 0
-unfittest = 0
 for i, chrom in enumerate(population):
     ft = 0
     wt = 0
-    ageBased[i] = random.randrange(0, 10, 1)
     for j, gene in enumerate(chrom):
         ft += gene * v[j]
         wt += gene * w[j]
     allWeightDict[i] = wt
     allFitnessDict[i] = ft
+    ageBased[i] = age
     if wt <= c:
         selectedParentDict[i] = copy.deepcopy(chrom)
         weightDict[i] = wt
         denominator += ft
         fitnessValueDict[i] = ft
-    else:
-        if allWeightDict[unfittest] <= allWeightDict[i]:
-            unfittest2 = unfittest
-            unfittest = i
-        elif allWeightDict[unfittest2] <= allWeightDict[i]:
-            unfittest2 = i
     print(i + 1, chrom, ft, wt)
 
 #selection parent
@@ -163,15 +156,12 @@ while sizeOfChild > 0:
     else:
         selectedChild.insert(sizeOfChild + 2, parent1)#çift taneli popülasyonlarda
 
-print("After Cross-Over: ", selectedChild)
 
 #Mutation
 sizeOfChild = len(selectedChild)
 while sizeOfChild > 0:
     if random.random() <= mutProb:
         flip = random.randrange(0, 14, 1)
-        print("flip", flip)
-        print("sizeOfChild:", sizeOfChild)
         theChild = selectedChild[sizeOfChild - 1]
         print(theChild)
         if theChild[flip] == 0:
@@ -184,9 +174,22 @@ while sizeOfChild > 0:
         selectedChild.pop(sizeOfChild - 1)
         selectedChild.insert(sizeOfChild - 1, theChild)
     sizeOfChild -= 1
-print("After Mutation: ", selectedChild)
 
 #placed new generation
+allWeightDictNew = {}
+allFitnessDictNew = {}
+for iNew, chromosome in enumerate(selectedChild):
+    ftNew = 0
+    wtNew = 0
+    for jNew, gene in enumerate(chromosome):
+        ftNew += gene * v[jNew]
+        wtNew += gene * w[jNew]
+    allWeightDictNew[iNew] = wtNew
+    allFitnessDictNew[iNew] = ftNew
+    print(iNew + 1, chromosome, ftNew, wtNew)
+
+
+
 oldest = 0
 for k in ageBased.keys():
     if ageBased[oldest] <= ageBased[k]:
@@ -201,19 +204,75 @@ if survivalSelection == 1:
     population.insert(older, parent1)
     population.pop(oldest)
     population.insert(oldest, parent2)
+
 elif survivalSelection == 2:
     print("--Fitness-Based Survival Selection--")
-    population.pop(unfittest)
-    population.insert(unfittest, parent1)
-    population.pop(unfittest2)
-    population.insert(unfittest2, parent2)
+    kickCandidatesW = []
+    kickCandidatesWNew = []
+    kickCandidatesF = []
+    kickCandidatesFNew = []
+
+    for i, item in allWeightDict.items():
+        if item > c:
+            kickCandidatesW.append(item)
+
+    for i, item in allWeightDictNew.items():
+        if item > c:
+            kickCandidatesWNew.append(item)
+
+    for i, item in allFitnessDict.items():
+        kickCandidatesF.append(item)
+
+    # for i, item in allFitnessDictNew.items():
+    #   kickCandidatesF.append(item)
+
+    kickCandidatesF.sort()  # ascending
+    kickCandidatesW.sort(reverse=True)  # descanding
+
+    kickCandidatesWNew.sort(reverse=True)
+    popSizeTemp = popSize
+    print("KickCandidatesW: ", kickCandidatesW)
+    print("KickCandidatesF: ", kickCandidatesF)
+    print("KickCandidatesWNew: ", kickCandidatesWNew)
+    print("populasyon: ", population)
+    while popSizeTemp > 0:
+        if len(kickCandidatesW) > 0:
+            for i, item in allWeightDict.items():
+                if item == kickCandidatesW[0]:
+                    if population[i] != "null":
+                        population.pop(i)
+                        ageBased.pop(i)
+                        population.insert(i, "null")
+                        kickCandidatesW.pop(0)
+                        break
+        elif len(kickCandidatesWNew) > 0:
+            for i, item in allWeightDictNew.items():
+                if item == kickCandidatesWNew[0]:
+                    if selectedChild[i] != "null":
+                        selectedChild.pop(i)
+                        selectedChild.insert(i, "null")
+                        kickCandidatesWNew.pop(0)
+                        break
+        elif len(kickCandidatesF) > 0:
+            for i, item in allFitnessDict.items():
+                if item == kickCandidatesF[0]:
+                    if population[i] != "null":
+                        population.pop(i)
+                        ageBased.pop(i)
+                        population.insert(i, "null")
+                        kickCandidatesF.pop(0)
+                        break
+        popSizeTemp -= 1
+
+    print("KickCandidatesW: ", kickCandidatesW)
+    print("KickCandidatesF: ", kickCandidatesF)
+    print("KickCandidatesWNew: ", kickCandidatesWNew)
+    print("KickCandidatesFNew: ", kickCandidatesFNew)
+    print("population: ", population)
+    print("selected Child: ", selectedChild)
 
 
-print("older: ", older)
-print("oldest: ", oldest)
-print("unfit: ", unfittest)
-print("unfit2: ", unfittest2)
-print(population)
+
 
 fout.write('chromosome: 101010111000011\n')
 fout.write('weight: 749\n')
