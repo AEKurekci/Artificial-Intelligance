@@ -296,6 +296,19 @@ elif survivalSelection == 2:
     print("population: ", population)
     print("selected Child: ", selectedChild)
 
+    for i in range(popSize):
+        if population[i] == "null":
+            population.pop(i)
+            for j in range(popSize):
+                if selectedChild[j] != "null":
+                    population.insert(i, selectedChild.pop(j))
+                    selectedChild.insert(j, "null")
+                    break
+    selectedChild.clear()
+    #placement is done
+    print("population: ", population)
+    print("selected Child: ", selectedChild)
+
 
 
 
