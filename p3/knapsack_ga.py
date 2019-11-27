@@ -143,7 +143,6 @@ elif parentSelection == 2:
 else:
     print("Hatalı giriş")
 
-print(selectedChild)
 
 #Crossing-Over
 sizeOfChild = len(selectedChild)
@@ -207,13 +206,6 @@ for iNew, chromosome in enumerate(selectedChild):
 
 
 
-oldest = 0
-for k in ageBased.keys():
-    if ageBased[oldest] <= ageBased[k]:
-        older = oldest
-        oldest = k
-    elif ageBased[older] <= ageBased[k]:
-        older = k
 
 #Elitism
 if elitism:
@@ -222,16 +214,31 @@ if elitism:
         indexOfTheBest = indexOfElitismNew
     else:
         theBest = population[indexOfElitism]
-        indexOfTheBest = indexOfElitismNew
-print("The Best: ", theBest)
+        indexOfTheBest = indexOfElitism
+    print("The Best: ", theBest)
+    print("index of the best: ", indexOfTheBest)
 
 
 if survivalSelection == 1:
     print("--Age-Based Survival Selection--")
-    population.pop(older)
-    population.insert(older, parent1)
-    population.pop(oldest)
-    population.insert(oldest, parent2)
+    print("selected: ", selectedChild)
+    for i, value in ageBased.items():
+        if elitism:
+            if indexOfTheBest == i:
+                for j in range(15):
+                    if population[i][j] != theBest[j]:
+                        population.pop(i)
+                        population.insert(i, selectedChild[i])
+                        break
+            else:
+                population.pop(i)
+                population.insert(i, selectedChild[i])
+        else:
+            population.pop(i)
+            population.insert(i, selectedChild[i])
+    selectedChild.clear()
+    print("population: ", population)
+
 
 elif survivalSelection == 2:
     print("--Fitness-Based Survival Selection--")
@@ -256,10 +263,6 @@ elif survivalSelection == 2:
 
     kickCandidatesWNew.sort(reverse=True)
     popSizeTemp = popSize
-    print("KickCandidatesW: ", kickCandidatesW)
-    print("KickCandidatesF: ", kickCandidatesF)
-    print("KickCandidatesWNew: ", kickCandidatesWNew)
-    print("populasyon: ", population)
     while popSizeTemp > 0:
         if len(kickCandidatesW) > 0:
             for i, item in allWeightDict.items():
@@ -289,13 +292,6 @@ elif survivalSelection == 2:
                         break
         popSizeTemp -= 1
 
-    print("KickCandidatesW: ", kickCandidatesW)
-    print("KickCandidatesF: ", kickCandidatesF)
-    print("KickCandidatesWNew: ", kickCandidatesWNew)
-    print("KickCandidatesFNew: ", kickCandidatesFNew)
-    print("population: ", population)
-    print("selected Child: ", selectedChild)
-
     for i in range(popSize):
         if population[i] == "null":
             population.pop(i)
@@ -303,11 +299,12 @@ elif survivalSelection == 2:
                 if selectedChild[j] != "null":
                     population.insert(i, selectedChild.pop(j))
                     selectedChild.insert(j, "null")
+                    ageBased[i] = 0
                     break
     selectedChild.clear()
-    #placement is done
-    print("population: ", population)
-    print("selected Child: ", selectedChild)
+#placement is done
+print("population: ", population)
+print("selected Child: ", selectedChild)
 
 
 
