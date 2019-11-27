@@ -215,6 +215,17 @@ for k in ageBased.keys():
     elif ageBased[older] <= ageBased[k]:
         older = k
 
+#Elitism
+if elitism:
+    if fittestForElitismNew >= fittestForElitism:
+        theBest = selectedChild[indexOfElitismNew]
+        indexOfTheBest = indexOfElitismNew
+    else:
+        theBest = population[indexOfElitism]
+        indexOfTheBest = indexOfElitismNew
+print("The Best: ", theBest)
+
+
 if survivalSelection == 1:
     print("--Age-Based Survival Selection--")
     population.pop(older)
@@ -228,9 +239,6 @@ elif survivalSelection == 2:
     kickCandidatesWNew = []
     kickCandidatesF = []
     kickCandidatesFNew = []
-
-    #if elitism:
-
 
     for i, item in allWeightDict.items():
         if item > c:
