@@ -60,7 +60,8 @@ for i in range(popSize):
     population.append(temp)
 
 ageBased = {}
-age = 1
+for i in range(popSize):
+    ageBased[i] = 1
 fittestForElitism = 0
 print('evaluating fitnesses')
 while genNumber > 0:
@@ -76,11 +77,11 @@ while genNumber > 0:
             wt += gene * w[j]
         allWeightDict[i] = wt
         allFitnessDict[i] = ft
-        ageBased[i] = age
         if wt <= c:
             if ft >= fittestForElitism:
                 fittestForElitism = ft
                 indexOfElitism = i
+                weightOftheBest = wt
             denominator += ft
             fitnessValueDict[i] = ft
         print(i + 1, chrom, ft, wt)
@@ -140,7 +141,9 @@ while genNumber > 0:
     else:
         print("Hatalı giriş")
 
-
+    if len(selectedChild) == 0:
+        print("result didn't find! ")
+        break
     #Crossing-Over
     sizeOfChild = len(selectedChild)
     while sizeOfChild > 0:
@@ -195,6 +198,7 @@ while genNumber > 0:
             if ftNew >= fittestForElitismNew:
                 fittestForElitismNew = ftNew
                 indexOfElitismNew = iNew
+                weightOftheBestNew = wtNew
         allWeightDictNew[iNew] = wtNew
         allFitnessDictNew[iNew] = ftNew
         print(iNew + 1, chromosome, ftNew, wtNew)
@@ -203,20 +207,22 @@ while genNumber > 0:
 
 
     #Elitism
-    if elitism:
-        if fittestForElitismNew >= fittestForElitism:
-            theBest = selectedChild[indexOfElitismNew]
-            indexOfTheBest = indexOfElitismNew
-        else:
-            theBest = population[indexOfElitism]
-            indexOfTheBest = indexOfElitism
-        print("The Best: ", theBest)
-        print("index of the best: ", indexOfTheBest)
+    if fittestForElitismNew > fittestForElitism:
+        theBest = selectedChild[indexOfElitismNew]
+        indexOfTheBest = indexOfElitismNew
+        fitnessValueTheBest = fittestForElitismNew
+        theWeight = weightOftheBestNew
+    else:
+        theBest = population[indexOfElitism]
+        indexOfTheBest = indexOfElitism
+        fitnessValueTheBest = fittestForElitism
+        theWeight = weightOftheBest
+    print("The Best: ", theBest)
+    print("index of the best: ", indexOfTheBest)
 
 
     if survivalSelection == 1:
         print("--Age-Based Survival Selection--")
-        print("selected: ", selectedChild)
         for i, value in ageBased.items():
             if elitism:
                 if indexOfTheBest == i:
@@ -228,11 +234,12 @@ while genNumber > 0:
                 else:
                     population.pop(i)
                     population.insert(i, selectedChild[i])
+                    ageBased[i] = 0
             else:
                 population.pop(i)
                 population.insert(i, selectedChild[i])
+                ageBased[i] = 0
         selectedChild.clear()
-        print("population: ", population)
 
 
     elif survivalSelection == 2:
@@ -287,10 +294,10 @@ while genNumber > 0:
                             break
             popSizeTemp -= 1
 
-        for i in range(popSize):
+        for i in range(len(population)):
             if population[i] == "null":
                 population.pop(i)
-                for j in range(popSize):
+                for j in range(len(selectedChild)):
                     if selectedChild[j] != "null":
                         population.insert(i, selectedChild.pop(j))
                         selectedChild.insert(j, "null")
@@ -298,15 +305,22 @@ while genNumber > 0:
                         break
         selectedChild.clear()
     #placement is done
-    print("population: ", population)
-    print("selected Child: ", selectedChild)
+    for i, value in ageBased.items():
+        ageBased[i] = value + 1
     genNumber -= 1
+    print("ages: ", ageBased)
     print("Generation Number", genNumber)
 
+thechromosome = ""
+for i in theBest:
+    thechromosome += str(i)
+weight = theWeight
+theValue = fitnessValueTheBest
 
 
-
-fout.write('chromosome: 101010111000011\n')
-fout.write('weight: 749\n')
-fout.write('value: 1458')
+fout.write('chromosome: ' + thechromosome)
+fout.write('\n')
+fout.write('weight: ' + str(weight))
+fout.write('\n')
+fout.write('value: ' + str(theValue))
 fout.close() 
