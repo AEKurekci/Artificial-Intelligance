@@ -1,6 +1,7 @@
 # starter code for solving knapsack problem using genetic algorithm
 import random
 import copy
+import matplotlib.pyplot as plt
 
 fc = open('./c.txt', 'r')
 fw = open('./w.txt', 'r')
@@ -58,6 +59,9 @@ for i in range(popSize):
     for j in range(len(w)):
         temp.append(random.randint(0, 1))
     population.append(temp)
+forVisualFitnessAxes = []
+forVisualGenAxes = []
+forVisualGenNumber = genNumber
 
 ageBased = {}
 for i in range(popSize):
@@ -143,6 +147,7 @@ while genNumber > 0:
 
     if len(selectedChild) == 0:
         print("result didn't find! ")
+        forVisualGenNumber -= genNumber
         break
     #Crossing-Over
     sizeOfChild = len(selectedChild)
@@ -310,12 +315,21 @@ while genNumber > 0:
     genNumber -= 1
     print("ages: ", ageBased)
     print("Generation Number", genNumber)
+    forVisualFitnessAxes.append(fitnessValueTheBest)
 
 thechromosome = ""
 for i in theBest:
     thechromosome += str(i)
 weight = theWeight
 theValue = fitnessValueTheBest
+
+print(forVisualFitnessAxes)
+for i in range(1, forVisualGenNumber + 1):
+    forVisualGenAxes.append(i)
+print(forVisualGenAxes)
+
+plt.plot(forVisualGenAxes, forVisualFitnessAxes)
+plt.show()
 
 
 fout.write('chromosome: ' + thechromosome)
