@@ -76,7 +76,7 @@ while not isTrue:
 print('\nMutation Probability\n---------------------------')
 isTrue = False
 while not isTrue:
-    mutProb = input('probability=? (between 1 and 1)')
+    mutProb = input('probability=? (between 0 and 1)')
     try:
         mutProb = float(mutProb)
         if 0 <= mutProb <= 1:
@@ -203,13 +203,6 @@ while genNumber > 0:
                     selectedChild.append(kSelParents[indexW])
             kSelindexesPar.clear()
             kSelParents.clear()
-    else:
-        print("Hatalı giriş")
-
-    # if len(selectedChild) == 0:
-    #     print("result didn't find! ")
-    #     forVisualGenNumber -= genNumber
-    #     break
 
     sizeOfChild = len(selectedChild)
     #Crossing-Over
@@ -276,7 +269,11 @@ while genNumber > 0:
 
 
         #Elitism
-        if fittestForElitismNew > fittestForElitism:
+        if fittestForElitism == 0 and fittestForElitismNew == 0:
+            theBest = []
+            fitnessValueTheBest = 0
+            theWeight = 0
+        elif fittestForElitismNew > fittestForElitism:
             theBest = selectedChild[indexOfElitismNew]
             indexOfTheBest = indexOfElitismNew
             fitnessValueTheBest = fittestForElitismNew
@@ -376,6 +373,8 @@ while genNumber > 0:
     else:
         print("the best doesn't found")
         fitnessValueTheBest = 0
+        theWeight = 0
+        theBest.clear()
     #placement is done
     for i, value in ageBased.items():
         ageBased[i] = value + 1
