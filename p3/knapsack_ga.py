@@ -20,36 +20,97 @@ for line in fv:
 print('Capacity :', c)
 print('Weight :', w)
 print('Value : ', v)
+isTrue = False
+while not isTrue:
+    popSize = input('Size of population : ')
+    try:
+        popSize = int(popSize)
+        isTrue = True
+    except:
+        isTrue = False
+isTrue = False
+while not isTrue:
+    genNumber = input('Max number of generation : ')
+    try:
+        genNumber = int(genNumber)
+        isTrue = True
+    except:
+        isTrue = False
 
-popSize = int(input('Size of population : '))
-genNumber = int(input('Max number of generation : '))
 print('\nParent Selection\n---------------------------')
 print('(1) Roulette-wheel Selection')
 print('(2) K-Tournament Selection')
-parentSelection = int(input('Which one? '))
-if parentSelection == 2:
-    k = int(input('k=? (between 1 and ' + str(len(w)) + ') '))
+isTrue = False
+while not isTrue:
+    parentSelection = input('Which one? ')
+    try:
+        parentSelection = int(parentSelection)
+        if parentSelection == 1:
+            isTrue = True
+        elif parentSelection == 2:
+            while not isTrue:
+                k = input('k=? (between 1 and ' + str(len(w)) + ') ')
+                try:
+                    k = int(k)
+                    if 0 < k <= len(w):
+                        isTrue = True
+                    else:
+                        isTrue = False
+                except:
+                    isTrue = False
+    except:
+        isTrue = False
 
 print('\nN-point Crossover\n---------------------------')
-n = int(input('n=? (between 1 and ' + str(len(w) - 1) + ') '))
-
+isTrue = False
+while not isTrue:
+    n = input('n=? (between 1 and ' + str(len(w) - 1) + ') ')
+    try:
+        n = int(n)
+        if 0 < n <= len(w):
+            isTrue = True
+        else:
+            isTrue = False
+    except:
+        isTrue = False
 print('\nMutation Probability\n---------------------------')
-mutProb = float(input('prob=? (between 0 and 1) '))
-
+isTrue = False
+while not isTrue:
+    mutProb = input('probability=? (between 1 and 1)')
+    try:
+        mutProb = float(mutProb)
+        if 0 <= mutProb <= 1:
+            isTrue = True
+        else:
+            isTrue = False
+    except:
+        isTrue = False
 print('\nSurvival Selection\n---------------------------')
 print('(1) Age-based Selection')
 print('(2) Fitness-based Selection')
-survivalSelection = int(input('Which one? '))
-what = True
-while what:
+isTrue = False
+while not isTrue:
+    survivalSelection = input('Which one? ')
+    try:
+        survivalSelection = int(survivalSelection)
+        if survivalSelection == 1:
+            isTrue = True
+        elif survivalSelection == 2:
+            isTrue = True
+        else:
+            isTrue = False
+    except:
+        isTrue = False
+isTrue = True
+while isTrue:
     elitism = input('Elitism? (Y or N) ')
     elitism.lower()
     if elitism == "y":
         elitism = True
-        what = False
+        isTrue = False
     elif elitism == "n":
         elitism = False
-        what = False
+        isTrue = False
 
 print('\n----------------------------------------------------------')
 print('initalizing population')
@@ -62,7 +123,7 @@ for i in range(popSize):
 forVisualFitnessAxes = []
 forVisualGenAxes = []
 forVisualGenNumber = genNumber
-
+fitnessValueTheBest = 0
 ageBased = {}
 for i in range(popSize):
     ageBased[i] = 1
@@ -145,170 +206,176 @@ while genNumber > 0:
     else:
         print("Hatalı giriş")
 
-    if len(selectedChild) == 0:
-        print("result didn't find! ")
-        forVisualGenNumber -= genNumber
-        break
+    # if len(selectedChild) == 0:
+    #     print("result didn't find! ")
+    #     forVisualGenNumber -= genNumber
+    #     break
+
+    sizeOfChild = len(selectedChild)
     #Crossing-Over
-    sizeOfChild = len(selectedChild)
-    while sizeOfChild > 0:
-        parent1 = selectedChild.pop(sizeOfChild - 1)
-        sizeOfChild -= 1
-        parent2 = selectedChild.pop(sizeOfChild - 1)
-        sizeOfChild -= 1
-        virtualList = []
-        index = 0
-        nTemp = n
-        while nTemp < len(parent1):
-            virtualList.append(parent1.pop(nTemp - 1))
-            geneOfParent2 = parent2.pop(nTemp - 1)
-            parent1.insert(nTemp - 1, geneOfParent2)
-            parent2.insert(nTemp - 1, virtualList[index])
-            index += 1
-            nTemp += 1
-        selectedChild.insert(sizeOfChild + 1, parent2)
-        if sizeOfChild == 0:
-            selectedChild.insert(sizeOfChild - 1, parent1)#tek taneli popülasyonlarda
-        else:
-            selectedChild.insert(sizeOfChild + 2, parent1)#çift taneli popülasyonlarda
-
-
-    #Mutation
-    sizeOfChild = len(selectedChild)
-    while sizeOfChild > 0:
-        if random.random() <= mutProb:
-            flip = random.randrange(0, 14, 1)
-            theChild = selectedChild[sizeOfChild - 1]
-            if theChild[flip] == 0:
-                theChild.pop(flip)
-                theChild.insert(flip, 1)
+    if sizeOfChild != 0:
+        while sizeOfChild > 0:
+            parent1 = selectedChild.pop(sizeOfChild - 1)
+            sizeOfChild -= 1
+            parent2 = selectedChild.pop(sizeOfChild - 1)
+            sizeOfChild -= 1
+            virtualList = []
+            index = 0
+            nTemp = n
+            while nTemp < len(parent1):
+                virtualList.append(parent1.pop(nTemp - 1))
+                geneOfParent2 = parent2.pop(nTemp - 1)
+                parent1.insert(nTemp - 1, geneOfParent2)
+                parent2.insert(nTemp - 1, virtualList[index])
+                index += 1
+                nTemp += 1
+            selectedChild.insert(sizeOfChild + 1, parent2)
+            if sizeOfChild == 0:
+                selectedChild.insert(sizeOfChild - 1, parent1)#tek taneli popülasyonlarda
             else:
-                theChild.pop(flip)
-                theChild.insert(flip, 0)
-            selectedChild.pop(sizeOfChild - 1)
-            selectedChild.insert(sizeOfChild - 1, theChild)
-        sizeOfChild -= 1
-
-    #placed new generation
-    allWeightDictNew = {}
-    allFitnessDictNew = {}
-    fittestForElitismNew = 0
-    for iNew, chromosome in enumerate(selectedChild):
-        ftNew = 0
-        wtNew = 0
-        for jNew, gene in enumerate(chromosome):
-            ftNew += gene * v[jNew]
-            wtNew += gene * w[jNew]
-        if wtNew <= c:
-            if ftNew >= fittestForElitismNew:
-                fittestForElitismNew = ftNew
-                indexOfElitismNew = iNew
-                weightOftheBestNew = wtNew
-        allWeightDictNew[iNew] = wtNew
-        allFitnessDictNew[iNew] = ftNew
-        print(iNew + 1, chromosome, ftNew, wtNew)
+                selectedChild.insert(sizeOfChild + 2, parent1)#çift taneli popülasyonlarda
 
 
+        #Mutation
+        sizeOfChild = len(selectedChild)
+        while sizeOfChild > 0:
+            if random.random() <= mutProb:
+                flip = random.randrange(0, 14, 1)
+                theChild = selectedChild[sizeOfChild - 1]
+                if theChild[flip] == 0:
+                    theChild.pop(flip)
+                    theChild.insert(flip, 1)
+                else:
+                    theChild.pop(flip)
+                    theChild.insert(flip, 0)
+                selectedChild.pop(sizeOfChild - 1)
+                selectedChild.insert(sizeOfChild - 1, theChild)
+            sizeOfChild -= 1
+
+        #placed new generation
+        allWeightDictNew = {}
+        allFitnessDictNew = {}
+        fittestForElitismNew = 0
+        for iNew, chromosome in enumerate(selectedChild):
+            ftNew = 0
+            wtNew = 0
+            for jNew, gene in enumerate(chromosome):
+                ftNew += gene * v[jNew]
+                wtNew += gene * w[jNew]
+            if wtNew <= c:
+                if ftNew >= fittestForElitismNew:
+                    fittestForElitismNew = ftNew
+                    indexOfElitismNew = iNew
+                    weightOftheBestNew = wtNew
+
+            allWeightDictNew[iNew] = wtNew
+            allFitnessDictNew[iNew] = ftNew
+            print(iNew + 1, chromosome, ftNew, wtNew)
 
 
-    #Elitism
-    if fittestForElitismNew > fittestForElitism:
-        theBest = selectedChild[indexOfElitismNew]
-        indexOfTheBest = indexOfElitismNew
-        fitnessValueTheBest = fittestForElitismNew
-        theWeight = weightOftheBestNew
-    else:
-        theBest = population[indexOfElitism]
-        indexOfTheBest = indexOfElitism
-        fitnessValueTheBest = fittestForElitism
-        theWeight = weightOftheBest
-    print("The Best: ", theBest)
-    print("index of the best: ", indexOfTheBest)
 
 
-    if survivalSelection == 1:
-        print("--Age-Based Survival Selection--")
-        for i, value in ageBased.items():
-            if elitism:
-                if indexOfTheBest == i:
-                    for j in range(15):
-                        if population[i][j] != theBest[j]:
-                            population.pop(i)
-                            population.insert(i, selectedChild[i])
-                            break
+        #Elitism
+        if fittestForElitismNew > fittestForElitism:
+            theBest = selectedChild[indexOfElitismNew]
+            indexOfTheBest = indexOfElitismNew
+            fitnessValueTheBest = fittestForElitismNew
+            theWeight = weightOftheBestNew
+        else:
+            theBest = population[indexOfElitism]
+            indexOfTheBest = indexOfElitism
+            fitnessValueTheBest = fittestForElitism
+            theWeight = weightOftheBest
+        print("The Best: ", theBest)
+        print("index of the best: ", indexOfTheBest)
+
+
+        if survivalSelection == 1:
+            print("--Age-Based Survival Selection--")
+            for i, value in ageBased.items():
+                if elitism:
+                    if indexOfTheBest == i:
+                        for j in range(15):
+                            if population[i][j] != theBest[j]:
+                                population.pop(i)
+                                population.insert(i, selectedChild[i])
+                                break
+                    else:
+                        population.pop(i)
+                        population.insert(i, selectedChild[i])
+                        ageBased[i] = 0
                 else:
                     population.pop(i)
                     population.insert(i, selectedChild[i])
                     ageBased[i] = 0
-            else:
-                population.pop(i)
-                population.insert(i, selectedChild[i])
-                ageBased[i] = 0
-        selectedChild.clear()
+            selectedChild.clear()
 
 
-    elif survivalSelection == 2:
-        print("--Fitness-Based Survival Selection--")
-        kickCandidatesW = []
-        kickCandidatesWNew = []
-        kickCandidatesF = []
-        kickCandidatesFNew = []
+        elif survivalSelection == 2:
+            print("--Fitness-Based Survival Selection--")
+            kickCandidatesW = []
+            kickCandidatesWNew = []
+            kickCandidatesF = []
+            kickCandidatesFNew = []
 
-        for i, item in allWeightDict.items():
-            if item > c:
-                kickCandidatesW.append(item)
+            for i, item in allWeightDict.items():
+                if item > c:
+                    kickCandidatesW.append(item)
 
-        for i, item in allWeightDictNew.items():
-            if item > c:
-                kickCandidatesWNew.append(item)
+            for i, item in allWeightDictNew.items():
+                if item > c:
+                    kickCandidatesWNew.append(item)
 
-        for i, item in allFitnessDict.items():
-            kickCandidatesF.append(item)
+            for i, item in allFitnessDict.items():
+                kickCandidatesF.append(item)
 
-        kickCandidatesF.sort()  # ascending
-        kickCandidatesW.sort(reverse=True)  # descanding
+            kickCandidatesF.sort()  # ascending
+            kickCandidatesW.sort(reverse=True)  # descanding
 
-        kickCandidatesWNew.sort(reverse=True)
-        popSizeTemp = popSize
-        while popSizeTemp > 0:
-            if len(kickCandidatesW) > 0:
-                for i, item in allWeightDict.items():
-                    if item == kickCandidatesW[0]:
-                        if population[i] != "null":
-                            population.pop(i)
-                            ageBased.pop(i)
-                            population.insert(i, "null")
-                            kickCandidatesW.pop(0)
+            kickCandidatesWNew.sort(reverse=True)
+            popSizeTemp = popSize
+            while popSizeTemp > 0:
+                if len(kickCandidatesW) > 0:
+                    for i, item in allWeightDict.items():
+                        if item == kickCandidatesW[0]:
+                            if population[i] != "null":
+                                population.pop(i)
+                                ageBased.pop(i)
+                                population.insert(i, "null")
+                                kickCandidatesW.pop(0)
+                                break
+                elif len(kickCandidatesWNew) > 0:
+                    for i, item in allWeightDictNew.items():
+                        if item == kickCandidatesWNew[0]:
+                            if selectedChild[i] != "null":
+                                selectedChild.pop(i)
+                                selectedChild.insert(i, "null")
+                                kickCandidatesWNew.pop(0)
+                                break
+                elif len(kickCandidatesF) > 0:
+                    for i, item in allFitnessDict.items():
+                        if item == kickCandidatesF[0]:
+                            if population[i] != "null":
+                                population.pop(i)
+                                ageBased.pop(i)
+                                population.insert(i, "null")
+                                kickCandidatesF.pop(0)
+                                break
+                popSizeTemp -= 1
+
+            for i in range(len(population)):
+                if population[i] == "null":
+                    population.pop(i)
+                    for j in range(len(selectedChild)):
+                        if selectedChild[j] != "null":
+                            population.insert(i, selectedChild.pop(j))
+                            selectedChild.insert(j, "null")
+                            ageBased[i] = 0
                             break
-            elif len(kickCandidatesWNew) > 0:
-                for i, item in allWeightDictNew.items():
-                    if item == kickCandidatesWNew[0]:
-                        if selectedChild[i] != "null":
-                            selectedChild.pop(i)
-                            selectedChild.insert(i, "null")
-                            kickCandidatesWNew.pop(0)
-                            break
-            elif len(kickCandidatesF) > 0:
-                for i, item in allFitnessDict.items():
-                    if item == kickCandidatesF[0]:
-                        if population[i] != "null":
-                            population.pop(i)
-                            ageBased.pop(i)
-                            population.insert(i, "null")
-                            kickCandidatesF.pop(0)
-                            break
-            popSizeTemp -= 1
-
-        for i in range(len(population)):
-            if population[i] == "null":
-                population.pop(i)
-                for j in range(len(selectedChild)):
-                    if selectedChild[j] != "null":
-                        population.insert(i, selectedChild.pop(j))
-                        selectedChild.insert(j, "null")
-                        ageBased[i] = 0
-                        break
-        selectedChild.clear()
+            selectedChild.clear()
+    else:
+        print("the best doesn't found")
+        fitnessValueTheBest = 0
     #placement is done
     for i, value in ageBased.items():
         ageBased[i] = value + 1
@@ -337,4 +404,4 @@ fout.write('\n')
 fout.write('weight: ' + str(weight))
 fout.write('\n')
 fout.write('value: ' + str(theValue))
-fout.close() 
+fout.close()
