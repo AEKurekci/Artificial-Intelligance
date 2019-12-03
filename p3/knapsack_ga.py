@@ -111,6 +111,29 @@ while isTrue:
     elif elitism == "n":
         elitism = False
         isTrue = False
+iWantToSeeSelectedChild = False
+isTrue = True
+while isTrue:
+    iWantToSeeSelectedChild = input("Do you want to see all selected child in every tour? (Y or N) ")
+    iWantToSeeSelectedChild.lower()
+    if iWantToSeeSelectedChild == "y":
+        iWantToSeeSelectedChild = True
+        isTrue = False
+    elif iWantToSeeSelectedChild == "n":
+        iWantToSeeSelectedChild = False
+        isTrue = False
+
+iWantToSeePopulation = False
+isTrue = True
+while isTrue:
+    iWantToSeePopulation = input("Do you want to see all new generation in every tour? (Y or N) ")
+    iWantToSeePopulation.lower()
+    if iWantToSeePopulation == "y":
+        iWantToSeePopulation = True
+        isTrue = False
+    elif iWantToSeePopulation == "n":
+        iWantToSeePopulation = False
+        isTrue = False
 
 print('\n----------------------------------------------------------')
 print('initalizing population')
@@ -149,7 +172,8 @@ while genNumber > 0:
                 weightOftheBest = wt
             denominator += ft
             fitnessValueDict[i] = ft
-        print(i + 1, chrom, ft, wt)
+        if iWantToSeePopulation:
+            print(i + 1, chrom, ft, wt)
 
     #selection parent
     #--Roulette-Wheel Selection
@@ -179,7 +203,6 @@ while genNumber > 0:
             selectedChild.append(population[o])
     #--K-Tournament Selection
     elif parentSelection == 2:
-        print("k-Tournament")
         kSelParents = {}
         kSelindexesPar = []
         popSizeTemp = copy.deepcopy(popSize)
@@ -263,7 +286,8 @@ while genNumber > 0:
 
             allWeightDictNew[iNew] = wtNew
             allFitnessDictNew[iNew] = ftNew
-            print(iNew + 1, chromosome, ftNew, wtNew)
+            if iWantToSeeSelectedChild:
+                print(iNew + 1, chromosome, ftNew, wtNew)
 
 
 
@@ -283,12 +307,12 @@ while genNumber > 0:
             indexOfTheBest = indexOfElitism
             fitnessValueTheBest = fittestForElitism
             theWeight = weightOftheBest
-        print("The Best: ", theBest)
-        print("index of the best: ", indexOfTheBest)
+        #print("The Best Chromosome: ", theBest)
+        #print("index of the best: ", indexOfTheBest)
 
 
+        #"--Age-Based Survival Selection--"
         if survivalSelection == 1:
-            print("--Age-Based Survival Selection--")
             for i, value in ageBased.items():
                 if elitism:
                     if indexOfTheBest == i:
@@ -308,8 +332,8 @@ while genNumber > 0:
             selectedChild.clear()
 
 
+        #--Fitness-Based Survival Selection--
         elif survivalSelection == 2:
-            print("--Fitness-Based Survival Selection--")
             kickCandidatesW = []
             kickCandidatesWNew = []
             kickCandidatesF = []
@@ -379,8 +403,6 @@ while genNumber > 0:
     for i, value in ageBased.items():
         ageBased[i] = value + 1
     genNumber -= 1
-    print("ages: ", ageBased)
-    print("Generation Number", genNumber)
     forVisualFitnessAxes.append(fitnessValueTheBest)
 
 thechromosome = ""
@@ -389,10 +411,8 @@ for i in theBest:
 weight = theWeight
 theValue = fitnessValueTheBest
 
-print(forVisualFitnessAxes)
 for i in range(1, forVisualGenNumber + 1):
     forVisualGenAxes.append(i)
-print(forVisualGenAxes)
 
 plt.plot(forVisualGenAxes, forVisualFitnessAxes)
 plt.show()
