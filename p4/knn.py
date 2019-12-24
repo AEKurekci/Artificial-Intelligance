@@ -17,7 +17,7 @@ listOfDifferences = []
 listOfLastTrainItems = []
 listOfLastTestItems = []
 
-K = int(input("Please enter the K "))
+K = int(input("Please enter the K : "))
 
 
 def difference(x1, y1):
@@ -30,7 +30,7 @@ while testLine:
     listOfLastTrainItems = []
     while trainLine:
         train = trainLine.strip().split(',')
-        lastItemOfTrain = train[-1]
+        lastItemOfTrain = int(train[-1])
         train.pop(-1)
         for index, value in enumerate(test):
             temp = difference(float(value), float(train[index]))
@@ -50,11 +50,11 @@ while testLine:
         smallest = tempListOfDifferences[0]
         indexOfSmallest = 0
         for i, e in enumerate(tempListOfDifferences):
-            if e <= smallest:
+            if e < smallest:
                 smallest = e
                 indexOfSmallest = i
         listOfSmallest.append(smallest)
-        listOfClasses.append(listOfLastTrainItems[indexOfSmallest])
+        listOfClasses.append(int(listOfLastTrainItems[indexOfSmallest]))
         listOfDifferences.pop(indexOfSmallest)
         counter += 1
 
@@ -77,12 +77,17 @@ while testLine:
     listOfClassValues.append(two)
     listOfClassValues.append(three)
     print("class list ", listOfClasses)
+    print("values", listOfClassValues)
     fittest = 0
     indexOfFittest = 0
     for a, b in enumerate(listOfClassValues):
-        if b >= fittest:
+        if b > fittest:
             fittest = b
             indexOfFittest = a
+        elif b == fittest:
+            if listOfClasses[0] == a:
+                fittest = b
+                indexOfFittest = a
     lastItemOfTest = int(lastItemOfTest)
     if lastItemOfTest == indexOfFittest:
         print("accuracy is increased")
