@@ -2,22 +2,41 @@ import math
 
 testFile = open("test.txt", "r")
 trainFile = open("train.txt", "r")
-test = testFile.readline()
-test = testFile.readline()
-test = test.strip().split()
+testLine = testFile.readline()
+testLine = testFile.readline()
+test = testLine.strip().split(',')
+lastItemOfTest = test[-1]
+test.pop(-1)
 
-train = testFile.readline()
-train = testFile.readline()
-train = train.strip().split()
+trainLine = trainFile.readline()
+trainLine = trainFile.readline()
 
-sumup = 0
-listOfdifferences = []
+sumUp = 0
+result = 0
+listOfDifferences = []
+listOfLastTrainItems = []
+listOfLastTestItems = []
 
 
 def difference(x1, y1):
+    print("difference ", abs(x1 - y1))
     return abs(x1 - y1)
 
 
-for index, value in enumerate(test):
-    sumup += difference(int(test[index]), int(train[index]))**2
-listOfdifferences.append(math.sqrt(sumup))
+while trainLine:
+    train = trainLine.strip().split(',')
+    lastItemOfTrain = train[-1]
+    train.pop(-1)
+    for index, value in enumerate(test):
+        temp = difference(float(value), float(train[index]))
+        temp = temp ** 2
+        sumUp += temp
+    result = math.sqrt(sumUp)
+    listOfDifferences.append(result)
+    listOfLastTestItems.append(lastItemOfTest)
+    listOfLastTrainItems.append(lastItemOfTrain)
+    print("result ", result)
+    listOfDifferences.append(result)
+    sumUp = 0
+    trainLine = trainFile.readline()
+
