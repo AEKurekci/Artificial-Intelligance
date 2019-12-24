@@ -1,11 +1,12 @@
 import math
+import copy
 
 testFile = open("test.txt", "r")
 trainFile = open("train.txt", "r")
 testLine = testFile.readline()
 testLine = testFile.readline()
 test = testLine.strip().split(',')
-lastItemOfTest = test[-1]
+lastItemOfTest = int(test[-1])
 test.pop(-1)
 
 trainLine = trainFile.readline()
@@ -24,7 +25,11 @@ def difference(x1, y1):
     return abs(x1 - y1)
 
 
-accuracy = 0
+tempOfAccuracy = 0
+accuracy = {}
+for i in range(K):
+    accuracy[i + 1] = 0
+
 while testLine:
     listOfDifferences = []
     listOfLastTrainItems = []
@@ -62,8 +67,9 @@ while testLine:
     one = 0
     two = 0
     three = 0
-    listOfClassValues = []
-    for j in listOfClasses:
+    listOfClassValues = {}
+    dictOfValues = {}
+    for l, j in enumerate(listOfClasses):
         if j == 0:
             zero += 1
         elif j == 1:
@@ -72,26 +78,31 @@ while testLine:
             two += 1
         elif j == 3:
             three += 1
-    listOfClassValues.append(zero)
-    listOfClassValues.append(one)
-    listOfClassValues.append(two)
-    listOfClassValues.append(three)
+        listOfClassValues[0] = zero
+        listOfClassValues[1] = one
+        listOfClassValues[2] = two
+        listOfClassValues[3] = three
+        dictOfValues[l + 1] = copy.deepcopy(listOfClassValues)
     print("class list ", listOfClasses)
     print("values", listOfClassValues)
-    fittest = 0
-    indexOfFittest = 0
-    for a, b in enumerate(listOfClassValues):
-        if b > fittest:
-            fittest = b
-            indexOfFittest = a
-        elif b == fittest:
-            if listOfClasses[0] == a:
+    print("dictionary", dictOfValues)
+    for z in dictOfValues.keys():
+        fittest = 0
+        indexOfFittest = 0
+        for a, b in dictOfValues[z].items():
+            if b > fittest:
                 fittest = b
                 indexOfFittest = a
-    lastItemOfTest = int(lastItemOfTest)
-    if lastItemOfTest == indexOfFittest:
-        print("accuracy is increased")
-        accuracy += 1
+            elif b == fittest:
+                if listOfClasses[0] == a:
+                    fittest = b
+                    indexOfFittest = a
+        lastItemOfTest = int(lastItemOfTest)
+        if lastItemOfTest == indexOfFittest:
+            print("accuracy is increased")
+            tempOfAccuracyItem = accuracy[z]
+            tempOfAccuracyItem += 1
+            accuracy[z] = tempOfAccuracyItem
 
     listOfLastTestItems.append(lastItemOfTest)
     testLine = testFile.readline()
