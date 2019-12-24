@@ -17,7 +17,7 @@ listOfDifferences = []
 listOfLastTrainItems = []
 listOfLastTestItems = []
 
-K = input("Please enter the K ")
+K = int(input("Please enter the K "))
 
 
 def difference(x1, y1):
@@ -25,6 +25,7 @@ def difference(x1, y1):
 
 
 while testLine:
+    listOfDifferences = []
     while trainLine:
         train = trainLine.strip().split(',')
         lastItemOfTrain = train[-1]
@@ -43,13 +44,24 @@ while testLine:
     test = testLine.strip().split(',')
     lastItemOfTest = test[-1]
     test.pop(-1)
+
+    smallest = listOfDifferences[0]
+    indexOfSmallest = 0
+    counter = 0
+    while counter < K:
+        for i, e in enumerate(listOfDifferences):
+            if e <= smallest:
+                smallest = e
+                indexOfSmallest = i
+        listOfDifferences.pop(indexOfSmallest)
+        counter += 1
     trainFile = open("train.txt", "r")
     trainLine = trainFile.readline()
     trainLine = trainFile.readline()
 
 print("differences ", listOfDifferences)
-print("trains ", listOfLastTrainItems)
-print("test ", listOfLastTestItems)
+#print("trains ", listOfLastTrainItems)
+#print("test ", listOfLastTestItems)
 
 print("differences ", len(listOfDifferences))
 print("trains ", len(listOfLastTrainItems))
