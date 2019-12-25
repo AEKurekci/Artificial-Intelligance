@@ -1,5 +1,6 @@
 import math
 import copy
+from matplotlib.backends.backend_pdf import PdfPages
 import matplotlib.pyplot as plt
 
 testFile = open("test.txt", "r")
@@ -114,12 +115,17 @@ while testLine:
 
 xAxis = []
 yAxis = []
-for x, y in accuracy.items():
-    y = y / 10.0
-    xAxis.append(x)
-    yAxis.append(y)
-plt.plot(xAxis, yAxis)
-plt.xlabel('K Values')
-plt.ylabel('Accuracy(%)')
-plt.show()
+with PdfPages('plot.pdf') as pdf:
+    for x, y in accuracy.items():
+        y = y / 10.0
+        xAxis.append(x)
+        yAxis.append(y)
+    plt.figure(figsize=(10, 10))
+    plt.plot(xAxis, yAxis)
+    plt.xlabel('K Values')
+    plt.ylabel('Accuracy(%)')
+    plt.title('Mobile Price Classification')
+
+    pdf.savefig()
+    plt.close()
 exit(0)
