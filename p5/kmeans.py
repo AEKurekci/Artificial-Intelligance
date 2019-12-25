@@ -10,7 +10,16 @@ line = file.readline()
 spend = []
 income = []
 
-K = int(input("Please enter K :"))
+isTrue = False
+while not isTrue:
+    try:
+        K = int(input("Please enter K :"))
+        if 0 < K <= 5:
+            isTrue = True
+        else:
+            isTrue = False
+    except:
+        print("Please enter numeric K!")
 
 
 def difference(val1, val2):
@@ -67,10 +76,36 @@ for i, k in enumerate(listOfCenters):
         listX = copy.deepcopy(list(centerOfIncome.values())[i])
         listY = copy.deepcopy(list(centerOfSpend.values())[i])
     plt.scatter(listX, listY, s=2, c=color, marker='o')
-print("center of income ", centerOfIncome)
 
 for j in range(len(income)):
     listOFDiff = clustering(centerOfIncome, centerOfSpend, income[j], spend[j])
+    smallest = listOFDiff[0]
+    indexOfSmallest = 0
+    for t, z in enumerate(listOFDiff):
+        if z < smallest:
+            smallest = z
+            indexOfSmallest = t
+    if indexOfSmallest == 0:
+        color = 'r'
+        listX = copy.deepcopy(income[j])
+        listY = copy.deepcopy(spend[j])
+    elif indexOfSmallest == 1:
+        color = 'g'
+        listX = copy.deepcopy(income[j])
+        listY = copy.deepcopy(spend[j])
+    elif indexOfSmallest == 2:
+        color = 'b'
+        listX = copy.deepcopy(income[j])
+        listY = copy.deepcopy(spend[j])
+    elif indexOfSmallest == 3:
+        color = 'm'
+        listX = copy.deepcopy(income[j])
+        listY = copy.deepcopy(spend[j])
+    elif indexOfSmallest == 4:
+        color = 'y'
+        listX = copy.deepcopy(income[j])
+        listY = copy.deepcopy(spend[j])
+    plt.scatter(listX, listY, s=2, c=color, marker='o')
 
 plt.show()
 exit(0)
