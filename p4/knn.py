@@ -1,5 +1,6 @@
 import math
 import copy
+import matplotlib.pyplot as plt
 
 testFile = open("test.txt", "r")
 trainFile = open("train.txt", "r")
@@ -83,9 +84,6 @@ while testLine:
         listOfClassValues[2] = two
         listOfClassValues[3] = three
         dictOfValues[l + 1] = copy.deepcopy(listOfClassValues)
-    print("class list ", listOfClasses)
-    print("values", listOfClassValues)
-    print("dictionary", dictOfValues)
     for z in dictOfValues.keys():
         fittest = 0
         indexOfFittest = 0
@@ -99,7 +97,6 @@ while testLine:
                     indexOfFittest = a
         lastItemOfTest = int(lastItemOfTest)
         if lastItemOfTest == indexOfFittest:
-            print("accuracy is increased")
             tempOfAccuracyItem = accuracy[z]
             tempOfAccuracyItem += 1
             accuracy[z] = tempOfAccuracyItem
@@ -114,10 +111,15 @@ while testLine:
     trainLine = trainFile.readline()
     trainLine = trainFile.readline()
 
-#print("differences ", listOfDifferences)
-#print("trains ", listOfLastTrainItems)
-#print("test ", listOfLastTestItems)
-print("accuracy ", accuracy)
-print("differences ", len(listOfDifferences))
-print("trains ", len(listOfLastTrainItems))
-print("test ", len(listOfLastTestItems))
+
+xAxis = []
+yAxis = []
+for x, y in accuracy.items():
+    y = y / 10.0
+    xAxis.append(x)
+    yAxis.append(y)
+plt.plot(xAxis, yAxis)
+plt.xlabel('K Values')
+plt.ylabel('Accuracy(%)')
+plt.show()
+exit(0)
