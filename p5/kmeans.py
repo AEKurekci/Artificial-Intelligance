@@ -17,9 +17,10 @@ while not isTrue:
         if 0 < K <= 5:
             isTrue = True
         else:
+            print("K value should be smaller than 5 and greater than 0 !\n")
             isTrue = False
     except:
-        print("Please enter numeric K!")
+        print("Please enter numeric K!\n")
 
 
 def difference(val1, val2):
@@ -46,39 +47,42 @@ while line:
     line = file.readline()
 plt.scatter(income, spend, s=2, c='k', marker='o')
 
-listOfCenters = []
+listOfCenterX = []
+listOfCenterY = []
 for counter in range(K):
-    rand = random.randrange(0, len(income))
-    listOfCenters.append(rand)
-centerOfIncome = {}
-centerOfSpend = {}
-for i, k in enumerate(listOfCenters):
-    centerOfIncome[i] = income[i]
-    centerOfSpend[i] = spend[i]
+    randX = random.randrange(sorted(income)[0], sorted(income, reverse=True)[0])
+    randY = random.randrange(sorted(spend)[0], sorted(spend, reverse=True)[0])
+    listOfCenterX.append(randX)
+    listOfCenterY.append(randY)
+dictCenterOfIncome = {}
+dictCenterOfSpend = {}
+for i, k in enumerate(listOfCenterX):
+    dictCenterOfIncome[i] = listOfCenterX[i]
+    dictCenterOfSpend[i] = listOfCenterY[i]
     if i == 0:
         color = 'r'
-        listX = copy.deepcopy(list(centerOfIncome.values())[i])
-        listY = copy.deepcopy(list(centerOfSpend.values())[i])
+        listX = copy.deepcopy(list(dictCenterOfIncome.values())[i])
+        listY = copy.deepcopy(list(dictCenterOfSpend.values())[i])
     elif i == 1:
         color = 'g'
-        listX = copy.deepcopy(list(centerOfIncome.values())[i])
-        listY = copy.deepcopy(list(centerOfSpend.values())[i])
+        listX = copy.deepcopy(list(dictCenterOfIncome.values())[i])
+        listY = copy.deepcopy(list(dictCenterOfSpend.values())[i])
     elif i == 2:
         color = 'b'
-        listX = copy.deepcopy(list(centerOfIncome.values())[i])
-        listY = copy.deepcopy(list(centerOfSpend.values())[i])
+        listX = copy.deepcopy(list(dictCenterOfIncome.values())[i])
+        listY = copy.deepcopy(list(dictCenterOfSpend.values())[i])
     elif i == 3:
         color = 'm'
-        listX = copy.deepcopy(list(centerOfIncome.values())[i])
-        listY = copy.deepcopy(list(centerOfSpend.values())[i])
+        listX = copy.deepcopy(list(dictCenterOfIncome.values())[i])
+        listY = copy.deepcopy(list(dictCenterOfSpend.values())[i])
     elif i == 4:
         color = 'y'
-        listX = copy.deepcopy(list(centerOfIncome.values())[i])
-        listY = copy.deepcopy(list(centerOfSpend.values())[i])
+        listX = copy.deepcopy(list(dictCenterOfIncome.values())[i])
+        listY = copy.deepcopy(list(dictCenterOfSpend.values())[i])
     plt.scatter(listX, listY, s=2, c=color, marker='o')
 
 for j in range(len(income)):
-    listOFDiff = clustering(centerOfIncome, centerOfSpend, income[j], spend[j])
+    listOFDiff = clustering(dictCenterOfIncome, dictCenterOfSpend, income[j], spend[j])
     smallest = listOFDiff[0]
     indexOfSmallest = 0
     for t, z in enumerate(listOFDiff):
