@@ -9,6 +9,7 @@ line = file.readline()
 line = file.readline()
 spend = []
 income = []
+
 listRX = []
 listGX = []
 listBX = []
@@ -19,6 +20,12 @@ listGY = []
 listBY = []
 listMY = []
 listYY = []
+
+listOfCenterX = []
+listOfCenterY = []
+
+dictCenterOfIncome = {}
+dictCenterOfSpend = {}
 
 isTrue = False
 while not isTrue:
@@ -50,13 +57,69 @@ def clustering(centersX, centersY, x, y):
     return listOfDifferences
 
 
-def newMean(oldListCenterX, oldListCenterY, newListCenterX, newListCenterY, indexOfItem):
-    meanX = (sorted(newListCenterX)[0] + sorted(newListCenterX)[-1]) / 2
-    meanY = (sorted(newListCenterY)[0] + sorted(newListCenterY)[-1]) / 2
-    oldListCenterX.pop(indexOfItem)
-    oldListCenterX.insert(indexOfItem, meanX)
-    oldListCenterY.pop(indexOfItem)
-    oldListCenterY.insert(indexOfItem, meanY)
+def newMean():
+    for i, j in enumerate(listOfCenterX):
+        if i == 0 and len(listRX) != 0 and len(listRY) != 0:
+            color = 'r'
+            meanX = (sorted(listRX)[0] + sorted(listRX)[-1]) / 2
+            meanY = (sorted(listRY)[0] + sorted(listRY)[-1]) / 2
+            listOfCenterX.pop(i)
+            listOfCenterX.insert(i, meanX)
+            listOfCenterY.pop(i)
+            listOfCenterY.insert(i, meanY)
+            dictCenterOfIncome[i] = meanX
+            dictCenterOfSpend[i] = meanY
+            listX = copy.deepcopy(listOfCenterX[i])
+            listY = copy.deepcopy(listOfCenterY[i])
+        elif i == 1 and len(listGX) != 0 and len(listGY) != 0:
+            color = 'g'
+            meanX = (sorted(listGX)[0] + sorted(listGX)[-1]) / 2
+            meanY = (sorted(listGY)[0] + sorted(listGY)[-1]) / 2
+            listOfCenterX.pop(i)
+            listOfCenterX.insert(i, meanX)
+            listOfCenterY.pop(i)
+            listOfCenterY.insert(i, meanY)
+            dictCenterOfIncome[i] = meanX
+            dictCenterOfSpend[i] = meanY
+            listX = copy.deepcopy(listOfCenterX[i])
+            listY = copy.deepcopy(listOfCenterY[i])
+        elif i == 2 and len(listBX) != 0 and len(listBY) != 0:
+            color = 'b'
+            meanX = (sorted(listBX)[0] + sorted(listBX)[-1]) / 2
+            meanY = (sorted(listBY)[0] + sorted(listBY)[-1]) / 2
+            listOfCenterX.pop(i)
+            listOfCenterX.insert(i, meanX)
+            listOfCenterY.pop(i)
+            listOfCenterY.insert(i, meanY)
+            dictCenterOfIncome[i] = meanX
+            dictCenterOfSpend[i] = meanY
+            listX = copy.deepcopy(listOfCenterX[i])
+            listY = copy.deepcopy(listOfCenterY[i])
+        elif i == 3 and len(listMX) != 0 and len(listMY) != 0:
+            color = 'm'
+            meanX = (sorted(listMX)[0] + sorted(listMX)[-1]) / 2
+            meanY = (sorted(listMY)[0] + sorted(listMY)[-1]) / 2
+            listOfCenterX.pop(i)
+            listOfCenterX.insert(i, meanX)
+            listOfCenterY.pop(i)
+            listOfCenterY.insert(i, meanY)
+            dictCenterOfIncome[i] = meanX
+            dictCenterOfSpend[i] = meanY
+            listX = copy.deepcopy(listOfCenterX[i])
+            listY = copy.deepcopy(listOfCenterY[i])
+        elif i == 4 and len(listYX) != 0 and len(listYY) != 0:
+            color = 'y'
+            meanX = (sorted(listYX)[0] + sorted(listYX)[-1]) / 2
+            meanY = (sorted(listYY)[0] + sorted(listYY)[-1]) / 2
+            listOfCenterX.pop(i)
+            listOfCenterX.insert(i, meanX)
+            listOfCenterY.pop(i)
+            listOfCenterY.insert(i, meanY)
+            dictCenterOfIncome[i] = meanX
+            dictCenterOfSpend[i] = meanY
+            listX = copy.deepcopy(listOfCenterX[i])
+            listY = copy.deepcopy(listOfCenterY[i])
+        plt.scatter(listX, listY, s=10, c=color, marker='o')
 
 
 def colorPoints(centerX, centerY, inc, spe):
@@ -101,6 +164,8 @@ def colorPoints(centerX, centerY, inc, spe):
             listY = copy.deepcopy(spe[j])
         plt.scatter(listX, listY, s=2, c=color, marker='o')
 
+
+#spend and income values plotting initially
 while line:
     line = line.strip().split(',')
     income.append(int(line[0]))
@@ -108,15 +173,13 @@ while line:
     line = file.readline()
 plt.scatter(income, spend, s=2, c='k', marker='o')
 
-listOfCenterX = []
-listOfCenterY = []
+#initial centers randomly
 for counter in range(K):
     randX = random.randrange(sorted(income)[0], sorted(income, reverse=True)[0])
     randY = random.randrange(sorted(spend)[0], sorted(spend, reverse=True)[0])
     listOfCenterX.append(randX)
     listOfCenterY.append(randY)
-dictCenterOfIncome = {}
-dictCenterOfSpend = {}
+
 #plotting centers
 for i, k in enumerate(listOfCenterX):
     dictCenterOfIncome[i] = listOfCenterX[i]
@@ -143,61 +206,32 @@ for i, k in enumerate(listOfCenterX):
         listY = copy.deepcopy(list(dictCenterOfSpend.values())[i])
     plt.scatter(listX, listY, s=10, c=color, marker='o')
 plt.show()
+
 #coloring other points
-colorPoints(dictCenterOfIncome, dictCenterOfSpend, income, spend)
+# colorPoints(dictCenterOfIncome, dictCenterOfSpend, income, spend)
+# newMean()
+# plt.show()
+# colorPoints(dictCenterOfIncome, dictCenterOfSpend, income, spend)
+# newMean()
+# plt.show()
+# colorPoints(dictCenterOfIncome, dictCenterOfSpend, income, spend)
+# newMean()
+# plt.show()
 
-for i, j in enumerate(listOfCenterX):
-    if i == 0 and len(listRX) != 0 and len(listRY) != 0:
-        color = 'r'
-        meanX = (sorted(listRX)[0] + sorted(listRX)[-1]) / 2
-        meanY = (sorted(listRY)[0] + sorted(listRY)[-1]) / 2
-        listOfCenterX.pop(i)
-        listOfCenterX.insert(i, meanX)
-        listOfCenterY.pop(i)
-        listOfCenterY.insert(i, meanY)
-        listX = copy.deepcopy(listOfCenterX[i])
-        listY = copy.deepcopy(listOfCenterY[i])
-    elif i == 1 and len(listGX) != 0 and len(listGY) != 0:
-        color = 'g'
-        meanX = (sorted(listGX)[0] + sorted(listGX)[-1]) / 2
-        meanY = (sorted(listGY)[0] + sorted(listGY)[-1]) / 2
-        listOfCenterX.pop(i)
-        listOfCenterX.insert(i, meanX)
-        listOfCenterY.pop(i)
-        listOfCenterY.insert(i, meanY)
-        listX = copy.deepcopy(listOfCenterX[i])
-        listY = copy.deepcopy(listOfCenterY[i])
-    elif i == 2 and len(listBX) != 0 and len(listBY) != 0:
-        color = 'b'
-        meanX = (sorted(listBX)[0] + sorted(listBX)[-1]) / 2
-        meanY = (sorted(listBY)[0] + sorted(listBY)[-1]) / 2
-        listOfCenterX.pop(i)
-        listOfCenterX.insert(i, meanX)
-        listOfCenterY.pop(i)
-        listOfCenterY.insert(i, meanY)
-        listX = copy.deepcopy(listOfCenterX[i])
-        listY = copy.deepcopy(listOfCenterY[i])
-    elif i == 3 and len(listMX) != 0 and len(listMY) != 0:
-        color = 'm'
-        meanX = (sorted(listMX)[0] + sorted(listMX)[-1]) / 2
-        meanY = (sorted(listMY)[0] + sorted(listMY)[-1]) / 2
-        listOfCenterX.pop(i)
-        listOfCenterX.insert(i, meanX)
-        listOfCenterY.pop(i)
-        listOfCenterY.insert(i, meanY)
-        listX = copy.deepcopy(listOfCenterX[i])
-        listY = copy.deepcopy(listOfCenterY[i])
-    elif i == 4 and len(listYX) != 0 and len(listYY) != 0:
-        color = 'y'
-        meanX = (sorted(listYX)[0] + sorted(listYX)[-1]) / 2
-        meanY = (sorted(listYY)[0] + sorted(listYY)[-1]) / 2
-        listOfCenterX.pop(i)
-        listOfCenterX.insert(i, meanX)
-        listOfCenterY.pop(i)
-        listOfCenterY.insert(i, meanY)
-        listX = copy.deepcopy(listOfCenterX[i])
-        listY = copy.deepcopy(listOfCenterY[i])
-    plt.scatter(listX, listY, s=10, c=color, marker='o')
+gameOver = False
+gameOverCounter = 0
+while not gameOver:
+    tempDictCenterOfIncomes = copy.deepcopy(dictCenterOfIncome)
+    tempDictCenterOfSpends = copy.deepcopy(dictCenterOfSpend)
+    colorPoints(dictCenterOfIncome, dictCenterOfSpend, income, spend)
+    newMean()
+    plt.show()
+    for control in list(dictCenterOfSpend.keys()):
+        if tempDictCenterOfIncomes[control] == dictCenterOfIncome[control] and tempDictCenterOfSpends[control] == dictCenterOfSpend[control]:
+            gameOverCounter += 1
+    if gameOverCounter == K:
+        gameOver = True
+    else:
+        gameOverCounter = 0
 
-plt.show()
 exit(0)
