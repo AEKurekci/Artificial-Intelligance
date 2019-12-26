@@ -225,7 +225,6 @@ while not gameOver:
     tempDictCenterOfSpends = copy.deepcopy(dictCenterOfSpend)
     colorPoints(dictCenterOfIncome, dictCenterOfSpend, income, spend)
     newMean()
-    plt.show()
     for control in list(dictCenterOfSpend.keys()):
         if tempDictCenterOfIncomes[control] == dictCenterOfIncome[control] and tempDictCenterOfSpends[control] == dictCenterOfSpend[control]:
             gameOverCounter += 1
@@ -234,4 +233,13 @@ while not gameOver:
     else:
         gameOverCounter = 0
 
+with PdfPages("plot.pdf") as pdf:
+    plt.figure(figsize=(10, 10))
+    plt.xlabel('Income')
+    plt.ylabel('Spend')
+    plt.title('K Means Clustering')
+    colorPoints(dictCenterOfIncome, dictCenterOfSpend, income, spend)
+    newMean()
+    pdf.savefig()
+    plt.close()
 exit(0)
