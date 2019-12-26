@@ -40,6 +40,15 @@ def clustering(centersX, centersY, x, y):
     return listOfDifferences
 
 
+def newMean(oldListCenterX, oldListCenterY, newListCenterX, newListCenterY, indexOfItem):
+    meanX = (sorted(newListCenterX)[0] + sorted(newListCenterX)[-1]) / 2
+    meanY = (sorted(newListCenterY)[0] + sorted(newListCenterY)[-1]) / 2
+    oldListCenterX.pop(indexOfItem)
+    oldListCenterX.insert(indexOfItem, meanX)
+    oldListCenterY.pop(indexOfItem)
+    oldListCenterY.insert(indexOfItem, meanY)
+
+
 while line:
     line = line.strip().split(',')
     income.append(int(line[0]))
@@ -56,6 +65,7 @@ for counter in range(K):
     listOfCenterY.append(randY)
 dictCenterOfIncome = {}
 dictCenterOfSpend = {}
+#plotting centers
 for i, k in enumerate(listOfCenterX):
     dictCenterOfIncome[i] = listOfCenterX[i]
     dictCenterOfSpend[i] = listOfCenterY[i]
@@ -79,8 +89,19 @@ for i, k in enumerate(listOfCenterX):
         color = 'y'
         listX = copy.deepcopy(list(dictCenterOfIncome.values())[i])
         listY = copy.deepcopy(list(dictCenterOfSpend.values())[i])
-    plt.scatter(listX, listY, s=2, c=color, marker='o')
-
+    plt.scatter(listX, listY, s=10, c=color, marker='o')
+plt.show()
+listRX = []
+listGX = []
+listBX = []
+listMX = []
+listYX = []
+listRY = []
+listGY = []
+listBY = []
+listMY = []
+listYY = []
+#coloring other points
 for j in range(len(income)):
     listOFDiff = clustering(dictCenterOfIncome, dictCenterOfSpend, income[j], spend[j])
     smallest = listOFDiff[0]
@@ -91,25 +112,88 @@ for j in range(len(income)):
             indexOfSmallest = t
     if indexOfSmallest == 0:
         color = 'r'
+        listRX.append(income[j])
+        listRY.append(spend[j])
         listX = copy.deepcopy(income[j])
         listY = copy.deepcopy(spend[j])
     elif indexOfSmallest == 1:
         color = 'g'
+        listGX.append(income[j])
+        listGY.append(spend[j])
         listX = copy.deepcopy(income[j])
         listY = copy.deepcopy(spend[j])
     elif indexOfSmallest == 2:
         color = 'b'
+        listBX.append(income[j])
+        listBY.append(spend[j])
         listX = copy.deepcopy(income[j])
         listY = copy.deepcopy(spend[j])
     elif indexOfSmallest == 3:
         color = 'm'
+        listMX.append(income[j])
+        listMY.append(spend[j])
         listX = copy.deepcopy(income[j])
         listY = copy.deepcopy(spend[j])
     elif indexOfSmallest == 4:
         color = 'y'
+        listYX.append(income[j])
+        listYY.append(spend[j])
         listX = copy.deepcopy(income[j])
         listY = copy.deepcopy(spend[j])
     plt.scatter(listX, listY, s=2, c=color, marker='o')
+#plt.show()
+for i, j in enumerate(listOfCenterX):
+    if i == 0 and len(listRX) != 0 and len(listRY) != 0:
+        color = 'r'
+        meanX = (sorted(listRX)[0] + sorted(listRX)[-1]) / 2
+        meanY = (sorted(listRY)[0] + sorted(listRY)[-1]) / 2
+        listOfCenterX.pop(i)
+        listOfCenterX.insert(i, meanX)
+        listOfCenterY.pop(i)
+        listOfCenterY.insert(i, meanY)
+        listX = copy.deepcopy(listOfCenterX[i])
+        listY = copy.deepcopy(listOfCenterY[i])
+    elif i == 1 and len(listGX) != 0 and len(listGY) != 0:
+        color = 'g'
+        meanX = (sorted(listGX)[0] + sorted(listGX)[-1]) / 2
+        meanY = (sorted(listGY)[0] + sorted(listGY)[-1]) / 2
+        listOfCenterX.pop(i)
+        listOfCenterX.insert(i, meanX)
+        listOfCenterY.pop(i)
+        listOfCenterY.insert(i, meanY)
+        listX = copy.deepcopy(listOfCenterX[i])
+        listY = copy.deepcopy(listOfCenterY[i])
+    elif i == 2 and len(listBX) != 0 and len(listBY) != 0:
+        color = 'b'
+        meanX = (sorted(listBX)[0] + sorted(listBX)[-1]) / 2
+        meanY = (sorted(listBY)[0] + sorted(listBY)[-1]) / 2
+        listOfCenterX.pop(i)
+        listOfCenterX.insert(i, meanX)
+        listOfCenterY.pop(i)
+        listOfCenterY.insert(i, meanY)
+        listX = copy.deepcopy(listOfCenterX[i])
+        listY = copy.deepcopy(listOfCenterY[i])
+    elif i == 3 and len(listMX) != 0 and len(listMY) != 0:
+        color = 'm'
+        meanX = (sorted(listMX)[0] + sorted(listMX)[-1]) / 2
+        meanY = (sorted(listMY)[0] + sorted(listMY)[-1]) / 2
+        listOfCenterX.pop(i)
+        listOfCenterX.insert(i, meanX)
+        listOfCenterY.pop(i)
+        listOfCenterY.insert(i, meanY)
+        listX = copy.deepcopy(listOfCenterX[i])
+        listY = copy.deepcopy(listOfCenterY[i])
+    elif i == 4 and len(listYX) != 0 and len(listYY) != 0:
+        color = 'y'
+        meanX = (sorted(listYX)[0] + sorted(listYX)[-1]) / 2
+        meanY = (sorted(listYY)[0] + sorted(listYY)[-1]) / 2
+        listOfCenterX.pop(i)
+        listOfCenterX.insert(i, meanX)
+        listOfCenterY.pop(i)
+        listOfCenterY.insert(i, meanY)
+        listX = copy.deepcopy(listOfCenterX[i])
+        listY = copy.deepcopy(listOfCenterY[i])
+    plt.scatter(listX, listY, s=10, c=color, marker='o')
 
 plt.show()
 exit(0)
