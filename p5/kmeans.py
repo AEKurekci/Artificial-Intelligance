@@ -9,6 +9,16 @@ line = file.readline()
 line = file.readline()
 spend = []
 income = []
+listRX = []
+listGX = []
+listBX = []
+listMX = []
+listYX = []
+listRY = []
+listGY = []
+listBY = []
+listMY = []
+listYY = []
 
 isTrue = False
 while not isTrue:
@@ -48,6 +58,48 @@ def newMean(oldListCenterX, oldListCenterY, newListCenterX, newListCenterY, inde
     oldListCenterY.pop(indexOfItem)
     oldListCenterY.insert(indexOfItem, meanY)
 
+
+def colorPoints(centerX, centerY, inc, spe):
+    # coloring other points
+    for j in range(len(inc)):
+        listOFDiff = clustering(centerX, centerY, inc[j], spe[j])
+        smallest = listOFDiff[0]
+        indexOfSmallest = 0
+        for t, z in enumerate(listOFDiff):
+            if z < smallest:
+                smallest = z
+                indexOfSmallest = t
+        if indexOfSmallest == 0:
+            color = 'r'
+            listRX.append(inc[j])
+            listRY.append(spe[j])
+            listX = copy.deepcopy(inc[j])
+            listY = copy.deepcopy(spe[j])
+        elif indexOfSmallest == 1:
+            color = 'g'
+            listGX.append(inc[j])
+            listGY.append(spe[j])
+            listX = copy.deepcopy(inc[j])
+            listY = copy.deepcopy(spe[j])
+        elif indexOfSmallest == 2:
+            color = 'b'
+            listBX.append(inc[j])
+            listBY.append(spe[j])
+            listX = copy.deepcopy(inc[j])
+            listY = copy.deepcopy(spe[j])
+        elif indexOfSmallest == 3:
+            color = 'm'
+            listMX.append(inc[j])
+            listMY.append(spe[j])
+            listX = copy.deepcopy(inc[j])
+            listY = copy.deepcopy(spe[j])
+        elif indexOfSmallest == 4:
+            color = 'y'
+            listYX.append(inc[j])
+            listYY.append(spe[j])
+            listX = copy.deepcopy(inc[j])
+            listY = copy.deepcopy(spe[j])
+        plt.scatter(listX, listY, s=2, c=color, marker='o')
 
 while line:
     line = line.strip().split(',')
@@ -91,57 +143,9 @@ for i, k in enumerate(listOfCenterX):
         listY = copy.deepcopy(list(dictCenterOfSpend.values())[i])
     plt.scatter(listX, listY, s=10, c=color, marker='o')
 plt.show()
-listRX = []
-listGX = []
-listBX = []
-listMX = []
-listYX = []
-listRY = []
-listGY = []
-listBY = []
-listMY = []
-listYY = []
 #coloring other points
-for j in range(len(income)):
-    listOFDiff = clustering(dictCenterOfIncome, dictCenterOfSpend, income[j], spend[j])
-    smallest = listOFDiff[0]
-    indexOfSmallest = 0
-    for t, z in enumerate(listOFDiff):
-        if z < smallest:
-            smallest = z
-            indexOfSmallest = t
-    if indexOfSmallest == 0:
-        color = 'r'
-        listRX.append(income[j])
-        listRY.append(spend[j])
-        listX = copy.deepcopy(income[j])
-        listY = copy.deepcopy(spend[j])
-    elif indexOfSmallest == 1:
-        color = 'g'
-        listGX.append(income[j])
-        listGY.append(spend[j])
-        listX = copy.deepcopy(income[j])
-        listY = copy.deepcopy(spend[j])
-    elif indexOfSmallest == 2:
-        color = 'b'
-        listBX.append(income[j])
-        listBY.append(spend[j])
-        listX = copy.deepcopy(income[j])
-        listY = copy.deepcopy(spend[j])
-    elif indexOfSmallest == 3:
-        color = 'm'
-        listMX.append(income[j])
-        listMY.append(spend[j])
-        listX = copy.deepcopy(income[j])
-        listY = copy.deepcopy(spend[j])
-    elif indexOfSmallest == 4:
-        color = 'y'
-        listYX.append(income[j])
-        listYY.append(spend[j])
-        listX = copy.deepcopy(income[j])
-        listY = copy.deepcopy(spend[j])
-    plt.scatter(listX, listY, s=2, c=color, marker='o')
-#plt.show()
+colorPoints(dictCenterOfIncome, dictCenterOfSpend, income, spend)
+
 for i, j in enumerate(listOfCenterX):
     if i == 0 and len(listRX) != 0 and len(listRY) != 0:
         color = 'r'
