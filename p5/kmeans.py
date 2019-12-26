@@ -21,6 +21,11 @@ listBY = []
 listMY = []
 listYY = []
 
+listX = []
+listY = []
+
+color = 'k'
+
 listOfCenterX = []
 listOfCenterY = []
 
@@ -30,7 +35,7 @@ dictCenterOfSpend = {}
 isTrue = False
 while not isTrue:
     try:
-        K = int(input("Please enter K :"))
+        K = int(input("Please enter K : "))
         if 0 < K <= 5:
             isTrue = True
         else:
@@ -58,72 +63,99 @@ def clustering(centersX, centersY, x, y):
 
 
 def newMean():
+    global listX, listY, color
     for i, j in enumerate(listOfCenterX):
-        if i == 0 and len(listRX) != 0 and len(listRY) != 0:
-            color = 'r'
-            meanX = (sorted(listRX)[0] + sorted(listRX)[-1]) / 2
-            meanY = (sorted(listRY)[0] + sorted(listRY)[-1]) / 2
-            listOfCenterX.pop(i)
-            listOfCenterX.insert(i, meanX)
-            listOfCenterY.pop(i)
-            listOfCenterY.insert(i, meanY)
-            dictCenterOfIncome[i] = meanX
-            dictCenterOfSpend[i] = meanY
-            listX = copy.deepcopy(listOfCenterX[i])
-            listY = copy.deepcopy(listOfCenterY[i])
-        elif i == 1 and len(listGX) != 0 and len(listGY) != 0:
-            color = 'g'
-            meanX = (sorted(listGX)[0] + sorted(listGX)[-1]) / 2
-            meanY = (sorted(listGY)[0] + sorted(listGY)[-1]) / 2
-            listOfCenterX.pop(i)
-            listOfCenterX.insert(i, meanX)
-            listOfCenterY.pop(i)
-            listOfCenterY.insert(i, meanY)
-            dictCenterOfIncome[i] = meanX
-            dictCenterOfSpend[i] = meanY
-            listX = copy.deepcopy(listOfCenterX[i])
-            listY = copy.deepcopy(listOfCenterY[i])
-        elif i == 2 and len(listBX) != 0 and len(listBY) != 0:
-            color = 'b'
-            meanX = (sorted(listBX)[0] + sorted(listBX)[-1]) / 2
-            meanY = (sorted(listBY)[0] + sorted(listBY)[-1]) / 2
-            listOfCenterX.pop(i)
-            listOfCenterX.insert(i, meanX)
-            listOfCenterY.pop(i)
-            listOfCenterY.insert(i, meanY)
-            dictCenterOfIncome[i] = meanX
-            dictCenterOfSpend[i] = meanY
-            listX = copy.deepcopy(listOfCenterX[i])
-            listY = copy.deepcopy(listOfCenterY[i])
-        elif i == 3 and len(listMX) != 0 and len(listMY) != 0:
-            color = 'm'
-            meanX = (sorted(listMX)[0] + sorted(listMX)[-1]) / 2
-            meanY = (sorted(listMY)[0] + sorted(listMY)[-1]) / 2
-            listOfCenterX.pop(i)
-            listOfCenterX.insert(i, meanX)
-            listOfCenterY.pop(i)
-            listOfCenterY.insert(i, meanY)
-            dictCenterOfIncome[i] = meanX
-            dictCenterOfSpend[i] = meanY
-            listX = copy.deepcopy(listOfCenterX[i])
-            listY = copy.deepcopy(listOfCenterY[i])
-        elif i == 4 and len(listYX) != 0 and len(listYY) != 0:
-            color = 'y'
-            meanX = (sorted(listYX)[0] + sorted(listYX)[-1]) / 2
-            meanY = (sorted(listYY)[0] + sorted(listYY)[-1]) / 2
-            listOfCenterX.pop(i)
-            listOfCenterX.insert(i, meanX)
-            listOfCenterY.pop(i)
-            listOfCenterY.insert(i, meanY)
-            dictCenterOfIncome[i] = meanX
-            dictCenterOfSpend[i] = meanY
-            listX = copy.deepcopy(listOfCenterX[i])
-            listY = copy.deepcopy(listOfCenterY[i])
+        if i == 0:
+            if len(listRX) != 0 and len(listRY) != 0:
+                color = 'r'
+                meanX = (sorted(listRX)[0] + sorted(listRX)[-1]) / 2
+                meanY = (sorted(listRY)[0] + sorted(listRY)[-1]) / 2
+                listOfCenterX.pop(i)
+                listOfCenterX.insert(i, meanX)
+                listOfCenterY.pop(i)
+                listOfCenterY.insert(i, meanY)
+                dictCenterOfIncome[i] = meanX
+                dictCenterOfSpend[i] = meanY
+                listX = copy.deepcopy(listOfCenterX[i])
+                listY = copy.deepcopy(listOfCenterY[i])
+            else:
+                color = 'r'
+                listX = copy.deepcopy(listOfCenterX[i])
+                listY = copy.deepcopy(listOfCenterY[i])
+        elif i == 1:
+            if len(listGX) != 0 and len(listGY) != 0:
+                color = 'g'
+                meanX = (sorted(listGX)[0] + sorted(listGX)[-1]) / 2
+                meanY = (sorted(listGY)[0] + sorted(listGY)[-1]) / 2
+                listOfCenterX.pop(i)
+                listOfCenterX.insert(i, meanX)
+                listOfCenterY.pop(i)
+                listOfCenterY.insert(i, meanY)
+                dictCenterOfIncome[i] = meanX
+                dictCenterOfSpend[i] = meanY
+                listX = copy.deepcopy(listOfCenterX[i])
+                listY = copy.deepcopy(listOfCenterY[i])
+            else:
+                color = 'g'
+                listX = copy.deepcopy(listOfCenterX[i])
+                listY = copy.deepcopy(listOfCenterY[i])
+        elif i == 2:
+            if len(listBX) != 0 and len(listBY) != 0:
+                color = 'b'
+                meanX = (sorted(listBX)[0] + sorted(listBX)[-1]) / 2
+                meanY = (sorted(listBY)[0] + sorted(listBY)[-1]) / 2
+                listOfCenterX.pop(i)
+                listOfCenterX.insert(i, meanX)
+                listOfCenterY.pop(i)
+                listOfCenterY.insert(i, meanY)
+                dictCenterOfIncome[i] = meanX
+                dictCenterOfSpend[i] = meanY
+                listX = copy.deepcopy(listOfCenterX[i])
+                listY = copy.deepcopy(listOfCenterY[i])
+            else:
+                color = 'b'
+                listX = copy.deepcopy(listOfCenterX[i])
+                listY = copy.deepcopy(listOfCenterY[i])
+        elif i == 3:
+            if len(listMX) != 0 and len(listMY) != 0:
+                color = 'm'
+                meanX = (sorted(listMX)[0] + sorted(listMX)[-1]) / 2
+                meanY = (sorted(listMY)[0] + sorted(listMY)[-1]) / 2
+                listOfCenterX.pop(i)
+                listOfCenterX.insert(i, meanX)
+                listOfCenterY.pop(i)
+                listOfCenterY.insert(i, meanY)
+                dictCenterOfIncome[i] = meanX
+                dictCenterOfSpend[i] = meanY
+                listX = copy.deepcopy(listOfCenterX[i])
+                listY = copy.deepcopy(listOfCenterY[i])
+            else:
+                color = 'm'
+                listX = copy.deepcopy(listOfCenterX[i])
+                listY = copy.deepcopy(listOfCenterY[i])
+        elif i == 4:
+            if len(listYX) != 0 and len(listYY) != 0:
+                color = 'y'
+                meanX = (sorted(listYX)[0] + sorted(listYX)[-1]) / 2
+                meanY = (sorted(listYY)[0] + sorted(listYY)[-1]) / 2
+                listOfCenterX.pop(i)
+                listOfCenterX.insert(i, meanX)
+                listOfCenterY.pop(i)
+                listOfCenterY.insert(i, meanY)
+                dictCenterOfIncome[i] = meanX
+                dictCenterOfSpend[i] = meanY
+                listX = copy.deepcopy(listOfCenterX[i])
+                listY = copy.deepcopy(listOfCenterY[i])
+            else:
+                color = 'y'
+                listX = copy.deepcopy(listOfCenterX[i])
+                listY = copy.deepcopy(listOfCenterY[i])
         plt.scatter(listX, listY, s=10, c=color, marker='o')
 
 
 def colorPoints(centerX, centerY, inc, spe):
     # coloring other points
+    global listX, listY, color
     for j in range(len(inc)):
         listOFDiff = clustering(centerX, centerY, inc[j], spe[j])
         smallest = listOFDiff[0]
@@ -205,18 +237,7 @@ for i, k in enumerate(listOfCenterX):
         listX = copy.deepcopy(list(dictCenterOfIncome.values())[i])
         listY = copy.deepcopy(list(dictCenterOfSpend.values())[i])
     plt.scatter(listX, listY, s=10, c=color, marker='o')
-plt.show()
 
-#coloring other points
-# colorPoints(dictCenterOfIncome, dictCenterOfSpend, income, spend)
-# newMean()
-# plt.show()
-# colorPoints(dictCenterOfIncome, dictCenterOfSpend, income, spend)
-# newMean()
-# plt.show()
-# colorPoints(dictCenterOfIncome, dictCenterOfSpend, income, spend)
-# newMean()
-# plt.show()
 
 gameOver = False
 gameOverCounter = 0
