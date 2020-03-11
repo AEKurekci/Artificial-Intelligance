@@ -7,9 +7,22 @@ def init_Pass(T):
             else:
                 initList[j] += 1
     sortedInitList = {}
-    for key in initList.keys():
+    """
+    listOfKeys = initList.keys()
+    listOfKeys =list(listOfKeys)
+    listOfKeys.sort()
+    print(listOfKeys)
+    listOfKeys = listOfKeys.sort()
+    print(listOfKeys)
+
+    for key in listOfKeys:
         sortedInitList[key] = initList[key]
     initList.clear()
+    """
+    print(initList)
+    for b in sorted(initList.keys(),reverse=True):
+       sortedInitList[b] = initList[b]
+    print(sortedInitList)
     return sortedInitList
 
 
@@ -23,11 +36,22 @@ def candidate_gen(F):
 
 def apriori(Transaction, minSup):
     C1 = init_Pass(Transaction)
+    #print(C1)
     allF = []
     Frequent = {}
     for i, j in C1.items():
-        if (j / len(Transaction)) > minSup:
+        if (float(j) / float(len(Transaction))) > minSup:
             Frequent[i] = j
     allF.append(Frequent)
     while len(Frequent) != 0:
         Candidates = candidate_gen(Frequent)
+
+file = open("transactions.csv", "r")
+line = file.readline()
+allList = []
+while line:
+    listOfTransaction = line.strip(' ').split(',')
+    print(listOfTransaction)
+    allList.append(listOfTransaction)
+    line = file.readline()
+apriori(allList, 0.3)
