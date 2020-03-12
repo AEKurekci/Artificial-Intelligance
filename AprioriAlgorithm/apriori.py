@@ -54,15 +54,48 @@ def candidate_gen(F):
 def apriori(Transaction, minSup):
     C1 = init_Pass(Transaction)
     print("C1: ", C1)
+    print("Transaction: ", Transaction)
+    transactionCount = len(Transaction)
     allF = []
     Frequent = {}
+    candidateCountList = []
     for i, j in C1.items():
-        if (float(j) / float(len(Transaction))) > minSup:
+        if (float(j) / float(transactionCount)) > minSup:
             Frequent[i] = j
     print("F1: ", Frequent)
-    allF.append(Frequent)
+    allF.append(copy.deepcopy(Frequent))
     Candidates = candidate_gen(Frequent)
     print("Cand: ", Candidates)
+    candidateCount = 0
+    biggerThanMinSupCandidateIndex = []
+    for index, can in enumerate(Candidates):
+        for t in Transaction:
+            transLastIndex = len(t) - 1
+            canLastIndex = len(can) - 1
+            equalityCount = 0
+            while canLastIndex >= 0 and transLastIndex >= 0:
+                if can[canLastIndex] == t[transLastIndex]:
+                    canLastIndex -= 1
+                    transLastIndex = len(t) - 1
+                    equalityCount += 1
+                else:
+                    transLastIndex -= 1
+            if equalityCount == len(can):
+                candidateCount += 1
+        print(float(candidateCount) / float(transactionCount))
+        if (float(candidateCount) / float(transactionCount)) > float(minSup):
+            biggerThanMinSupCandidateIndex.append(index)
+        candidateCountList.append(candidateCount)
+        candidateCount = 0
+    print(biggerThanMinSupCandidateIndex)
+    tempCandidates = []
+    for a in biggerThanMinSupCandidateIndex:
+        tempCandidates.append(copy.deepcopy(Candidates[a]))
+    Candidates.clear()
+    Candidates = copy.deepcopy(tempCandidates)
+    tempCandidates.clear()
+    print(Candidates)
+
 
 
 file = open("transactions.csv", "r")
