@@ -16,7 +16,7 @@ def init_Pass(T):
 
 def candidate_gen(F):
     Cand = []
-    print(F)
+    print("F: ", F)
     notSame = False
     keyList = list(F.keys())
     for i, j in enumerate(keyList):
@@ -63,38 +63,49 @@ def apriori(Transaction, minSup):
         if (float(j) / float(transactionCount)) > minSup:
             Frequent[i] = j
     print("F1: ", Frequent)
-    allF.append(copy.deepcopy(Frequent))
-    Candidates = candidate_gen(Frequent)
-    print("Cand: ", Candidates)
-    candidateCount = 0
-    biggerThanMinSupCandidateIndex = []
-    for index, can in enumerate(Candidates):
-        for t in Transaction:
-            transLastIndex = len(t) - 1
-            canLastIndex = len(can) - 1
-            equalityCount = 0
-            while canLastIndex >= 0 and transLastIndex >= 0:
-                if can[canLastIndex] == t[transLastIndex]:
-                    canLastIndex -= 1
-                    transLastIndex = len(t) - 1
-                    equalityCount += 1
-                else:
-                    transLastIndex -= 1
-            if equalityCount == len(can):
-                candidateCount += 1
-        print(float(candidateCount) / float(transactionCount))
-        if (float(candidateCount) / float(transactionCount)) > float(minSup):
-            biggerThanMinSupCandidateIndex.append(index)
-        candidateCountList.append(candidateCount)
-        candidateCount = 0
-    print(biggerThanMinSupCandidateIndex)
-    tempCandidates = []
-    for a in biggerThanMinSupCandidateIndex:
-        tempCandidates.append(copy.deepcopy(Candidates[a]))
-    Candidates.clear()
-    Candidates = copy.deepcopy(tempCandidates)
-    tempCandidates.clear()
-    print(Candidates)
+    while len(list(Frequent.keys())) > 0:
+        allF.append(copy.deepcopy(Frequent))
+        Candidates = candidate_gen(Frequent)
+        print("Cand: ", Candidates)
+        biggerThanMinSupCandidateIndex = []
+        for index, can in enumerate(Candidates):
+            candidateCount = 0
+            for t in Transaction:
+                transLastIndex = len(t) - 1
+                canLastIndex = len(can) - 1
+                equalityCount = 0
+                while canLastIndex >= 0 and transLastIndex >= 0:
+                    if can[canLastIndex] == t[transLastIndex]:
+                        canLastIndex -= 1
+                        transLastIndex = len(t) - 1
+                        equalityCount += 1
+                    else:
+                        transLastIndex -= 1
+                if equalityCount == len(can):
+                    candidateCount += 1
+            if (float(candidateCount) / float(transactionCount)) > float(minSup):
+                biggerThanMinSupCandidateIndex.append(index)
+            candidateCountList.append(candidateCount)
+        print(biggerThanMinSupCandidateIndex)
+        print("candidate Count : ", candidateCountList)
+        tempCandidates = []
+        for a in biggerThanMinSupCandidateIndex:
+            tempCandidates.append(copy.deepcopy(Candidates[a]))
+        Candidates.clear()
+        Candidates = copy.deepcopy(tempCandidates)
+        tempCandidates.clear()
+        print(Candidates)
+        Frequent.clear()
+        for indexOfCand, Cand in enumerate(Candidates):
+            item = ""
+            for i in range(len(Cand)):
+                item += Cand[i]
+                if i != len(Cand) - 1:
+                    item += ','
+            Frequent[item] = candidateCountList[biggerThanMinSupCandidateIndex[indexOfCand]]
+        candidateCountList.clear()
+        biggerThanMinSupCandidateIndex.clear()
+    return allF
 
 
 
@@ -111,4 +122,5 @@ while line:
     allList.append(listOfTransaction)
     line = file.readline()
 
-apriori(allList, 0.3)
+allFrequencies = apriori(allList, 0.3)
+print(allFrequencies)
