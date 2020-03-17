@@ -16,7 +16,6 @@ def init_Pass(T):
 
 def candidate_gen(F):
     Cand = []
-    print("F: ", F)
     notSame = False
     keyList = list(F.keys())
     for i, j in enumerate(keyList):
@@ -26,19 +25,20 @@ def candidate_gen(F):
     for f1 in keyList:
         for f2 in keyList:
             if f1[-1] < f2[-1]:
-                if len(f1) > 1:
-                    for itemIndex in range(0, len(f1)):
+                if len(f1) > 1:#it is just for after first specifying candidate
+                    for itemIndex in range(len(f1) - 1):
                         if f1[itemIndex] != f2[itemIndex]:
                             notSame = True
                             break
                 if notSame:
+                    notSame = False
                     break
                 else:
                     f1.append(f2[-1])
                     copyf1 = copy.deepcopy(f1)
                     Cand.append(copyf1)
                     f1.pop(-1)
-
+    #elimination for not in subset of C.
     for i, j in enumerate(Cand):
         counter = len(j) - 1
         while counter >= 0:
@@ -53,8 +53,6 @@ def candidate_gen(F):
 
 def apriori(Transaction, minSup):
     C1 = init_Pass(Transaction)
-    print("C1: ", C1)
-    print("Transaction: ", Transaction)
     transactionCount = len(Transaction)
     allF = []
     Frequent = {}
@@ -62,11 +60,9 @@ def apriori(Transaction, minSup):
     for i, j in C1.items():
         if (float(j) / float(transactionCount)) > minSup:
             Frequent[i] = j
-    print("F1: ", Frequent)
     while len(list(Frequent.keys())) > 0:
         allF.append(copy.deepcopy(Frequent))
         Candidates = candidate_gen(Frequent)
-        print("Cand: ", Candidates)
         biggerThanMinSupCandidateIndex = []
         for index, can in enumerate(Candidates):
             candidateCount = 0
@@ -86,15 +82,12 @@ def apriori(Transaction, minSup):
             if (float(candidateCount) / float(transactionCount)) > float(minSup):
                 biggerThanMinSupCandidateIndex.append(index)
             candidateCountList.append(candidateCount)
-        print(biggerThanMinSupCandidateIndex)
-        print("candidate Count : ", candidateCountList)
         tempCandidates = []
         for a in biggerThanMinSupCandidateIndex:
             tempCandidates.append(copy.deepcopy(Candidates[a]))
         Candidates.clear()
         Candidates = copy.deepcopy(tempCandidates)
         tempCandidates.clear()
-        print(Candidates)
         Frequent.clear()
         for indexOfCand, Cand in enumerate(Candidates):
             item = ""
@@ -123,4 +116,4 @@ while line:
     line = file.readline()
 
 allFrequencies = apriori(allList, 0.3)
-print(allFrequencies)
+print("All Frequencies: ", allFrequencies)
