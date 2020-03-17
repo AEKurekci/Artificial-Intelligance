@@ -105,6 +105,7 @@ def apriori(Transaction, minSup):
 file = open("transactions.csv", "r")
 line = file.readline()
 allList = []
+minimumSupport = 0.3
 while line:
     listOfTransaction = line.strip().split(',')#strip to get rid of \n
     #for is here to get rid of spaces
@@ -114,6 +115,11 @@ while line:
         listOfTransaction.insert(i, j)
     allList.append(listOfTransaction)
     line = file.readline()
+    try:
+        minimumSupport = float(line)
+        break
+    except:
+        pass
 
-allFrequencies = apriori(allList, 0.3)
+allFrequencies = apriori(allList, minimumSupport)
 print("All Frequencies: ", allFrequencies)
