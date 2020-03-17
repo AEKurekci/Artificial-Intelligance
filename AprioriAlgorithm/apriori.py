@@ -102,7 +102,7 @@ def apriori(Transaction, minSup):
 
 
 
-file = open("transactions.csv", "r")
+file = open("transactions.txt", "r")
 line = file.readline()
 allList = []
 minimumSupport = 0.3
