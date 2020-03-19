@@ -1,0 +1,1 @@
+[{'Beef': 4, 'Cheese': 4, 'Chicken': 5, 'Clothes': 3, 'Milk': 4}, {'Beef,Cheese': 3, 'Beef,Chicken': 3, 'Chicken,Clothes': 3, 'Chicken,Milk': 4, 'Clothes,Milk': 3}, {'Chicken,Clothes,Milk': 3}]
