@@ -123,5 +123,5 @@ while line:
 
 allFrequencies = apriori(allList, minimumSupport)
 print("All Frequencies: ", allFrequencies)
-outputFile = open("output.txt","w");
+outputFile = open("output.txt", "w")
 outputFile.write(str(allFrequencies))
