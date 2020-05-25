@@ -5,7 +5,18 @@ from urllib.parse import urlparse
 def getDomainName(url):
     try:
         results = getSubdomainName(url).split('.')
-        return results[-2] + "." + results[-1]
+        print("result:", results)
+        result = ""
+        length = len(results)
+        while length > 0:
+            if length > 1:
+                result += results[-length] + "."
+            elif length == 1:
+                result += results[-length]
+            results.pop(0)
+            length -= 1
+        print(result)
+        return result
     except:
         return ""
 

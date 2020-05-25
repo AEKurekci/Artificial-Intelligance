@@ -31,7 +31,7 @@ class Spider:
     @staticmethod
     def crawlPage(thread_name, page_url):
         if page_url not in Spider.crawled:
-            print(thread_name + " now crawling " + page_url)
+            print(thread_name + " now crawling " + page_url + "\n")
             print("Queue " + str(len(Spider.queue)) + " | Crawled " + str(len(Spider.crawled)))
             Spider.addLinksToQueue(Spider.gatherLink(page_url))
             Spider.queue.remove(page_url)
