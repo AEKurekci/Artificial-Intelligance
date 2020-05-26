@@ -33,8 +33,7 @@ def appendToFile(path, data):
 
 #delete file contents
 def deleteFileContents(path):
-    with open(path, 'w'):
-        pass
+    open(path, 'w').close()
 
 
 #read a file and convert each line to set items
