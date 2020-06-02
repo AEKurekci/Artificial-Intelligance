@@ -146,7 +146,7 @@ try:
                     userInfo.append(userMore)
                     users[user] = copy.deepcopy(userInfo)
                     userInfo.clear()
-        file_name = "user_datas" + str(file_number) + ".csv"
+        file_name = "examples\\csv\\user_datas" + str(file_number) + ".csv"
         with open(file_name, 'w') as f:
             for user, data in users.items():
                 f.write(user + "|")
@@ -158,7 +158,7 @@ try:
                 f.write('\n')
     else:
         driver.close()
-        file_name = "user_datas1.csv"
+        file_name = "examples\\csv\\user_datas1.csv"
         preprocessing_data(file_name)
 except TimeoutException as ex:
     print("Exception: ", str(ex))
