@@ -11,18 +11,21 @@ from selenium.webdriver.support import expected_conditions as EC
 
 DOMAIN = "https://tr.wikipedia.org/"
 SEARCH_ADDRESS = "https://tr.wikipedia.org/w/index.php?title=And_kondoru&action=history"
+SEARCH_ADDRESS = "https://tr.wikipedia.org/w/index.php?title=2013_Eurovision_%C5%9Eark%C4%B1_Yar%C4%B1%C5%9Fmas%C4%B1&action=history"
+DATA_LIMIT = 30
+SEARCH_ADDRESS = SEARCH_ADDRESS + "&offset=&limit=" + str(DATA_LIMIT)
 
 # wikipedia groups for checking status of changer
-general_groups = ["Beyaz liste", "Devriye", "Toplu mesaj gönderici", "Hesap oluşturucu", "Teknisyen"]
-high_level_groups = ["Hizmetli", "Arayüz yöneticisi", "Bürokrat", "Gözetmen", "Denetçi", "Kâhya"]
+general_groups = ["beyaz liste", "devriye", "toplu mesaj gönderici", "hesap oluşturucu", "teknisyen"]
+high_level_groups = ["hizmetli", "arayüz yöneticisi", "bürokrat", "gözetmen", "denetçi", "kâhya"]
 black_list = ["engellenmiş"]
-others = ["Bot", "IP engelleme muafı"]
+others = ["bot", "ip engelleme muafı"]
 
 # driver path for showing to selenium
 driver_path = "C:\\Users\\ali19\\OneDrive\\Belgeler\\selenium\\chromedriver.exe"
 driver = webdriver.Chrome(driver_path)
-file_number = 1
-isThereData = True
+file_number = 2
+isThereData = False
 
 
 def getUserInfo(inLink):
@@ -59,11 +62,11 @@ def name_process(name):
 
 def registration_info_process(registration):
     registration = registration.split(' ')
-    if 'gün' in registration:                       # ex. 5 gün
-        return [0, 0, registration[0]]              # yıl, ay, gün sayısı
-    elif len(registration) < 4:                     # ex. 5 ay
+    if 'gün' in registration:  # ex. 5 gün
+        return [0, 0, registration[0]]  # yıl, ay, gün sayısı
+    elif len(registration) < 4:  # ex. 5 ay
         return [0, registration[0], 0]
-    else:                                           # 2 yıl 9 ay
+    else:  # 2 yıl 9 ay
         return [registration[0], registration[2], 0]
 
 
@@ -107,8 +110,8 @@ def preprocessing_data(file):
             if length_data < 3:
                 line = f.readline()
                 continue
-            elif length_data == 3:                  # ex. SemonyZ (sayfa mevcut değil)|1 gün|7 değişikliğe sahip
-                name = name_process(line[0])        # delete '(sayfa mevcut değil)'
+            elif length_data == 3:  # ex. SemonyZ (sayfa mevcut değil)|1 gün|7 değişikliğe sahip
+                name = name_process(line[0])  # delete '(sayfa mevcut değil)'
                 row.append(name)
                 registration_info = registration_info_process(line[1])
                 row.append(registration_info)
@@ -133,19 +136,37 @@ try:
         firstHead = soup.find(id='firstHeading')
         topic = str(firstHead.string)
         topic = topic[1: topic.index('"', 1)]
-
         users = {}
         userInfo = []
-        for userLink in soup.findAll('a'):
-            if userLink.get('class') is not None:
-                if "mw-userlink" in userLink.get('class'):
-                    user = str(userLink.get('title')).split(':')[1]
-                    link = DOMAIN + userLink.get('href')
-                    userInfo.append(link)
-                    userMore = getUserInfo(link)
-                    userInfo.append(userMore)
-                    users[user] = copy.deepcopy(userInfo)
-                    userInfo.clear()
+        """for spans in soup.find(class='flaggedrevs-color-1'):
+            if spans.get('class') is not None:
+                if "flaggedrevs-color-1" in spans.get('class'):
+                    in_soup = BeautifulSoup(spans.string, 'html.parser')
+                    in_soup.findAll('span',)
+        """
+        for userLink in soup.findAll('a', {'class': 'mw-userlink'}):
+            change_size = 0
+            change_soup = BeautifulSoup(str(userLink.parent.parent), 'html.parser')
+            change_span = change_soup.findAll('span', {'class': 'mw-plusminus-pos mw-diff-bytes'})
+            if len(change_span) < 1:
+                change_span = change_soup.findAll('span', {'class': 'mw-plusminus-neg mw-diff-bytes'})
+            if len(change_span) < 1:
+                change_span = change_soup.findAll('strong', {'class': 'mw-plusminus-pos mw-diff-bytes'})
+            if len(change_span) < 1:
+                change_span = change_soup.findAll('strong', {'class': 'mw-plusminus-neg mw-diff-bytes'})
+            try:
+                change_size = int(str(change_span[0].string).replace('.', ''))
+            except:
+                change_size = 0
+            print(userLink.string)
+            print(change_size)
+            user = str(userLink.get('title')).split(':')[1]
+            link = DOMAIN + userLink.get('href')
+            userInfo.append(link)
+            userMore = getUserInfo(link)
+            userInfo.append(userMore)
+            users[user] = copy.deepcopy(userInfo)
+            userInfo.clear()
         file_name = "examples\\csv\\user_datas" + str(file_number) + ".csv"
         with open(file_name, 'w') as f:
             for user, data in users.items():
