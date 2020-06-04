@@ -1,29 +1,48 @@
 import copy
+import datetime
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import numpy as np
+import pandas as pd
+from sklearn.naive_bayes import GaussianNB
+from sklearn import metrics
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import classification_report
 
+# global variables
 DOMAIN = "https://tr.wikipedia.org/"
-SEARCH_ADDRESS = "https://tr.wikipedia.org/w/index.php?title=And_kondoru&action=history"
-SEARCH_ADDRESS = "https://tr.wikipedia.org/w/index.php?title=2013_Eurovision_%C5%9Eark%C4%B1_Yar%C4%B1%C5%9Fmas%C4%B1&action=history"
+file_number = 2
+SEARCH_ADDRESSES = ["https://tr.wikipedia.org/w/index.php?title=I._D%C3%BCnya_Sava%C5%9F%C4%B1&action=history",
+                    "https://tr.wikipedia.org/w/index.php?title=II._D%C3%BCnya_Sava%C5%9F%C4%B1&action=history"]
 DATA_LIMIT = 500
-SEARCH_ADDRESS = SEARCH_ADDRESS + "&offset=&limit=" + str(DATA_LIMIT)
+SEARCH_ADDRESSES[file_number - 1] = SEARCH_ADDRESSES[file_number - 1] + "&offset=&limit=" + str(DATA_LIMIT)
 
-# wikipedia groups for checking status of changer
-general_groups = ["beyaz liste", "devriye", "toplu mesaj gönderici", "hesap oluşturucu", "teknisyen"]
-high_level_groups = ["hizmetli", "arayüz yöneticisi", "bürokrat", "gözetmen", "denetçi", "kâhya"]
-black_list = ["engellenmiş"]
-others = ["bot", "ip engelleme muafı"]
-
+data_directory = "examples\\csv\\"
+is_there_data = True
+is_data_cleaned = True
 # driver path for showing to selenium
 driver_path = "C:\\Users\\ali19\\OneDrive\\Belgeler\\selenium\\chromedriver.exe"
 driver = webdriver.Chrome(driver_path)
-data_directory = "examples\\csv\\"
-file_number = 1
-isThereData = True
+
+
+def create_train_data(user_info):
+    validation = np.random.rand(len(user_info)) < 0.8
+    train = user_info[validation]
+    test = user_info[~validation]
+    return train, test
+
+
+def prediction_by_naive_bayes(trainNB, testNB):
+    gnb = GaussianNB()
+    y_pred_gnb = gnb.fit(trainNB[user_data.columns[0:7]], trainNB["class_suspect"])
+    predicted = y_pred_gnb.predict(testNB[user_data.columns[0:7]])
+    naivesAccuracy = metrics.accuracy_score(testNB["class_suspect"], predicted)
+    #classification_report_(testNB, predicted, "NaiveBayes")
+    return naivesAccuracy
 
 
 def getUserInfo(inLink):
@@ -43,6 +62,8 @@ def getUserInfo(inLink):
             for a in span.findAll('a'):
                 a = a.get_text().replace('\xa0', ' ')
                 allA.append(a)
+            if 'önce üye oldu' not in span.get_text():
+                allA.insert(-2, 'None')
         except TimeoutException as e:
             print(e)
     else:
@@ -59,11 +80,16 @@ def name_process(name):
 
 
 def registration_info_process(registration):
+    if 'None' in registration:
+        return [0, 0, 0]
     registration = registration.split(' ')
     if 'gün' in registration:               # ex. 5 gün
         return [0, 0, registration[0]]      # yıl, ay, gün sayısı
     elif len(registration) < 4:             # ex. 5 ay
-        return [0, registration[0], 0]
+        if 'ay' in registration[1]:
+            return [0, registration[0], 0]
+        else:
+            return [registration[0], 0, 0]
     else:  # 2 yıl 9 ay
         return [registration[0], registration[2], 0]
 
@@ -119,11 +145,14 @@ def write_data(table, file_name):
 def preprocessing_data(file):
     table = []
     with open(file, 'r') as f:
+        suspect_count = 0
         line = f.readline()
         while line:
             row = []
             line = line.split('|')
             length_data = len(line)
+            if 'True' in line[-1]:                  # suspect count
+                suspect_count += 1
             if length_data < 5:
                 row = ['Anonim', ['null'], [0, 0, 0], 0, line[1], line[2]]
             elif length_data == 5:                  # ex.SemonyZ (sayfa mevcut değil)|1 gün|7 değişikliğe sahip|69|False
@@ -140,6 +169,7 @@ def preprocessing_data(file):
                 row = degree_process(line)
             table.append(copy.deepcopy(row))
             line = f.readline()
+        print(suspect_count, " times suspect")
     cleaned_file = data_directory + "cleaned_data_" + str(file_number) + ".csv"
     write_data(table, cleaned_file)
 
@@ -164,7 +194,7 @@ def check_revocation(user_link):
     revocation_span = revocation_soup.findAll('span', {'class': 'comment comment--without-parentheses'})
     if len(revocation_span) > 0:
         for content in revocation_span:
-            if 'geri alınıyor' in str(content):
+            if 'geri alınıyor' in str(content) or 'geri alınarak' in str(content) or 'geri getirildi' in str(content):
                 return True
             else:
                 return False
@@ -173,9 +203,11 @@ def check_revocation(user_link):
 
 
 try:
-    if not isThereData:
+    if not is_there_data:
+        start_time = datetime.datetime.now()
+        print('Crawler started to work. Please wait!')
         driver.set_page_load_timeout(50)
-        driver.get(SEARCH_ADDRESS)
+        driver.get(SEARCH_ADDRESSES[file_number - 1])
         element_present = EC.visibility_of_all_elements_located((By.ID, 'pagehistory'))
         WebDriverWait(driver, 50).until(element_present)
         plainText = driver.page_source
@@ -204,27 +236,40 @@ try:
             userInfo.append(userMore)
             users.append(copy.deepcopy(userInfo))
             userInfo.clear()
+        users[-1][1].append('False')
+        finish_time = datetime.datetime.now()
+        process_min = finish_time.minute - start_time.minute
+        process_sec = finish_time.second - start_time.second
+        print('Crawler process time: ', process_min, ' dk', process_sec, ' sn')
 
-        users[-1][1].append('?')                                 # append last user '?' because it is not specified yet
         file_name = data_directory + "user_data_" + str(file_number) + ".csv"
-
         with open(file_name, 'w', encoding='windows-1254') as f:
             for data in reversed(users):
                 try:
                     f.write(data[0] + "|")
                     for index, inData in enumerate(data[1]):
                         if not index == (len(data[1]) - 1):
-                            f.write(inData + "|")
+                            f.write(str(inData) + "|")
                         else:
-                            f.write(inData)
+                            f.write(str(inData))
                     f.write('\n')
                 except:
                     print("encoding error", data[0])
                     continue
     else:
         driver.close()
-        file_name = data_directory + "user_data_" + str(file_number) + ".csv"
-        preprocessing_data(file_name)
+        if not is_data_cleaned:
+            file_name = data_directory + "user_data_" + str(file_number) + ".csv"
+            preprocessing_data(file_name)
+        else:
+            file_name = data_directory + "cleaned_data_" + str(file_number) + ".csv"
+            user_data = pd.read_csv(file_name, encoding='windows-1254', dtype={'user_type': np.str, 'degree': np.str,
+                                                                               'year': np.int, 'month': np.int, 'day': np.int,
+                                                                               'post_size': np.int,'change_size': np.int,
+                                                                               'class_suspect': np.bool})
+            train, test = create_train_data(user_data)
+            naive_accuracy = prediction_by_naive_bayes(train, test)
+            print(naive_accuracy)
 except TimeoutException as ex:
     print("Exception: ", str(ex))
     driver.close()

@@ -1,501 +1,500 @@
 user_type,degree,year,month,day,post_size,change_size,class_suspect
-kayýtlý,bot,11,5,0,611698,12,?
-kayýtlý,bürokrat|hizmetli,0,13,0,1175,38,False
-kayýtlý,bot,0,4,0,167872,1,False
-kayýtlý,devriye,0,8,0,13293,1,False
-kayýtlý,beyaz liste,1,2,0,100,1,False
-kayýtlý,bot,11,5,0,611698,-163,False
-kayýtlý,devriye,0,8,0,13293,5848,False
-kayýtlý,devriye,0,6,0,749585,-1,False
-kayýtlý,devriye,0,6,0,749585,15,False
-kayýtlý,hizmetli,14,2,0,40976,-2,False
-kayýtlý,hizmetli,14,2,0,40976,0,False
-kayýtlý,hizmetli,14,2,0,40976,0,False
-kayýtlý,bot,11,5,0,611698,1,False
-kayýtlý,devriye,10,1,0,85368,0,False
-kayýtlý,bürokrat|hizmetli,0,13,0,1175,-4,False
-kayýtlý,devriye,8,2,0,40026,100,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-105,False
-kayýtlý,bürokrat|hizmetli,0,13,0,1175,6,False
-kayýtlý,bürokrat|hizmetli,0,13,0,1175,22,False
-kayýtlý,devriye,0,6,0,749585,-9,False
-kayýtlý,devriye,0,6,0,749585,-11,False
-kayýtlý,devriye,0,6,0,749585,0,False
-kayýtlý,bürokrat|hizmetli,0,13,0,1175,-3,False
-kayýtlý,bürokrat|hizmetli,0,13,0,1175,-1,False
-kayýtlý,bot,1,9,0,6518,-20,False
-kayýtlý,devriye,0,6,0,749585,-142,False
-kayýtlý,devriye,10,7,0,45073,1,False
-kayýtlý,null,3,10,0,66,0,False
-kayýtlý,beyaz liste,4,3,0,247,1,False
-kayýtlý,beyaz liste,10,2,0,58408,66,False
-kayýtlý,beyaz liste,10,2,0,58408,-66,False
-kayýtlý,beyaz liste,10,2,0,58408,66,False
-kayýtlý,devriye,0,6,0,749585,-20,False
-kayýtlý,devriye,10,1,0,85368,-32,False
-kayýtlý,devriye,10,7,0,45073,44,False
-kayýtlý,bürokrat|hizmetli,0,13,0,1175,-45,False
-kayýtlý,bot,10,2,0,577959,179,False
-kayýtlý,bot,10,2,0,577959,27130,False
-kayýtlý,devriye,10,7,0,45073,0,False
-kayýtlý,devriye,10,7,0,45073,194,False
-kayýtlý,devriye,13,3,0,2704,11,False
-kayýtlý,devriye,13,3,0,2704,-16,False
-kayýtlý,devriye,13,3,0,2704,17,False
-kayýtlý,bot,10,2,0,577959,-90,False
-kayýtlý,devriye,10,8,0,27927,-295,False
-kayýtlý,devriye,7,1,0,16171,5,False
-kayýtlý,devriye,7,1,0,16171,-5,False
-kayýtlý,devriye,7,1,0,16171,24,False
-kayýtlý,devriye,7,1,0,16171,0,False
-kayýtlý,bot,10,2,0,577959,-31,False
-kayýtlý,beyaz liste,12,4,0,618,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste,12,4,0,618,-2,False
-kayýtlý,beyaz liste,12,4,0,618,0,False
-kayýtlý,beyaz liste,12,4,0,618,-2,False
-kayýtlý,beyaz liste,12,4,0,618,0,False
-kayýtlý,beyaz liste,12,4,0,618,0,False
-kayýtlý,beyaz liste,12,4,0,618,-2,False
-kayýtlý,beyaz liste,12,4,0,618,0,False
-kayýtlý,beyaz liste,12,4,0,618,0,False
-kayýtlý,beyaz liste,12,4,0,618,-2,False
-kayýtlý,beyaz liste,12,4,0,618,5,False
-kayýtlý,beyaz liste,12,4,0,618,0,False
-kayýtlý,beyaz liste,12,4,0,618,0,False
-kayýtlý,beyaz liste,12,4,0,618,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste|bot,13,8,0,43560,-2,False
-kayýtlý,beyaz liste,12,4,0,618,-2,False
-kayýtlý,beyaz liste,12,4,0,618,-2,False
-kayýtlý,beyaz liste,12,4,0,618,0,False
-kayýtlý,beyaz liste,12,4,0,618,-2,False
-kayýtlý,beyaz liste,6,8,0,33,-4,False
-kayýtlý,beyaz liste,6,8,0,33,-2,False
-kayýtlý,beyaz liste,6,8,0,33,-2,False
-kayýtlý,devriye,8,2,0,40026,19,False
-kayýtlý,devriye,10,11,0,4488,84,False
-kayýtlý,engellenmiþ,5,9,0,1549,0,False
-kayýtlý,devriye,8,10,0,23954,66,False
-kayýtlý,devriye,9,2,0,10553,16,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,48,False
-kayýtlý,devriye,9,2,0,10553,97,False
-kayýtlý,devriye,9,2,0,10553,55,False
-kayýtlý,devriye,9,2,0,10553,-12,False
-kayýtlý,devriye,9,2,0,10553,13,False
-kayýtlý,devriye,8,10,0,23954,-8,False
-kayýtlý,devriye,8,10,0,23954,-195,False
-kayýtlý,devriye,9,2,0,10553,123,False
-kayýtlý,devriye,9,2,0,10553,-14,False
-kayýtlý,devriye,9,2,0,10553,1,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,8,2,0,40026,-18,False
-kayýtlý,devriye,8,10,0,23954,6,False
-kayýtlý,devriye,8,10,0,23954,-3,False
-kayýtlý,devriye,8,10,0,23954,77,False
-kayýtlý,devriye,8,10,0,23954,-94,False
-kayýtlý,devriye,8,10,0,23954,-6,False
-kayýtlý,devriye,8,10,0,23954,0,False
-kayýtlý,devriye,8,10,0,23954,-11,False
-kayýtlý,devriye,8,10,0,23954,37,False
-kayýtlý,devriye,8,10,0,23954,12282,False
-kayýtlý,devriye,6,3,0,18437,212,False
-kayýtlý,devriye,10,1,0,85368,19,False
-kayýtlý,bot,10,2,0,577959,505,False
-kayýtlý,bot,10,2,0,577959,3754,False
-kayýtlý,bot,10,2,0,577959,15363,False
-kayýtlý,bot,7,9,0,461643,1057,False
-kayýtlý,toplu ileti gönderici|devriye,0,11,0,433431,11,False
-kayýtlý,devriye,9,2,0,10553,-7,False
-Anonim,null,0,0,0,0,0,False
-kayýtlý,devriye,8,10,0,23954,1184,False
-kayýtlý,devriye,10,1,0,85368,4,False
-Anonim,null,0,0,0,0,-4,False
-Anonim,null,0,0,0,0,0,False
-kayýtlý,bot,7,9,0,461643,62,False
-kayýtlý,hizmetli,11,11,0,64892,12,False
-Anonim,null,0,0,0,0,-12,False
-kayýtlý,null,8,3,0,4250,150,False
-kayýtlý,null,8,6,0,11,15,False
-Anonim,null,0,0,0,0,-1,False
-kayýtlý,devriye,0,14,0,122286,-101,False
-kayýtlý,devriye,10,8,0,27927,-21,False
-kayýtlý,bot,7,9,0,461643,20,False
-kayýtlý,devriye,8,10,0,23954,-2,False
-Anonim,null,0,0,0,0,2,False
-kayýtlý,bot,7,9,0,461643,-29,False
-kayýtlý,beyaz liste,10,8,0,171,44,False
-kayýtlý,devriye,8,10,0,23954,39,False
-Anonim,null,0,0,0,0,-39,False
-kayýtlý,devriye,8,10,0,23954,2,False
-Anonim,null,0,0,0,0,-1,False
-Anonim,null,0,0,0,0,-1,False
-kayýtlý,devriye,7,7,0,1497,0,False
-Anonim,null,0,0,0,0,0,False
-kayýtlý,devriye,10,1,0,85368,28,False
-kayýtlý,devriye,10,1,0,85368,20,False
-kayýtlý,devriye,10,1,0,85368,2,False
-kayýtlý,bürokrat|hizmetli,11,10,0,163638,280,False
-kayýtlý,devriye,10,1,0,85368,3,False
-kayýtlý,devriye,10,1,0,85368,-166,False
-kayýtlý,devriye,10,1,0,85368,-7,False
-kayýtlý,devriye,10,1,0,85368,-15,False
-kayýtlý,devriye,10,7,0,45073,11928,False
-kayýtlý,devriye,10,7,0,45073,13,False
-kayýtlý,devriye,10,7,0,45073,75524,False
-kayýtlý,devriye,10,7,0,45073,-75537,False
-kayýtlý,devriye,10,7,0,45073,13,False
-kayýtlý,devriye,9,2,0,10553,-2,False
-kayýtlý,devriye,8,10,0,23954,0,False
-Anonim,null,0,0,0,0,0,False
-kayýtlý,devriye,8,10,0,23954,0,False
-kayýtlý,devriye,10,8,0,27927,0,False
-kayýtlý,devriye,10,8,0,27927,0,False
-kayýtlý,devriye,10,8,0,27927,5406,False
-kayýtlý,devriye,10,8,0,27927,4640,False
-kayýtlý,devriye,9,2,0,10553,-43,False
-Anonim,null,0,0,0,0,43,False
-kayýtlý,devriye,10,8,0,27927,-1874,False
-Anonim,null,0,0,0,0,1874,False
-kayýtlý,devriye,9,2,0,10553,2,False
-kayýtlý,devriye,9,2,0,10553,-2,False
-kayýtlý,devriye,9,2,0,10553,-2,False
-kayýtlý,null,7,11,0,405,3069,False
-Anonim,null,0,0,0,0,-3069,True
-kayýtlý,null,8,3,0,4250,-3,False
-kayýtlý,devriye,7,7,0,1497,20,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,414,False
-Anonim,null,0,0,0,0,0,False
-kayýtlý,devriye,9,2,0,10553,453,False
-kayýtlý,devriye,9,2,0,10553,3,False
-kayýtlý,devriye,9,2,0,10553,-5,False
-kayýtlý,devriye,9,2,0,10553,12,False
-kayýtlý,devriye,9,2,0,10553,-12,True
-kayýtlý,devriye,9,2,0,10553,99,False
-kayýtlý,devriye,9,2,0,10553,139,False
-kayýtlý,devriye,9,2,0,10553,-139,True
-kayýtlý,devriye,9,2,0,10553,-7,False
-kayýtlý,devriye,9,2,0,10553,10,False
-kayýtlý,devriye,9,2,0,10553,16,False
-kayýtlý,devriye,9,2,0,10553,165,False
-kayýtlý,devriye,9,2,0,10553,172,False
-kayýtlý,devriye,9,2,0,10553,47,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,274,False
-kayýtlý,devriye,7,7,0,1497,3398,False
-Anonim,null,0,0,0,0,-3398,False
-kayýtlý,devriye,7,7,0,1497,3398,False
-Anonim,null,0,0,0,0,-3398,False
-kayýtlý,devriye,9,2,0,10553,66,False
-kayýtlý,devriye,7,7,0,1497,-33,False
-kayýtlý,devriye,7,7,0,1497,12,False
-Anonim,null,0,0,0,0,30,False
-Anonim,null,0,0,0,0,36,False
-kayýtlý,devriye,7,7,0,1497,-4,False
-Anonim,null,0,0,0,0,4,False
-kayýtlý,devriye,8,10,0,23954,-8,False
-kayýtlý,null,8,3,0,4250,8,True
-kayýtlý,null,8,3,0,4250,-8,False
-Anonim,null,0,0,0,0,8,False
-kayýtlý,null,8,3,0,4250,-12,False
-kayýtlý,devriye,8,10,0,23954,0,False
-kayýtlý,null,8,3,0,4250,-4,False
-kayýtlý,devriye,9,2,0,10553,16,False
-Anonim,null,0,0,0,0,-16,False
-kayýtlý,devriye,9,2,0,10553,1,False
-kayýtlý,devriye,9,2,0,10553,-12,False
-kayýtlý,devriye,9,2,0,10553,4,False
-kayýtlý,devriye,9,2,0,10553,1,False
-kayýtlý,devriye,9,2,0,10553,1248,False
-kayýtlý,devriye,9,2,0,10553,2,False
-kayýtlý,devriye,9,2,0,10553,-7,False
-kayýtlý,devriye,9,2,0,10553,0,False
-Anonim,null,0,0,0,0,0,False
-kayýtlý,devriye,10,1,0,85368,480,False
-kayýtlý,devriye,10,1,0,85368,-56,False
-Anonim,null,0,0,0,0,56,False
-kayýtlý,devriye,9,2,0,10553,-3,False
-kayýtlý,devriye,9,2,0,10553,478,False
-kayýtlý,devriye,10,8,0,27927,-189,False
-Anonim,null,0,0,0,0,189,False
-kayýtlý,devriye,9,2,0,10553,12,False
-kayýtlý,devriye,9,2,0,10553,-6,False
-kayýtlý,devriye,9,2,0,10553,-105,False
-kayýtlý,devriye,9,2,0,10553,1,False
-kayýtlý,devriye,9,2,0,10553,-24,False
-kayýtlý,devriye,9,2,0,10553,-30,False
-Anonim,null,0,0,0,0,30,False
-kayýtlý,null,7,6,0,9,-59,False
-Anonim,null,0,0,0,0,169,False
-kayýtlý,devriye,9,2,0,10553,-75,False
-kayýtlý,devriye,10,1,0,85368,24,False
-kayýtlý,devriye,9,2,0,10553,-12,False
-kayýtlý,devriye,9,2,0,10553,12,False
-kayýtlý,devriye,9,2,0,10553,28,False
-kayýtlý,devriye,9,2,0,10553,-4,False
-kayýtlý,devriye,9,2,0,10553,12,False
-kayýtlý,devriye,9,2,0,10553,-14,False
-kayýtlý,devriye,9,2,0,10553,-1,False
-kayýtlý,devriye,9,2,0,10553,1,False
-kayýtlý,devriye,9,2,0,10553,12,False
-kayýtlý,devriye,9,2,0,10553,1397,False
-kayýtlý,devriye,10,1,0,85368,44,False
-kayýtlý,devriye,9,2,0,10553,41,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,101,False
-kayýtlý,devriye,9,2,0,10553,-9,False
-kayýtlý,devriye,9,2,0,10553,-42,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,-16,False
-kayýtlý,devriye,9,2,0,10553,-14,False
-kayýtlý,devriye,9,2,0,10553,28,False
-kayýtlý,devriye,9,2,0,10553,2,False
-kayýtlý,devriye,9,2,0,10553,9,False
-kayýtlý,devriye,9,2,0,10553,-2,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,51,False
-kayýtlý,devriye,9,2,0,10553,204,False
-kayýtlý,devriye,9,2,0,10553,358,False
-kayýtlý,devriye,9,2,0,10553,-12,False
-kayýtlý,devriye,9,2,0,10553,-5,False
-kayýtlý,devriye,9,2,0,10553,-171,False
-kayýtlý,null,8,3,0,4250,1,False
-Anonim,null,0,0,0,0,171,True
-Anonim,null,0,0,0,0,-1,False
-kayýtlý,devriye,9,2,0,10553,1223,False
-kayýtlý,devriye,9,2,0,10553,-1218,False
-kayýtlý,devriye,9,2,0,10553,-1,False
-kayýtlý,devriye,9,2,0,10553,202,False
-kayýtlý,devriye,9,2,0,10553,2,False
-kayýtlý,devriye,9,2,0,10553,1489,False
-kayýtlý,devriye,9,2,0,10553,74,False
-kayýtlý,devriye,9,2,0,10553,6,False
-kayýtlý,devriye,9,2,0,10553,74,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,65,False
-kayýtlý,devriye,9,2,0,10553,480,False
-kayýtlý,devriye,9,2,0,10553,-213,False
-Anonim,null,0,0,0,0,213,False
-kayýtlý,null,8,3,0,4250,402,False
-Anonim,null,0,0,0,0,-402,True
-kayýtlý,devriye,8,10,0,23954,60,False
-kayýtlý,devriye,9,2,0,10553,-32,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,-4,False
-kayýtlý,devriye,9,2,0,10553,-125,False
-kayýtlý,devriye,9,2,0,10553,13,False
-kayýtlý,devriye,9,2,0,10553,1,False
-kayýtlý,devriye,9,2,0,10553,-17,False
-kayýtlý,devriye,9,2,0,10553,8,False
-kayýtlý,devriye,9,2,0,10553,18,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,23,False
-kayýtlý,devriye,9,2,0,10553,58,False
-kayýtlý,devriye,9,2,0,10553,261,False
-kayýtlý,devriye,9,2,0,10553,-1,False
-kayýtlý,devriye,9,2,0,10553,29,False
-kayýtlý,devriye,9,2,0,10553,16,False
-kayýtlý,devriye,9,2,0,10553,24,False
-kayýtlý,devriye,9,2,0,10553,-242,False
-kayýtlý,devriye,9,2,0,10553,12469,False
-kayýtlý,devriye,9,2,0,10553,107,False
-kayýtlý,devriye,9,2,0,10553,2,False
-kayýtlý,devriye,9,2,0,10553,16,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,-40,False
-kayýtlý,devriye,9,2,0,10553,-84,False
-kayýtlý,devriye,9,2,0,10553,-80,False
-kayýtlý,devriye,9,2,0,10553,4,False
-kayýtlý,devriye,9,2,0,10553,-92,False
-Anonim,null,0,0,0,0,92,False
-kayýtlý,devriye,9,2,0,10553,5259,False
-kayýtlý,devriye,9,2,0,10553,13,False
-kayýtlý,devriye,9,2,0,10553,5,False
-kayýtlý,null,8,3,0,4250,205,False
-kayýtlý,null,8,3,0,4250,-58,False
-kayýtlý,devriye,8,10,0,23954,58,False
-kayýtlý,devriye,9,2,0,10553,1,False
-kayýtlý,devriye,9,2,0,10553,740,False
-kayýtlý,devriye,10,8,0,27927,418,False
-kayýtlý,devriye,10,8,0,27927,349,False
-kayýtlý,null,8,3,0,4250,-124,False
-kayýtlý,null,8,3,0,4250,124,False
-kayýtlý,devriye,10,8,0,27927,355,False
-kayýtlý,null,8,3,0,4250,-164,False
-Anonim,null,0,0,0,0,164,True
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,441,False
-kayýtlý,devriye,9,2,0,10553,11,False
-kayýtlý,null,8,3,0,4250,-11,False
-kayýtlý,devriye,10,8,0,27927,157,False
-kayýtlý,devriye,9,2,0,10553,11,False
-kayýtlý,devriye,10,8,0,27927,-11,False
-kayýtlý,devriye,9,2,0,10553,11,False
-kayýtlý,null,8,3,0,4250,-11,False
-kayýtlý,devriye,10,8,0,27927,11,False
-kayýtlý,null,8,3,0,4250,-11,False
-kayýtlý,devriye,9,2,0,10553,-6,False
-kayýtlý,devriye,9,2,0,10553,9,False
-kayýtlý,devriye,9,2,0,10553,539,False
-kayýtlý,devriye,9,2,0,10553,169,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,520,False
-kayýtlý,devriye,9,2,0,10553,324,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,8,False
-kayýtlý,devriye,9,2,0,10553,35,False
-kayýtlý,devriye,9,2,0,10553,576,False
-kayýtlý,devriye,9,2,0,10553,-15,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,-1,False
-kayýtlý,devriye,9,2,0,10553,-1,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,21,False
-kayýtlý,devriye,9,2,0,10553,5,False
-kayýtlý,devriye,9,2,0,10553,2762,False
-kayýtlý,devriye,9,2,0,10553,17,False
-kayýtlý,devriye,9,2,0,10553,-4,False
-kayýtlý,devriye,10,8,0,27927,297,False
-kayýtlý,devriye,10,8,0,27927,313,False
-kayýtlý,devriye,9,2,0,10553,-1,False
-kayýtlý,null,8,3,0,4250,1,False
-kayýtlý,devriye,9,2,0,10553,-1,False
-kayýtlý,devriye,9,2,0,10553,1,False
-kayýtlý,null,8,3,0,4250,-1,False
-kayýtlý,devriye,9,2,0,10553,17,False
-kayýtlý,devriye,9,2,0,10553,97,False
-kayýtlý,null,8,3,0,4250,249,False
-kayýtlý,devriye,10,8,0,27927,373,False
-kayýtlý,devriye,9,2,0,10553,-1,False
-kayýtlý,devriye,9,2,0,10553,15,False
-kayýtlý,devriye,9,2,0,10553,47,False
-kayýtlý,devriye,9,2,0,10553,1,False
-kayýtlý,devriye,9,2,0,10553,2488,False
-kayýtlý,devriye,9,2,0,10553,-4,False
-kayýtlý,devriye,9,2,0,10553,15,False
-kayýtlý,devriye,9,2,0,10553,778,False
-kayýtlý,devriye,10,8,0,27927,449,False
-kayýtlý,devriye,9,2,0,10553,-10,False
-kayýtlý,devriye,10,8,0,27927,-32,False
+kayýtlý,devriye,6,0,0,749585,210,False
+kayýtlý,devriye,1,2,0,7828,1,False
+kayýtlý,devriye,6,8,0,11140,53,False
+kayýtlý,arayüz yöneticisi|teknisyen|hizmetli,4,3,0,22412,2,False
+kayýtlý,devriye,8,7,0,50327,-1,False
+Anonim,null,0,0,0,0,1,True
+kayýtlý,null,0,2,0,49,-6,False
+kayýtlý,toplu ileti gönderici|devriye,0,2,0,5232,-16,False
+Anonim,null,0,0,0,0,16,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,-8,False
+kayýtlý,arayüz yöneticisi|teknisyen|devriye,4,0,0,4474,-6255,False
+kayýtlý,arayüz yöneticisi|teknisyen|devriye,4,0,0,4474,-751,False
+kayýtlý,arayüz yöneticisi|teknisyen|devriye,4,0,0,4474,-46,False
+kayýtlý,hizmetli,14,2,0,40977,-156,False
+kayýtlý,devriye,6,0,0,749585,-284,False
+kayýtlý,devriye,3,1,0,1246,-6,False
+Anonim,null,0,0,0,0,6,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,-64,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,-28,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,-4,False
+kayýtlý,toplu ileti gönderici|devriye,10,3,0,28397,-1006,False
+kayýtlý,toplu ileti gönderici|devriye,10,3,0,28397,1,False
+kayýtlý,arayüz yöneticisi|teknisyen|devriye,4,0,0,4474,-61,False
+kayýtlý,bot,2,9,0,17822,-1,False
+Anonim,null,0,0,0,0,-10,False
+kayýtlý,devriye,11,1,0,40266,-37,False
+kayýtlý,devriye,11,1,0,40266,25,False
+kayýtlý,devriye,11,1,0,40266,-260,False
+kayýtlý,devriye,11,1,0,40266,-268,False
+kayýtlý,devriye,11,1,0,40266,40,False
+kayýtlý,devriye,11,1,0,40266,-53,False
 Anonim,null,0,0,0,0,32,False
-kayýtlý,devriye,9,2,0,10553,1,False
-kayýtlý,devriye,9,2,0,10553,-42,False
-kayýtlý,devriye,9,2,0,10553,640,False
-kayýtlý,devriye,9,2,0,10553,618,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,1,False
-kayýtlý,devriye,9,2,0,10553,19,False
-kayýtlý,devriye,9,2,0,10553,598,False
-kayýtlý,devriye,9,2,0,10553,5,False
-kayýtlý,devriye,9,2,0,10553,-3,False
-kayýtlý,devriye,9,2,0,10553,18,False
-kayýtlý,devriye,10,8,0,27927,345,False
-kayýtlý,devriye,10,8,0,27927,340,False
-kayýtlý,devriye,9,2,0,10553,7,False
-kayýtlý,devriye,10,8,0,27927,771,False
-kayýtlý,devriye,9,2,0,10553,-1,False
-kayýtlý,devriye,9,2,0,10553,7,False
-kayýtlý,null,8,3,0,4250,-569,False
-kayýtlý,null,8,3,0,4250,569,False
-kayýtlý,hizmetli,11,11,0,64892,-532,False
-kayýtlý,null,8,3,0,4250,532,False
-kayýtlý,devriye,10,1,0,85368,-32,False
-kayýtlý,devriye,9,2,0,10553,1,False
-kayýtlý,devriye,9,2,0,10553,10,False
-kayýtlý,devriye,9,2,0,10553,3,False
-kayýtlý,devriye,9,2,0,10553,-13,False
-kayýtlý,devriye,10,1,0,85368,-3,False
-kayýtlý,null,8,3,0,4250,3,False
-kayýtlý,null,8,3,0,4250,-3,False
-kayýtlý,null,8,3,0,4250,3,False
-kayýtlý,devriye,10,1,0,85368,3,False
-kayýtlý,devriye,10,1,0,85368,-15,False
-kayýtlý,devriye,10,1,0,85368,-3,False
-kayýtlý,null,8,3,0,4250,3,False
-kayýtlý,devriye,9,2,0,10553,-3,False
-kayýtlý,null,8,3,0,4250,3,False
-kayýtlý,devriye,9,2,0,10553,-3,False
-kayýtlý,devriye,9,2,0,10553,4,False
-kayýtlý,devriye,9,2,0,10553,-46,False
-kayýtlý,devriye,9,2,0,10553,299,False
-kayýtlý,devriye,9,2,0,10553,134,False
-kayýtlý,devriye,9,2,0,10553,341,False
-kayýtlý,devriye,9,2,0,10553,-3,False
-kayýtlý,null,8,3,0,4250,3,False
-kayýtlý,devriye,9,2,0,10553,-208,False
-kayýtlý,null,8,3,0,4250,317,False
-kayýtlý,null,8,3,0,4250,105,False
-kayýtlý,null,8,3,0,4250,21,False
-kayýtlý,null,8,3,0,4250,-21,False
-kayýtlý,devriye,9,2,0,10553,21,False
-kayýtlý,null,8,3,0,4250,-21,False
-kayýtlý,devriye,9,2,0,10553,21,False
-kayýtlý,null,8,3,0,4250,-5,False
-kayýtlý,null,8,3,0,4250,-16,False
-kayýtlý,devriye,9,2,0,10553,-14,False
-kayýtlý,null,8,3,0,4250,5,False
-kayýtlý,null,8,3,0,4250,5,False
-kayýtlý,null,8,3,0,4250,-2,False
-kayýtlý,devriye,9,2,0,10553,-15,False
-kayýtlý,devriye,9,2,0,10553,100,False
-kayýtlý,devriye,9,2,0,10553,-120,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,-12332,False
-kayýtlý,devriye,9,2,0,10553,0,False
-kayýtlý,devriye,9,2,0,10553,98,False
-kayýtlý,devriye,9,2,0,10553,-2,False
-kayýtlý,devriye,9,2,0,10553,158,False
-kayýtlý,devriye,9,2,0,10553,1,False
-kayýtlý,devriye,9,2,0,10553,792,False
-kayýtlý,devriye,9,2,0,10553,229,False
-kayýtlý,devriye,9,2,0,10553,104,False
-kayýtlý,devriye,9,2,0,10553,-33,False
-kayýtlý,devriye,9,2,0,10553,107,False
-kayýtlý,devriye,9,2,0,10553,202,False
-kayýtlý,devriye,9,2,0,10553,23,False
-kayýtlý,devriye,9,2,0,10553,253,False
-kayýtlý,devriye,9,2,0,10553,517,False
-kayýtlý,devriye,9,2,0,10553,200,False
-kayýtlý,devriye,9,2,0,10553,1,False
-kayýtlý,devriye,9,2,0,10553,228,False
-kayýtlý,devriye,9,2,0,10553,507,False
-kayýtlý,devriye,9,2,0,10553,791,False
-kayýtlý,devriye,10,1,0,85368,5,False
-kayýtlý,devriye,9,2,0,10553,2,False
-kayýtlý,devriye,10,8,0,27927,343,False
-kayýtlý,bot,10,3,0,317523,-1950,False
-kayýtlý,beyaz liste,0,8,0,6907,-7,False
-kayýtlý,beyaz liste,0,8,0,6907,37,False
-kayýtlý,beyaz liste,0,8,0,6907,655,False
-kayýtlý,devriye,9,2,0,10553,0,False
+Anonim,null,0,0,0,0,21,False
+kayýtlý,bot,2,9,0,17822,1,False
+kayýtlý,devriye,8,2,0,23509,36,False
+Anonim,null,0,0,0,0,-40,False
+Anonim,null,0,0,0,0,4,False
+kayýtlý,beyaz liste,7,10,0,206,33,False
+kayýtlý,beyaz liste,7,10,0,206,-35,False
+kayýtlý,devriye,0,8,0,13361,142,False
+kayýtlý,bot,2,9,0,17822,2,False
+kayýtlý,bot,2,9,0,17822,1,False
+kayýtlý,devriye,8,2,0,23509,-10,False
+kayýtlý,devriye,8,2,0,23509,4,False
+Anonim,null,0,0,0,0,4,False
+Anonim,null,0,0,0,0,-5,False
+Anonim,null,0,0,0,0,2,False
+Anonim,null,0,0,0,0,-6,False
+Anonim,null,0,0,0,0,1,False
+kayýtlý,devriye,8,9,0,2813,1,False
+Anonim,null,0,0,0,0,-1,False
+kayýtlý,devriye,4,8,0,22808,-41,False
+kayýtlý,null,0,4,0,11,41,True
+kayýtlý,toplu ileti gönderici|devriye,11,0,0,433436,-53,False
+kayýtlý,null,3,10,0,16,53,False
+kayýtlý,devriye,14,0,0,122286,-17,False
+kayýtlý,IP engelleme muafý|devriye,1,7,0,20948,75,False
+Anonim,null,0,0,0,0,-75,True
+kayýtlý,devriye,6,0,0,749585,16,False
+kayýtlý,devriye,9,3,0,37009,2,False
+kayýtlý,devriye,9,3,0,37009,0,False
+kayýtlý,null,1,6,0,360,-44,False
+Anonim,null,0,0,0,0,44,True
+kayýtlý,engellenmiþ|devriye,2,8,0,56875,-5,False
+Anonim,null,0,0,0,0,0,False
+Anonim,null,0,0,0,0,5,False
+kayýtlý,null,1,6,0,360,-2,False
+kayýtlý,null,1,6,0,360,-5,False
+kayýtlý,null,1,6,0,360,1,False
+kayýtlý,null,1,6,0,360,-10,False
+kayýtlý,devriye,6,0,0,749585,-82,False
+Anonim,null,0,0,0,0,-7,False
+Anonim,null,0,0,0,0,3,False
+kayýtlý,null,6,1,0,195,-14,False
+kayýtlý,null,6,1,0,195,-7,False
+kayýtlý,null,6,1,0,195,4,False
+kayýtlý,devriye,6,0,0,749585,8,False
+kayýtlý,engellenmiþ|toplu ileti gönderici|devriye,6,0,0,65831,-3,False
+kayýtlý,engellenmiþ|toplu ileti gönderici|devriye,6,0,0,65831,151,False
+kayýtlý,devriye,6,0,0,749585,-2,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,34,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,39,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,-23,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,18,False
+kayýtlý,editor|hizmetli,13,1,0,122548,-5,False
+Anonim,null,0,0,0,0,5,False
+kayýtlý,beyaz liste,5,6,0,97,53,False
+kayýtlý,devriye,9,3,0,37009,0,False
+Anonim,null,0,0,0,0,0,False
+kayýtlý,devriye,9,3,0,37009,0,False
+kayýtlý,devriye,6,0,0,749585,1,False
+kayýtlý,devriye,6,0,0,749585,1,False
+kayýtlý,devriye,9,3,0,37009,-9,False
+kayýtlý,devriye,9,3,0,37009,-15,False
+kayýtlý,bot,10,2,0,577985,1,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,48,False
+kayýtlý,devriye,6,0,0,749585,-694,False
+kayýtlý,devriye,9,3,0,37009,-4,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,18,False
+kayýtlý,devriye,6,0,0,749585,27,False
+kayýtlý,devriye,8,2,0,40041,23,False
+kayýtlý,devriye,8,7,0,50327,14,False
+kayýtlý,devriye,5,6,0,23852,0,False
+Anonim,null,0,0,0,0,0,False
+kayýtlý,devriye,6,0,0,749585,20,False
+kayýtlý,toplu ileti gönderici|devriye,11,4,0,32646,0,False
+kayýtlý,toplu ileti gönderici|devriye,11,4,0,32646,-9,False
+kayýtlý,devriye,4,8,0,22808,-46,False
+Anonim,null,0,0,0,0,46,True
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,1,False
+Anonim,null,0,0,0,0,-1,True
+kayýtlý,devriye,6,0,0,749585,180,False
+kayýtlý,engellenmiþ|toplu ileti gönderici|devriye,6,0,0,65831,-2,False
+Anonim,null,0,0,0,0,2,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,-6,False
+Anonim,null,0,0,0,0,6,True
+kayýtlý,devriye,6,0,0,749585,36,False
+kayýtlý,bot,5,2,0,135545,-15,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-16,False
+kayýtlý,devriye,6,0,0,749585,-16,True
+kayýtlý,beyaz liste,3,5,0,47,16,False
+kayýtlý,editor|hizmetli,13,1,0,122548,-1,False
+kayýtlý,null,3,4,0,275,1,False
+kayýtlý,null,3,4,0,275,0,False
+kayýtlý,beyaz liste,3,3,0,290,46,False
+kayýtlý,devriye,9,3,0,37009,7,False
+kayýtlý,beyaz liste,5,6,0,97,61,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-6,False
+kayýtlý,null,3,3,0,5,7,True
+kayýtlý,null,3,3,0,5,-57,False
+kayýtlý,null,3,3,0,5,56,False
+kayýtlý,beyaz liste,3,10,0,167486,34,False
+kayýtlý,devriye,5,6,0,23852,-1294,False
+Anonim,null,0,0,0,0,1294,False
+kayýtlý,devriye,12,9,0,36730,-137,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,-872,False
+Anonim,null,0,0,0,0,872,True
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,0,False
+kayýtlý,beyaz liste|bot,13,8,0,43588,-193,True
+kayýtlý,null,3,8,0,23,0,False
+kayýtlý,beyaz liste,3,6,0,84,10,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,-6,False
+kayýtlý,devriye,8,2,0,23509,-54,False
+Anonim,null,0,0,0,0,188,False
+kayýtlý,devriye,9,3,0,37009,129,False
+Anonim,null,0,0,0,0,-2,False
+Anonim,null,0,0,0,0,-6,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,-1,False
+kayýtlý,beyaz liste,0,0,0,1597,98,False
+kayýtlý,beyaz liste,0,0,0,1597,72,False
+kayýtlý,beyaz liste,0,0,0,1597,-12,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-136,False
+kayýtlý,null,3,8,0,6,136,False
+Anonim,null,0,0,0,0,-1,False
+kayýtlý,devriye,13,10,0,8910,-1,False
+Anonim,null,0,0,0,0,1,True
+kayýtlý,arayüz yöneticisi|teknisyen|devriye,4,0,0,4474,810,False
+kayýtlý,engellenmiþ|toplu ileti gönderici|devriye,6,0,0,65831,27,False
+kayýtlý,devriye,9,3,0,37009,226,False
+kayýtlý,devriye,9,3,0,37009,12,False
+kayýtlý,engellenmiþ|toplu ileti gönderici|devriye,6,0,0,65831,40,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,362,False
+Anonim,null,0,0,0,0,-362,True
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,122,False
+Anonim,null,0,0,0,0,-122,True
+kayýtlý,beyaz liste,3,10,0,164,-964,False
+kayýtlý,beyaz liste,3,10,0,164,18,False
+kayýtlý,beyaz liste,3,10,0,164,16,False
+Anonim,null,0,0,0,0,1,False
+kayýtlý,toplu ileti gönderici|devriye,10,3,0,28397,791,False
+Anonim,null,0,0,0,0,-1,False
+kayýtlý,beyaz liste,3,10,0,164,293,False
+kayýtlý,beyaz liste,3,10,0,164,146,False
+kayýtlý,beyaz liste,3,10,0,164,4,False
+kayýtlý,beyaz liste,3,10,0,164,-3,False
+kayýtlý,beyaz liste,3,10,0,164,607,False
+kayýtlý,beyaz liste,3,10,0,164,-2,False
+kayýtlý,beyaz liste,3,10,0,164,87,False
+kayýtlý,beyaz liste,3,10,0,164,249,False
+Anonim,null,0,0,0,0,0,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,105,False
+Anonim,null,0,0,0,0,-105,True
+kayýtlý,devriye,11,10,0,53986,-18,False
+Anonim,null,0,0,0,0,-14,False
+Anonim,null,0,0,0,0,-2,False
+kayýtlý,devriye,9,3,0,37009,6,False
+kayýtlý,devriye,9,3,0,37009,-5,False
+kayýtlý,engellenmiþ,3,11,0,29777,225,False
+kayýtlý,null,4,5,0,2,-225,True
+kayýtlý,devriye,9,3,0,37009,56,False
+kayýtlý,devriye,5,7,0,13139,29,False
+Anonim,null,0,0,0,0,-29,True
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-11,False
+Anonim,null,0,0,0,0,8,True
+Anonim,null,0,0,0,0,1,False
+Anonim,null,0,0,0,0,2,False
+kayýtlý,devriye,9,3,0,37009,-30,False
+kayýtlý,devriye,9,3,0,37009,27,False
+kayýtlý,devriye,9,3,0,37009,-66,False
+kayýtlý,toplu ileti gönderici|devriye,11,4,0,32646,0,False
+Anonim,null,0,0,0,0,0,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,0,False
+Anonim,null,0,0,0,0,0,True
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-4,False
+Anonim,null,0,0,0,0,4,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-11,False
+Anonim,null,0,0,0,0,11,False
+kayýtlý,devriye,14,0,0,122286,-22,False
+Anonim,null,0,0,0,0,22,True
+kayýtlý,devriye,14,0,0,122286,-2,False
+Anonim,null,0,0,0,0,2,True
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,-35,False
+Anonim,null,0,0,0,0,35,False
+Anonim,null,0,0,0,0,1,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,-1,False
+kayýtlý,engellenmiþ,4,4,0,832,-14,False
+kayýtlý,engellenmiþ,4,4,0,832,169,False
+Anonim,null,0,0,0,0,6,False
+Anonim,null,0,0,0,0,136,False
+kayýtlý,devriye,12,7,0,56735,786,False
+kayýtlý,null,4,4,0,1,-786,True
+kayýtlý,engellenmiþ|toplu ileti gönderici|devriye,6,0,0,65831,18,False
+kayýtlý,devriye,9,3,0,37009,22,False
+kayýtlý,devriye,9,3,0,37009,15,False
+Anonim,null,0,0,0,0,1,False
+kayýtlý,devriye,9,3,0,37009,2,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-5281,False
+Anonim,null,0,0,0,0,5281,True
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-17,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,795,True
+Anonim,null,0,0,0,0,17,False
+Anonim,null,0,0,0,0,-795,False
+kayýtlý,devriye,9,2,0,7804,-54,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,964,False
+Anonim,null,0,0,0,0,-964,True
+kayýtlý,devriye,5,7,0,13139,0,False
+kayýtlý,devriye,5,7,0,13139,-29,False
+Anonim,null,0,0,0,0,29,True
+Anonim,null,0,0,0,0,-149,False
+kayýtlý,null,5,2,0,71,60,False
+kayýtlý,null,5,2,0,71,54,False
+Anonim,null,0,0,0,0,-1,False
+kayýtlý,beyaz liste,10,3,0,345,0,False
+kayýtlý,devriye,8,7,0,50327,6,False
+kayýtlý,null,4,7,0,188,-6,True
+kayýtlý,editor|hizmetli,13,1,0,122546,4,False
+kayýtlý,null,4,6,0,7,-4,False
+kayýtlý,toplu ileti gönderici|devriye,11,4,0,32646,1,False
+kayýtlý,toplu ileti gönderici|devriye,11,4,0,32646,262,False
+kayýtlý,toplu ileti gönderici|devriye,11,4,0,32646,246,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,10,False
+kayýtlý,null,4,6,0,2,-10,True
+kayýtlý,devriye,0,0,0,55421,40,False
+kayýtlý,beyaz liste,5,1,0,2251,36,False
+kayýtlý,devriye,14,0,0,122286,361,False
+Anonim,null,0,0,0,0,-361,True
+kayýtlý,null,5,11,0,26660,-17,False
+kayýtlý,engellenmiþ|toplu ileti gönderici|devriye,6,0,0,65831,144,False
+kayýtlý,devriye,9,3,0,37009,1,False
+kayýtlý,null,5,2,0,71,11,False
+kayýtlý,null,5,4,0,12,-2,False
+kayýtlý,hizmetli,5,1,0,18073,-14,False
+Anonim,null,0,0,0,0,14,False
+kayýtlý,beyaz liste,5,1,0,458,3,False
+kayýtlý,beyaz liste,5,1,0,458,12,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,-16,False
+Anonim,null,0,0,0,0,16,True
+kayýtlý,beyaz liste,10,10,0,6473,-192,False
+kayýtlý,null,5,2,0,71,6,False
+kayýtlý,null,5,2,0,71,-52,False
+kayýtlý,null,5,2,0,71,69,False
+kayýtlý,null,5,2,0,71,97,False
+kayýtlý,null,5,2,0,71,72,False
+kayýtlý,beyaz liste,10,2,0,58408,-15,False
+kayýtlý,hizmetli,12,9,0,88889,-20,False
+kayýtlý,hizmetli,12,9,0,88889,-37,False
+Anonim,null,0,0,0,0,20,False
+Anonim,null,0,0,0,0,37,False
+kayýtlý,null,4,9,0,2,1,False
+kayýtlý,beyaz liste,5,8,0,186,2,False
+kayýtlý,null,4,10,0,4,1,False
+kayýtlý,null,4,10,0,4,9,False
+kayýtlý,devriye,14,0,0,122286,-22,False
+kayýtlý,null,4,10,0,1,22,True
+Anonim,null,0,0,0,0,0,False
+kayýtlý,toplu ileti gönderici|devriye,11,4,0,32646,-31,False
+kayýtlý,null,4,10,0,1,31,False
+kayýtlý,null,4,11,0,6,4,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,7,False
+kayýtlý,null,4,11,0,6,-7,True
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,0,False
+Anonim,null,0,0,0,0,0,True
+kayýtlý,devriye,12,7,0,56735,278,False
+Anonim,null,0,0,0,0,-278,True
+kayýtlý,devriye,9,3,0,37009,35,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-51,False
+Anonim,null,0,0,0,0,51,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-81,False
+Anonim,null,0,0,0,0,81,False
+kayýtlý,devriye,6,2,0,4126,53,False
+kayýtlý,null,5,0,0,1,-53,False
+kayýtlý,beyaz liste,5,5,0,1107,12,False
+Anonim,null,0,0,0,0,1,False
+kayýtlý,beyaz liste|bot,13,8,0,43588,-126,False
+kayýtlý,devriye,8,2,0,40041,-1,False
+kayýtlý,toplu ileti gönderici|devriye,11,4,0,32646,1,False
+Anonim,null,0,0,0,0,-1,False
+kayýtlý,arayüz yöneticisi|teknisyen|devriye,0,0,0,70128,-33,False
+kayýtlý,null,5,1,0,3,33,True
+kayýtlý,editor|hizmetli,13,1,0,122545,-22,False
+Anonim,null,0,0,0,0,11,True
+Anonim,null,0,0,0,0,11,False
+kayýtlý,null,5,2,0,71,-10,False
+kayýtlý,devriye,7,1,0,16176,-107,False
+kayýtlý,null,5,2,0,24,107,False
+kayýtlý,null,5,2,0,7,-1,False
+kayýtlý,devriye,11,10,0,53986,6,False
+kayýtlý,null,5,2,0,21,0,False
+kayýtlý,null,5,2,0,21,6,False
+kayýtlý,toplu ileti gönderici|devriye,11,4,0,32646,4,False
+kayýtlý,null,5,2,0,3,167,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-26,False
+kayýtlý,null,5,2,0,1,26,True
+kayýtlý,editor|hizmetli,13,1,0,122545,265,False
+Anonim,null,0,0,0,0,-265,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-3,False
+Anonim,null,0,0,0,0,3,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-92,False
+kayýtlý,null,5,7,0,74,53,True
+kayýtlý,null,5,7,0,74,39,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-95,False
+kayýtlý,null,5,7,0,74,95,True
+kayýtlý,denetçi|hizmetli,9,4,0,17503,12,False
+Anonim,null,0,0,0,0,-12,True
+kayýtlý,editor|hizmetli,13,1,0,122545,-182,False
+kayýtlý,null,5,3,0,2,182,False
+kayýtlý,devriye,11,10,0,53986,38,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-204,False
+kayýtlý,null,5,7,0,74,204,True
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-1,False
+Anonim,null,0,0,0,0,1,True
+kayýtlý,devriye,8,2,0,40041,-2,False
+Anonim,null,0,0,0,0,265,False
+kayýtlý,denetçi|hizmetli,9,4,0,17503,-38,False
+Anonim,null,0,0,0,0,38,True
+kayýtlý,bot,10,2,0,577985,-413,False
+kayýtlý,devriye,7,6,0,200,54,False
+Anonim,null,0,0,0,0,-54,True
+Anonim,null,0,0,0,0,0,False
+Anonim,null,0,0,0,0,-11,False
+Anonim,null,0,0,0,0,11,False
+Anonim,null,0,0,0,0,0,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,69,False
+Anonim,null,0,0,0,0,-69,True
+kayýtlý,devriye,7,1,0,16176,-15,False
+kayýtlý,null,5,7,0,1,15,False
+kayýtlý,devriye,14,0,0,122286,-26,False
+Anonim,null,0,0,0,0,26,True
+kayýtlý,devriye,11,10,0,53986,75,False
+kayýtlý,devriye,7,7,0,16510,15,False
+kayýtlý,engellenmiþ,5,10,0,597,-15,True
+Anonim,null,0,0,0,0,4,False
+kayýtlý,devriye,14,0,0,122286,1,False
+Anonim,null,0,0,0,0,-1,True
+Anonim,null,0,0,0,0,1,False
+kayýtlý,devriye,9,3,0,37009,2,False
+kayýtlý,devriye,7,1,0,16176,219,False
+Anonim,null,0,0,0,0,8,False
+kayýtlý,bot,11,4,0,181017,15,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-9,False
+Anonim,null,0,0,0,0,9,False
+kayýtlý,bot,6,5,0,909,9,False
+kayýtlý,devriye,7,7,0,1497,1,False
+Anonim,null,0,0,0,0,-1,True
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-11,False
+Anonim,null,0,0,0,0,11,True
+kayýtlý,devriye,8,1,0,32464,0,False
+kayýtlý,beyaz liste|bot,13,8,0,43588,-81,False
+kayýtlý,devriye,7,7,0,16510,422,False
+Anonim,null,0,0,0,0,-422,True
+kayýtlý,devriye,11,7,0,1094,543,False
+Anonim,null,0,0,0,0,1,False
+kayýtlý,null,6,4,0,9,6,False
+Anonim,null,0,0,0,0,-1,False
+kayýtlý,null,7,0,0,11,123,False
+kayýtlý,beyaz liste,0,0,0,224,-4,False
+kayýtlý,devriye,13,8,0,33126,126,False
+kayýtlý,devriye,14,0,0,122286,-128,False
+Anonim,null,0,0,0,0,128,True
+kayýtlý,null,14,1,0,21,2,False
+kayýtlý,beyaz liste,9,0,0,145,111,False
+Anonim,null,0,0,0,0,1,False
+kayýtlý,devriye,9,3,0,37009,-4,False
+kayýtlý,devriye,9,3,0,37009,169,False
+Anonim,null,0,0,0,0,0,False
+kayýtlý,hizmetli,11,11,0,64892,-49,False
+kayýtlý,null,6,9,0,2,49,True
+kayýtlý,beyaz liste,10,11,0,463,0,False
+Anonim,null,0,0,0,0,7,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-29,False
+kayýtlý,null,6,10,0,19,29,True
+kayýtlý,hizmetli,11,11,0,64892,-109,False
+kayýtlý,null,7,0,0,11,109,True
+Anonim,null,0,0,0,0,-2,False
+kayýtlý,bot,7,9,0,461643,-16,False
+kayýtlý,null,6,12,0,6070,-1,False
+Anonim,null,0,0,0,0,0,True
+Anonim,null,0,0,0,0,1,False
+kayýtlý,toplu ileti gönderici|devriye,11,0,0,433436,69,False
+kayýtlý,devriye,9,3,0,22441,166,False
+Anonim,null,0,0,0,0,-166,False
+kayýtlý,devriye,7,7,0,1497,91735,False
+Anonim,null,0,0,0,0,-91735,True
+kayýtlý,engellenmiþ,11,0,0,72971,-2,False
+kayýtlý,engellenmiþ,11,0,0,72971,2,True
+kayýtlý,devriye,14,0,0,122286,-1,False
+Anonim,null,0,0,0,0,-31,True
+Anonim,null,0,0,0,0,32,False
+kayýtlý,devriye,11,1,0,40266,976,False
+Anonim,null,0,0,0,0,-976,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-27,False
+Anonim,null,0,0,0,0,27,True
+kayýtlý,hizmetli,11,11,0,64892,12,False
+kayýtlý,null,7,3,0,7,-11,True
+kayýtlý,null,7,3,0,7,0,False
+kayýtlý,null,7,3,0,7,-1,False
+kayýtlý,hizmetli,11,11,0,64892,108,False
+Anonim,null,0,0,0,0,-108,True
+kayýtlý,hizmetli,11,11,0,64892,-25,False
+Anonim,null,0,0,0,0,25,True
+Anonim,null,0,0,0,0,-7,False
+Anonim,null,0,0,0,0,33,False
+kayýtlý,devriye,7,9,0,2828,0,False
+Anonim,null,0,0,0,0,0,False
+kayýtlý,devriye,14,0,0,122286,1,False
+Anonim,null,0,0,0,0,-1,True
+kayýtlý,devriye,10,2,0,2746,-14,False
+Anonim,null,0,0,0,0,14,False
+kayýtlý,hizmetli,11,11,0,64892,1,False
+Anonim,null,0,0,0,0,-1,True
+Anonim,null,0,0,0,0,1,False
+kayýtlý,engellenmiþ,11,0,0,72971,-9,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,25,False
+Anonim,null,0,0,0,0,-25,True
+kayýtlý,engellenmiþ,11,0,0,72971,-281,False
+Anonim,null,0,0,0,0,281,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-63,False
+Anonim,null,0,0,0,0,34,False
+Anonim,null,0,0,0,0,29,False
+kayýtlý,bot,7,3,0,205347,-6237,False
+kayýtlý,hizmetli,11,11,0,64892,-13,False
+Anonim,null,0,0,0,0,13,False
+kayýtlý,bot,13,1,0,4957,-13,False
+Anonim,null,0,0,0,0,-1,False
+kayýtlý,bot,9,2,0,155670,37,False
+kayýtlý,bot,11,5,0,611700,-70,False
+kayýtlý,bot,11,5,0,611700,15,False
+kayýtlý,bot,11,5,0,611700,15,False
+kayýtlý,bot,11,5,0,611700,16,False
+kayýtlý,bot,11,5,0,611700,15,False
+kayýtlý,bot,11,5,0,611700,15,False
+kayýtlý,bot,11,5,0,611700,15,False
+kayýtlý,bot,11,5,0,611700,14,False
+kayýtlý,null,7,4,0,90,32,False
+kayýtlý,null,13,4,0,168,87,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,2,False
+Anonim,null,0,0,0,0,-2,True
+kayýtlý,bot,9,2,0,155670,47,False
+kayýtlý,devriye,9,3,0,37009,1,False
+kayýtlý,devriye,9,3,0,37009,3,False
+kayýtlý,devriye,9,3,0,37009,0,False
+kayýtlý,devriye,9,3,0,37009,-86,False
+kayýtlý,hizmetli,11,11,0,64892,-60,False
+Anonim,null,0,0,0,0,60,False
+kayýtlý,devriye,8,8,0,992,-28,False
+Anonim,null,0,0,0,0,28,False
+kayýtlý,bot,11,5,0,12142,-14,False
+kayýtlý,hizmetli,11,11,0,64892,2,False
+Anonim,null,0,0,0,0,-2,False
+kayýtlý,hizmetli,11,11,0,64892,-2,False
+Anonim,null,0,0,0,0,2,False
+kayýtlý,bot,11,4,0,181017,-17,False
+kayýtlý,bürokrat|hizmetli,13,0,0,1175,-75,False
+kayýtlý,null,7,6,0,16,75,False
+kayýtlý,bot,10,3,0,317531,-2,False
+kayýtlý,bot,10,3,0,317531,26,False
+kayýtlý,bot,11,3,0,2666,-27,False
+kayýtlý,bürokrat|hizmetli,11,10,0,163648,-6,False
+Anonim,null,0,0,0,0,6,True
+kayýtlý,devriye,14,0,0,122286,0,False
+Anonim,null,0,0,0,0,0,True
+kayýtlý,bot,10,3,0,317531,33,False
+kayýtlý,bot,9,2,0,155670,-32,False
+kayýtlý,engellenmiþ,7,9,0,7428,-50,False
+Anonim,null,0,0,0,0,50,False
+kayýtlý,bot,11,4,0,181017,6,False
+kayýtlý,devriye,14,0,0,122286,1056,False
+Anonim,null,0,0,0,0,-1056,True
+kayýtlý,bot,11,4,0,181017,31,False
