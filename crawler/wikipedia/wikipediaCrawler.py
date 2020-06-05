@@ -1,5 +1,5 @@
 import copy
-import datetime
+import time
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
@@ -10,24 +10,22 @@ import numpy as np
 import pandas as pd
 from sklearn.naive_bayes import GaussianNB
 from sklearn import metrics
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import classification_report
 
-# global variables
+# global variables and user inputs
 DOMAIN = "https://tr.wikipedia.org/"
 file_number = 1
 SEARCH_ADDRESSES = ["https://tr.wikipedia.org/w/index.php?title=I._D%C3%BCnya_Sava%C5%9F%C4%B1&action=history",
                     "https://tr.wikipedia.org/w/index.php?title=II._D%C3%BCnya_Sava%C5%9F%C4%B1&action=history"]
 DATA_LIMIT = 500
-SEARCH_ADDRESSES[file_number - 1] = SEARCH_ADDRESSES[file_number - 1] + "&offset=&limit=" + str(DATA_LIMIT)
-
-data_directory = "examples\\csv\\"
+data_directory = "wikipedia\\csv\\"
 is_there_data = True
 is_data_cleaned = True
+K = 5                                                                                                  # K-Fold
 # driver path for showing to selenium
 driver_path = "C:\\Users\\ali19\\OneDrive\\Belgeler\\selenium\\chromedriver.exe"
-driver = webdriver.Chrome(driver_path)
 
+driver = webdriver.Chrome(driver_path)
+SEARCH_ADDRESSES[file_number - 1] = SEARCH_ADDRESSES[file_number - 1] + "&offset=&limit=" + str(DATA_LIMIT)
 # wikipedia groups for checking status of changer                                                           degree
 high_level_groups = ["hizmetli", "arayüz yöneticisi", "bürokrat", "gözetmen", "denetçi", "kâhya", "editor"]  # 4
 general_groups = ["beyaz liste", "devriye", "toplu ileti gönderici", "toplu mesaj gönderici",
@@ -36,7 +34,6 @@ others = ["bot", "IP engelleme muafı"]                                         
 non_groups = ['null']                                                                                        # 1
 black_list = ["engellenmiş"]                                                                                 # 0
 all_groups = [black_list, non_groups, others, general_groups, high_level_groups]                       # all group lists
-K = 5                                                                                                  # K-Fold
 
 
 def create_train_data(user_info):
@@ -215,7 +212,7 @@ def check_revocation(user_link):
 
 try:
     if not is_there_data:
-        start_time = datetime.datetime.now()
+        start_time = time.time()
         print('Crawler started to work. Please wait!')
         driver.set_page_load_timeout(50)
         driver.get(SEARCH_ADDRESSES[file_number - 1])
@@ -248,10 +245,9 @@ try:
             users.append(copy.deepcopy(userInfo))
             userInfo.clear()
         users[-1][1].append('False')
-        finish_time = datetime.datetime.now()
-        process_min = finish_time.minute - start_time.minute
-        process_sec = finish_time.second - start_time.second
-        print('Crawler process time: ', process_min, ' dk', process_sec, ' sn')
+        finish_time = time.time()
+        process_sec = finish_time - start_time
+        print('Crawler process time: ', process_sec, ' sn')
 
         file_name = data_directory + "user_data_" + str(file_number) + ".csv"
         with open(file_name, 'w', encoding='windows-1254') as f:
