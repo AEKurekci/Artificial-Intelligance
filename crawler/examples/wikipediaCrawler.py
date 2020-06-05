@@ -15,7 +15,7 @@ from sklearn.metrics import classification_report
 
 # global variables
 DOMAIN = "https://tr.wikipedia.org/"
-file_number = 2
+file_number = 1
 SEARCH_ADDRESSES = ["https://tr.wikipedia.org/w/index.php?title=I._D%C3%BCnya_Sava%C5%9F%C4%B1&action=history",
                     "https://tr.wikipedia.org/w/index.php?title=II._D%C3%BCnya_Sava%C5%9F%C4%B1&action=history"]
 DATA_LIMIT = 500
@@ -27,6 +27,16 @@ is_data_cleaned = True
 # driver path for showing to selenium
 driver_path = "C:\\Users\\ali19\\OneDrive\\Belgeler\\selenium\\chromedriver.exe"
 driver = webdriver.Chrome(driver_path)
+
+# wikipedia groups for checking status of changer                                                           degree
+high_level_groups = ["hizmetli", "arayüz yöneticisi", "bürokrat", "gözetmen", "denetçi", "kâhya", "editor"]  # 4
+general_groups = ["beyaz liste", "devriye", "toplu ileti gönderici", "toplu mesaj gönderici",
+                  "hesap oluşturucu", "teknisyen"]                                                           # 3
+others = ["bot", "IP engelleme muafı"]                                                                       # 2
+non_groups = ['null']                                                                                        # 1
+black_list = ["engellenmiş"]                                                                                 # 0
+all_groups = [black_list, non_groups, others, general_groups, high_level_groups]                       # all group lists
+K = 5                                                                                                  # K-Fold
 
 
 def create_train_data(user_info):
@@ -74,7 +84,7 @@ def getUserInfo(inLink):
 def name_process(name):
     if '(sayfa mevcut değil)' in name:
         name = name.split('(')
-        return name[0]
+        return name[0]                      # delete '(sayfa mevcut değil)'
     else:
         return name
 
@@ -106,8 +116,7 @@ def post_size_process(post_str):
 
 def degree_process(line):
     r = []
-    #name = name_process(line[0])
-    r.append('kayıtlı')
+    r.append(1)                                                 # 1 means the user is registered (kayıtlı)
     line.pop(0)
     r.append(line.pop())                                        # change size
     r.insert(1, line.pop())
@@ -118,8 +127,13 @@ def degree_process(line):
     r.insert(1, registration_info)
     line.pop()
     degree = []
+    degree_point = 0
     for i in line:
-        degree.append(i)
+        counter = 0
+        for ind, group in enumerate(all_groups):
+            if i in group:
+                degree_point += ind
+    degree.append(degree_point)
     r.insert(1, degree)
     return r
 
@@ -128,13 +142,11 @@ def write_data(table, file_name):
     with open(file_name, 'w') as f:
         f.write("user_type,degree,year,month,day,post_size,change_size,class_suspect\n")
         for r in table:
-            f.write(r[0] + ",")
+            f.write(str(r[0]) + ",")
+            degree_point = 0
             for degree in r[1]:
-                if degree == r[1][-1]:
-                    f.write(degree)
-                else:
-                    f.write(degree + "|")
-            f.write(",")
+                degree_point += degree
+            f.write(str(degree_point) + ",")
             for data in r[2]:
                 f.write(str(data) + ",")
             f.write(str(r[3]) + ",")
@@ -154,17 +166,16 @@ def preprocessing_data(file):
             if 'True' in line[-1]:                  # suspect count
                 suspect_count += 1
             if length_data < 5:
-                row = ['Anonim', ['null'], [0, 0, 0], 0, line[1], line[2]]
+                row = [0, [1], [0, 0, 0], 0, line[1], line[2]]     # first 0 means user_type is Anonim
             elif length_data == 5:                  # ex.SemonyZ (sayfa mevcut değil)|1 gün|7 değişikliğe sahip|69|False
-                #name = name_process(line[0])        # delete '(sayfa mevcut değil)'
-                row.append('kayıtlı')
+                row.append(1)                                           # user_type is kayıtlı(registered)
                 registration_info = registration_info_process(line[1])
                 row.append(registration_info)
                 post_size = post_size_process(line[2])
                 row.append(post_size)
                 row.append(line[3])
                 row.append(line[4])
-                row.insert(1, ['null'])
+                row.insert(1, [1])
             else:
                 row = degree_process(line)
             table.append(copy.deepcopy(row))
@@ -263,13 +274,16 @@ try:
             preprocessing_data(file_name)
         else:
             file_name = data_directory + "cleaned_data_" + str(file_number) + ".csv"
-            user_data = pd.read_csv(file_name, encoding='windows-1254', dtype={'user_type': np.str, 'degree': np.str,
+            user_data = pd.read_csv(file_name, encoding='windows-1254', dtype={'user_type': np.bool, 'degree': np.int,
                                                                                'year': np.int, 'month': np.int, 'day': np.int,
                                                                                'post_size': np.int,'change_size': np.int,
                                                                                'class_suspect': np.bool})
-            train, test = create_train_data(user_data)
-            naive_accuracy = prediction_by_naive_bayes(train, test)
-            print(naive_accuracy)
+            avg_accuracy = 0
+            for i in range(K):
+                train, test = create_train_data(user_data)
+                naive_accuracy = prediction_by_naive_bayes(train, test)
+                avg_accuracy += naive_accuracy
+            print("Naive Bayes Accuracy: ", (avg_accuracy / K))
 except TimeoutException as ex:
     print("Exception: ", str(ex))
     driver.close()
