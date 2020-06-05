@@ -26,6 +26,7 @@ driver_path = "C:\\Users\\ali19\\OneDrive\\Belgeler\\selenium\\chromedriver.exe"
 
 driver = webdriver.Chrome(driver_path)
 SEARCH_ADDRESSES[file_number - 1] = SEARCH_ADDRESSES[file_number - 1] + "&offset=&limit=" + str(DATA_LIMIT)
+
 # wikipedia groups for checking status of changer                                                           degree
 high_level_groups = ["hizmetli", "arayüz yöneticisi", "bürokrat", "gözetmen", "denetçi", "kâhya", "editor"]  # 4
 general_groups = ["beyaz liste", "devriye", "toplu ileti gönderici", "toplu mesaj gönderici",
@@ -52,10 +53,10 @@ def prediction_by_naive_bayes(trainNB, testNB):
     return naivesAccuracy
 
 
-def getUserInfo(inLink):
+def get_user_info(user_link):
     allA = []
     driver.set_page_load_timeout(50)
-    driver.get(inLink)
+    driver.get(user_link)
     user_type = driver.title.split(':')[0]
     if user_type == 'Kullanıcı' or user_type == '"Kullanıcı' or user_type == 'Kullanıcı mesaj':
         try:
@@ -126,7 +127,6 @@ def degree_process(line):
     degree = []
     degree_point = 0
     for i in line:
-        counter = 0
         for ind, group in enumerate(all_groups):
             if i in group:
                 degree_point += ind
@@ -224,26 +224,27 @@ try:
         firstHead = soup.find(id='firstHeading')
         topic = str(firstHead.string)
         topic = topic[1: topic.index('"', 1)]
+        print('Topic: ', topic)
         users = []
-        userInfo = []
+        user_info = []
         all_a = soup('a')[-1]
         all_a = all_a.findAllPrevious('a', {'class': 'mw-userlink'})
-        for userLink in all_a:
-            user_name = str(userLink.get('title')).split(':')[1]
-            link = DOMAIN + userLink.get('href')
-            userInfo.append(user_name)
-            userMore = getUserInfo(link)
-            if len(userMore) > 0:
-                userMore.pop()                                              # pop last change time because I don't need
-            change_size = get_change_size(userLink)
-            userMore.append(str(change_size))
-            revocation_result = check_revocation(userLink)
+        for user_link in all_a:
+            user_name = str(user_link.get('title')).split(':')[1]
+            link = DOMAIN + user_link.get('href')
+            user_info.append(user_name)
+            user_more = get_user_info(link)
+            if len(user_more) > 0:
+                user_more.pop()                                              # pop last change time because I don't need
+            change_size = get_change_size(user_link)
+            user_more.append(str(change_size))
+            revocation_result = check_revocation(user_link)
             if len(users) > 0:                                   # append suspect value(True/False) to previous user
                 users[-1][1].append(copy.deepcopy(str(revocation_result)))
 
-            userInfo.append(userMore)
-            users.append(copy.deepcopy(userInfo))
-            userInfo.clear()
+            user_info.append(user_more)
+            users.append(copy.deepcopy(user_info))
+            user_info.clear()
         users[-1][1].append('False')
         finish_time = time.time()
         process_sec = finish_time - start_time
