@@ -17,7 +17,7 @@ file_number = 1
 SEARCH_ADDRESSES = ["https://tr.wikipedia.org/w/index.php?title=I._D%C3%BCnya_Sava%C5%9F%C4%B1&action=history",
                     "https://tr.wikipedia.org/w/index.php?title=II._D%C3%BCnya_Sava%C5%9F%C4%B1&action=history"]
 DATA_LIMIT = 500
-data_directory = "wikipedia\\csv\\"
+data_directory = "csv\\"
 is_there_data = True
 is_data_cleaned = True
 K = 5                                                                                                  # K-Fold
@@ -251,19 +251,19 @@ try:
         print('Crawler process time: ', process_sec, ' sn')
 
         file_name = data_directory + "user_data_" + str(file_number) + ".csv"
-        with open(file_name, 'w', encoding='windows-1254') as f:
-            for data in reversed(users):
-                try:
-                    f.write(data[0] + "|")
-                    for index, inData in enumerate(data[1]):
-                        if not index == (len(data[1]) - 1):
-                            f.write(str(inData) + "|")
-                        else:
-                            f.write(str(inData))
-                    f.write('\n')
-                except:
-                    print("encoding error", data[0])
-                    continue
+        f = open(file_name, 'w', encoding='windows-1254')
+        for data in reversed(users):
+            try:
+                f.write(data[0] + "|")
+                for index, inData in enumerate(data[1]):
+                    if not index == (len(data[1]) - 1):
+                        f.write(str(inData) + "|")
+                    else:
+                        f.write(str(inData))
+                f.write('\n')
+            except:
+                print("encoding error", data[0])
+                continue
     else:
         driver.close()
         if not is_data_cleaned:
