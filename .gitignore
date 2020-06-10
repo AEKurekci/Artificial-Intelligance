@@ -1,2 +1,3 @@
 crawler/venv/*
 crawler/**/venv/*
+scikit-learn-notebook/venv/*
