@@ -1,16 +1,10 @@
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression, LinearRegression
 from sklearn.pipeline import make_pipeline
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_iris, make_regression, fetch_california_housing
+from sklearn.model_selection import train_test_split, cross_validate, RandomizedSearchCV
 from sklearn.metrics import accuracy_score
-from sklearn.datasets import make_regression
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import cross_validate
-from sklearn.datasets import fetch_california_housing
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import RandomizedSearchCV
 from scipy.stats import randint
 
 rfc = RandomForestClassifier(random_state=0)            # estimator: tahminci
