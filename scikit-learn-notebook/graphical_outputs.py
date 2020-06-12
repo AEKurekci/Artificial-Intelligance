@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 csv_directory = "csv_files\\"
 output_directory = "graphics\\"
-file_name = "wikipedia_history_suspects"
+file_name = "wikipedia_history_suspects_I_world_war"
 csv_file = csv_directory + file_name + ".csv"
 
 wiki = pd.read_csv(csv_file, sep=',', encoding='windows-1254')
