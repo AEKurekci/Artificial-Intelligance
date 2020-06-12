@@ -14,7 +14,13 @@ line = file.readline()
 while line:
     line = line.strip().split(',')
     for index, key in enumerate(keys):
-        json_data[key] = line[index]
+        try:
+            json_data[key] = int(line[index])
+        except:
+            if 'True' in line[index]:
+                json_data[key] = bool(":)")
+            else:
+                json_data[key] = bool("")
     all_jsons.append(copy.deepcopy(json_data))
     line = file.readline()
 
