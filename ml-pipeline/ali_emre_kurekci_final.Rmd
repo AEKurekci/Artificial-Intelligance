@@ -1,0 +1,291 @@
+---
+title: "ali_emre_kurekci_final"
+author: "Ali Emre Kürekci"
+date: "15 01 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+# Reading Data
+I imported the data here. I deleted the Month column because I do not think it
+is useful for the models. Any user can give deleting columns input as parameter
+after some trying. I also specified needed variables in this chunk.
+```{r}
+library(caret)
+  
+data <- read.csv('./online_shoppers_intention.csv')
+delete_col_nums <- c(11)
+if(!is.null(delete_col_nums)){
+    data <- data[, -delete_col_nums] 
+}
+# Structure of the dataframe
+str(data)
+label_name <- "Revenue"
+temp_label <- paste(label_name, " ~ ." )
+col_num <- ncol(data)
+label_name_col <- c("Revenue")
+```
+# Missing data handling
+```{r missing data}
+missing_method <- NULL
+if(!is.null(missing_method)){
+  library(mice)
+  library(VIM)
+  sapply(data, function(x) sum(is.na(x)))
+  summary(data)
+  
+  mice_plot <- aggr(data, col=c('navyblue','red'), 
+                    numbers=TRUE,labels=names(data), 
+                    ylab=c("Missing data", "Pattern"))
+  imp<-mice(data, meth=missing_method)
+  data <- complete(imp) 
+}
+
+```
+# Noise filtering
+I provided noise filtiring option tu the users if they would like to use this 
+option it is enough to give noise action type as input to the main function. Then 
+they can display the noise rows. I should say that, I used noise filters package
+first time in my life and I could not get any result in short time for our dataset.
+For the iris data that has small row size, it is working pretty good but I do not
+prefer to use this option in our case.
+```{r Noise}
+noise <- FALSE
+noise_filter <- function(d, n_type){
+    library(ggplot2)
+    library(NoiseFiltersR)
+    label_col_num <- which(colnames(data) == label_name)
+    for(i in 1:ncol(d)){
+      if(typeof(d[,i]) == "character" || typeof(d[,i]) == "logical"){
+        d[,i] = as.factor(d[,i])
+      }
+    }
+    #hybrid or remove
+    out <- hybridRepairFilter(d, noiseAction = n_type, classColumn = label_col_num)
+    summary(out, explicit = TRUE)
+}
+if(noise){
+  noise_filter(data, "remove")
+}
+```
+# Class Balancing
+When I explore the data, I saw that the data has unbalance problem. While 1000 
+times TRUE class is existing, 10000 times FALSE class is exist in the data set.
+Then I improve knn model firstly and I was sure to that idea. I took very bad 
+metric results No information rate is much more high the accuracy.And also when 
+I set TRUE as positive class I got too low specificity. Then I decided to balance
+the classes by using SMOTE function. After applying the class balancing, I have
+got pretty satisfied scores.
+```{r class balancing}
+library(imbalance)
+library(DMwR)
+smoted = TRUE
+smote_data <- function(d){
+  smotedata <- d[, c(1:ncol(d))]
+  for(i in 1:ncol(smotedata)){
+    if(typeof(smotedata[,i]) == "character" || typeof(smotedata[,i]) == "logical"){
+      smotedata[,i] = as.factor(smotedata[,i])
+    }
+  }
+  smoted_data <<- SMOTE(as.formula(temp_label),data = smotedata, perc.over = 200, 
+                   perc.under=150)
+  
+  return(smoted_data)
+}
+if(smoted){
+  data <- smote_data(data)
+}
+str(data)
+```
+
+# Data Partition
+Data is seperated 80% for train and 20% for test by default. I gave this as configurable for user by parameter. in main pipeline function on R file. Also I extracted x and y values from train data part for future usage.
+```{r}
+
+set.seed(100)
+label_col_num <- which(colnames(data) == label_name)
+
+# Step 1: Get row numbers for the training data
+trainRowNumbers <- createDataPartition(data[,label_col_num], p=0.8, 
+                                       list=FALSE)
+
+# Step 2: Create the training  dataset
+trainData <- data[trainRowNumbers,]
+
+# Step 3: Create the test dataset
+testData <- data[-trainRowNumbers,]
+
+# Store X and Y for later use.
+x = trainData[, -label_col_num]
+
+y = trainData[,label_col_num]
+```
+# Descriptive statistic
+The skimr package presents us finding any missing values in training data set. It informs us about all columns such as missing value count, standard deviation and column complate rate. 
+```{r}
+
+library(skimr)
+library(rlang)
+skimmed <- skimr::skim(trainData)
+skimmed[, c(1:5, 9:11, 13, 15)]
+```
+# Creating imputation model on the training data
+Our online shoppers  intention data is very clear data so actually we do not need any imputation but at the end of the day I am creating a general ml pipeline function. Besides missing imputation with the help of preProcess function we can apply many preprocess steps on the train data such as scaling and centering. Therefore I added preProcess function with knnImputation method which is well know modern imputation missing value method. However I provided bagImpute method for the pipeline users. I applied the preprocessing by ignoring categorical columns.
+```{r}
+head(trainData[,c(11:14)])
+numerics_as_categorical <- c(11:14)
+
+preProcess_missingdata_model <- preProcess(trainData[, -numerics_as_categorical], method="knnImpute")
+preProcess_missingdata_model
+```
+# Ensuring there is not any NA value
+
+```{r}
+
+library(RANN)
+anyNA(trainData)
+trainData <- predict(preProcess_missingdata_model, newdata = trainData)
+anyNA(trainData)
+```
+# One-hot Encoding 
+Creating dummy variables for categorical columns. This process generates new columns for individual categories without touching the label column and numeric columns. As you
+see in the result, VisitorType column seperated as VisitorType.New_Visitor,
+VisitorType.Other, VisitorType.Returning_Visitor which are elements of VisitorType
+columns and Wekend column extracted as Weekend.FALSE and Weekend.TRUE.
+```{r}
+label_name <- "Revenue"
+temp_label <- paste(label_name, " ~ ." )
+dummies_model <- dummyVars(temp_label, data=trainData)
+
+# Create the dummy variables using predict. The Y variable (Revenue) will not be present in trainData_mat.
+trainData_mat <- predict(dummies_model, newdata = trainData)
+
+# # Convert to dataframe
+trainData <- data.frame(trainData_mat)
+
+# # See the structure of the new dataset
+str(trainData)
+```
+## Preprocessing continue
+I applied range preprocess method for all numeric columns
+```{r}
+prepro_method <- 'range'
+preProcess_range_model <- preProcess(trainData, method=prepro_method)
+trainData <- predict(preProcess_range_model, newdata = trainData)
+head(trainData)
+col_num <- ncol(trainData)
+label_name_col <- c(label_name)
+# Append the Y variable
+trainData[,label_name] <- y
+
+apply(trainData[, 1:col_num], 2, FUN=function(x){c('min'=min(x), 'max'=max(x))})
+```
+# Visualize feature importance
+I provided featurePlot function using with different plot type such as box or density. Actually with the online shopping intention data set, it is not clear to see feature seperation for importance on box or density plots. However with different dataset, this section may work properly. Even it is not very clear to see seperation of classes,
+I can say that although Exis Rate and Page Value feature have many outliers, they may
+be in the most important feature scala.
+```{r}
+# "box" or "density"
+plot_type <- "box"
+label_col_num <- (which(colnames(trainData) == label_name))
+
+featurePlot(x = trainData[, -label_col_num], 
+            y = as.factor(trainData[, label_col_num]), 
+            plot = plot_type,
+            strip=strip.custom(par.strip.text=list(cex=.7)),
+            scales = list(x = list(relation="free"), 
+                          y = list(relation="free")))
+
+```
+
+# Prediction
+Now, we improved some models and it is time to predict test data. You can see the general prediction step here.
+```{r prediction}
+# Step 1: Impute missing values 
+
+testData2 <- predict(preProcess_missingdata_model, testData)  
+
+# Step 2: Create one-hot encodings (dummy variables)
+testData3 <- predict(dummies_model, testData2)
+
+# Step 3: Transform the features to range between 0 and 1
+testData4 <- predict(preProcess_range_model, testData3)
+
+```
+# Performance Evaluation
+
+I wrote a function that takes model and positive class as input name and gives 
+confusion matrix as output. It needs preprocessed testData4 for analysing results.
+Here, we can see many performans metrics with the help of confusionMatrix function.
+```{r confusion matrix fn}
+see_conf <- function(m, positive_class){
+  fitted <- predict(m, testData4)
+  sel_positive <- positive_class
+  label_col_num <- (which(colnames(testData) == label_name))
+  confusionMatrix(reference = testData[,label_col_num], data = fitted, mode='everything', 
+                  positive=sel_positive)
+}
+
+```
+# Models are created here
+I used 5 well known model by default but users can use different models in main 
+function.
+```{r model creation}
+model_run <- function(m){
+    set.seed(100)
+    label_col_num <- (which(colnames(trainData) == label_name))
+    created_model = train(trainData[,-label_col_num], trainData[,label_col_num], 
+                      method=as.character(m))
+    return(created_model)
+}
+train_methods <- list('knn', 'lda', 'rf', 'naive_bayes', 'rpart')
+models <- list()
+for(i in 1:length(train_methods)){
+  c_model = model_run(train_methods[i])
+  models[[length(models) + 1]] <- c_model
+}
+```
+# Print Confusion Matrix
+```{r confusion matrix}
+for(i in 1:length(models)){
+  temp_conf <- see_conf(models[[i]], 'TRUE')
+  print(paste(train_methods[i], ' CONFUSION MATRIX'))
+  print(temp_conf)
+}
+```
+# Compare different models
+For our online shopping intention dataset, random forest and decision tree models
+came forward. And the champion model is Random forest for the dataset with low 
+standard deviation and high accuracy score. As you can see lowest accuracy score 
+is above 90s accuracy score and also it has pretty high kappa value.
+```{r comparing}
+compare_list <- list()
+for(i in 1:length(train_methods)){
+  compare_list[[train_methods[[i]]]] <- models[[i]]
+}
+# Compare model performances using resample()
+models_compare <- resamples(compare_list)
+
+# Summary of the models performances
+summary(models_compare)
+
+# Draw box plots to compare models
+scales <- list(x=list(relation="free"), y=list(relation="free"))
+bwplot(models_compare, scales=scales)
+```
+
+# Visualize metrics
+I visualized k and accuracy value graph, feature importance chart as well.
+```{r}
+plot(models[[1]], main=paste("Model Accuracies with", train_methods[[1]]))
+varimp_knn <- varImp(models[[1]])
+plot(varimp_knn, main=paste("Variable Importance with ", train_methods[[1]]))
+```
